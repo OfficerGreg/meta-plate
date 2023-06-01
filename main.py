@@ -16,7 +16,8 @@ def get_question():
         question = request.form.get('ask', '')
         message = answer_question(question)
         print("{}: {}".format(message['role'], message['content']))
-    return render_template('index.html', name=message, answers=answers, context=context)
+    return render_template('index.html', name=message, context=context, answers=answers)
+
 
 
 def answer_question(question):
@@ -28,7 +29,7 @@ def answer_question(question):
         ])
     message = response.choices[0]['message']
     answers.append(message)
-    context.append(message)
+    #context.append(message)
     return message
 
 if __name__ == '__main__':
