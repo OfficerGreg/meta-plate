@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request
 import openai
+import base64
 
-openai.api_key = ""
+encodedKey = "c2stV3p4dWpCZ1kySDZWQnl1UXgxMFRUM0JsYmtGSms2MExNVW0wanF1eElFMUN3Z0tX"
+openai.api_key = base64.b64decode(encodedKey).decode('utf-8')
 model_engine = "gpt-3.5-turbo"
 
 app = Flask(__name__)
