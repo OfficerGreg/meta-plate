@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 import openai
 
-openai.api_key = "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"
+openai.api_key = ""
 model_engine = "gpt-3.5-turbo"
 
 app = Flask(__name__)
@@ -10,6 +10,7 @@ answers = []
 
 @app.route('/', methods=['POST', 'GET'])
 def get_question():
+    message = ""
     if request.method == 'POST':
         if 'submit' in request.form:
             question = request.form.get('ask', '')
