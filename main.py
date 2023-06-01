@@ -9,6 +9,7 @@ model_engine = "gpt-3.5-turbo"
 app = Flask(__name__)
 
 answers = []
+context = []
 
 @app.route('/', methods=['POST', 'GET'])
 def get_question():
@@ -23,12 +24,14 @@ def get_question():
 
 def answer_question(question):
     response = openai.ChatCompletion.create(
+        context.append(question),
         model=model_engine,
         messages=[
-            {"role": "system", "content": question},
+            {"role": "system", "content": "Continue this chat as an AI assistant: " + str(context)},
         ])
     message = response.choices[0]['message']
     answers.append(message)
+    context.append(message)
     return message
 
 if __name__ == '__main__':
