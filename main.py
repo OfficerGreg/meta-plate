@@ -12,12 +12,11 @@ context = []
 @app.route('/', methods=['POST', 'GET'])
 def get_question():
     message = ""
-    if request.method == 'POST':
-        if 'submit' in request.form:
-            question = request.form.get('ask', '')
-            message = answer_question(question)
-            print("{}: {}".format(message['role'], message['content']))
-    return render_template('index.html', name=message)
+    if request.method == 'POST' and 'submit' in request.form:
+        question = request.form.get('ask', '')
+        message = answer_question(question)
+        print("{}: {}".format(message['role'], message['content']))
+    return render_template('index.html', name=message, answers=answers, context=context)
 
 
 def answer_question(question):

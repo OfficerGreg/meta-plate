@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
     <title>Meta Plate</title>
 </head>
+
 <body>
     <h1>Meta Plate</h1>
 
@@ -14,12 +15,26 @@
         <input type="text" name="ask" placeholder="Ask a question">
         <input type="submit" name="submit" value="Submit">
     </form>
-
-    {% if name %}
-    <h3>Answer: {{ name['content'] }}</h3>
+    
+    {% if context %}
+    <h3>Context:</h3>
+    <ul>
+        {% for item in context %}
+        <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
     {% endif %}
-
+    
+    {% if answers %}
+    <h3>Answers:</h3>
+    <ul>
+        {% for answer in answers %}
+        <li>{{ answer['role'] }}: {{ answer['content'] }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
 </body>
+
 
 
     
