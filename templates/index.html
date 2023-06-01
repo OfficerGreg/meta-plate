@@ -14,10 +14,13 @@
         <input type="text" name="ask" placeholder="Ask a question">
         <input type="submit" name="submit" value="Submit">
     </form>
+
     {% if name %}
-    <h3>answer: {{ name }}</h3>
+    <h3>Answer: {{ name['content'] }}</h3>
     {% endif %}
 
-    
 </body>
+
+
+    
 </html>
