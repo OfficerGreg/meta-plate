@@ -9,6 +9,21 @@
 <body>
     <h1>Logged in</h1>
     <a href="{{url_for('logout')}}">Log out</a>
-    
+    <h3>api key: {{current_user.api_key}}</h3>
+
+    <form method="POST" action="">
+        update api key:
+        {{ form.hidden_tag()}}
+        {{ form.api_key}}
+        {{ form.submit}}
+    </form>
+
+    <h3>Notes: </h3>
+    <ul>
+        {% for note in notes %}
+        <li>{{ note }}</li>
+        {% endfor %}
+    </ul>
+
 </body>
 </html>
