@@ -9,6 +9,7 @@ from models import db, User
 from register import RegisterForm
 from login import LoginForm
 from apikey import ApiKeyForm
+from notes import NotesForm
 
 
 app = Flask(__name__)
@@ -25,8 +26,6 @@ login_manager.login_view = "login"
 @login_manager.user_loader
 def load_user(user_id):
    return User.query.get(int(user_id))
-
-
 
 db.init_app(app)
 
@@ -60,18 +59,29 @@ def login():
 def dashboard():
    user = current_user
 
-   form = ApiKeyForm()
-   if form.validate_on_submit():
-      # Get the logged-in user
+   api_form = ApiKeyForm()
+   if api_form.validate_on_submit():
       user = current_user
-
       # Update the user's API key
-      user.api_key = form.api_key.data
+      user.api_key = api_form.api_key.data
+      db.session.commit()
+      return redirect(url_for("dashboard"))
+
+   notes_form = NotesForm()
+   if notes_form.validate_on_submit():
+      # Add a new note
+      user.add_note(notes_form.note.data)
       db.session.commit()
       return redirect(url_for("dashboard"))
 
    notes = user.get_notes()
-   return render_template("dashboard.html", form=form, notes=notes)
+   return render_template("dashboard.html", api_form=api_form, notes_form=notes_form, notes=notes)
+
+@app.route("/note/<note>", methods=["GET"])
+@login_required
+def note(note):
+    return render_template("note.html", note=note)
+
 
 @app.route("/logout", methods=["GET", "POST"])
 @login_required

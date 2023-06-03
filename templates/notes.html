@@ -8,6 +8,8 @@
 </head>
 <body>
     <h1>Notes</h1>
-
+    {% for note in notes %}
+        <p><a href="{{ url_for('note', note=note) }}">{{ note }}</a></p>
+    {% endfor %}
 </body>
 </html>

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
 </head>
+
 <body>
     <h1>Logged in</h1>
     <a href="{{url_for('logout')}}">Log out</a>
@@ -13,12 +15,18 @@
 
     <form method="POST" action="">
         update api key:
-        {{ form.hidden_tag()}}
-        {{ form.api_key}}
-        {{ form.submit}}
+        {{ api_form.hidden_tag()}}
+        {{ api_form.api_key}}
+        {{ api_form.submit}}
     </form>
 
     <h3>Notes: </h3>
+    <p>Add note: </p>
+    <form method="POST" action="">
+        {{ notes_form.hidden_tag() }}
+        {{ notes_form.note.label }} {{ notes_form.note }}
+        {{ notes_form.submit }}
+    </form>
     <ul>
         {% for note in notes %}
         <li>{{ note }}</li>
@@ -26,4 +34,5 @@
     </ul>
 
 </body>
+
 </html>
