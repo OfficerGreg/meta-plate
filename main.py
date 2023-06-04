@@ -18,9 +18,11 @@ def get_question():
     if request.method == 'POST' and 'submit' in request.form:
         question = request.form.get('ask', '')
         message = answer_question(question)
-        print("{}: {}".format(message['role'], message['content']))
-    return render_template('index.html', name=message, context=context, answers=answers)
-
+        answers.append({"role": "user", "content": question})
+        answers.append({"role": "bot", "content": message})
+        print("User: {}".format(question))
+        print("Bot: {}".format(message))
+    return render_template('index.html', answers=answers)
 
 
 def answer_question(question):
@@ -33,12 +35,8 @@ def answer_question(question):
     message = response.choices[0]['message']
     prased_message = json.loads(str(message))
     extracted = prased_message['content']
-    answers.append(message)
     context.append(extracted)
-    return message
+    return extracted
 
 if __name__ == '__main__':
     app.run()
-
-for answer in answers:
-    print("{}: {}".format(answer['role'], answer['content']))
