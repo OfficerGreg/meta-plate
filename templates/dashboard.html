@@ -29,9 +29,10 @@
     </form>
     <ul>
         {% for note in notes %}
-        <li>{{ note }}</li>
+        <li><a href="{{ url_for('note', note=note) }}">{{ note }}</a></li>
         {% endfor %}
     </ul>
+    
 
 </body>
 
