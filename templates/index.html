@@ -4,163 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+      <!-- Ich checks ned wieso chan ich das verzeichnis nöd ibinde<script src="{{ url_for('static', filename='js/function.js') }}"></script> -->
     <title>Meta Plate</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .chat-container {
-            background-color: white;
-            border-radius: 5px;
-            padding: 20px;
-            height: 400px;
-            overflow-y: scroll;
-            border: 1px solid #ccc;
-            margin-bottom: 20px;
-        }
-
-        .message {
-            margin-bottom: 10px;
-        }
-
-        .user-message {
-            background-color: #efefef;
-            padding: 10px;
-            border-radius: 5px;
-            word-wrap: break-word;
-        }
-
-        .bot-message {
-            background-color: #e0e0e0;
-            padding: 10px;
-            border-radius: 5px;
-            text-align: right;
-            word-wrap: break-word;
-        }
-
-        .loading {
-            text-align: center;
-            margin-bottom: 10px;
-            display: none;
-        }
-
-        .loading-circle {
-            display: inline-block;
-            width: 10px;
-            height: 10px;
-            margin: 0 2px;
-            border-radius: 50%;
-            background-color: #ccc;
-            opacity: 0.2;
-            animation: loadingAnimation 1.2s infinite ease-in-out;
-        }
-
-        .loading-circle1 {
-            animation-delay: 0s;
-        }
-
-        .loading-circle2 {
-            animation-delay: 0.4s;
-        }
-
-        .loading-circle3 {
-            animation-delay: 0.8s;
-        }
-
-        @keyframes loadingAnimation {
-            0%, 100% {
-                opacity: 0.2;
-            }
-            20%, 80% {
-                opacity: 1;
-            }
-        }
-
-        .context-container {
-            margin-bottom: 20px;
-        }
-
-        .context-container ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .context-container li {
-            margin-bottom: 5px;
-        }
-
-        .answers-container {
-            margin-bottom: 20px;
-        }
-
-        .answers-container ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .answers-container li {
-            margin-bottom: 5px;
-        }
-
-        .input-container {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .input-container input[type="text"] {
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            margin-right: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            word-break: break-word;
-        }
-         .microphone-button{
-    background-color: red;
-    color: white;
-    border: none;
-    border-radius: 50%;
-    padding: 7px 10px;
-             margin-left: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-
-        .input-container button[type="submit"] {
-            background-color: #1877F2;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 7px 10px;
-            font-size: 16px;
-            cursor: pointer;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .input-container input[type="text"]:focus,
-        .input-container button[type="submit"]:focus {
-            outline: none;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-        }
-
-
-    </style>
 </head>
 
 <body>
@@ -214,5 +60,36 @@
             </div>
         </form>
     </div>
+<script>
+    // Simulate a loading animation
+        const chatContainer = document.querySelector('.chat-container');
+        const loadingElement = document.querySelector('.loading');
+        const form = document.querySelector('#chat-form');
+        const inputField = document.querySelector('#input-field');
+        const submitButton = document.querySelector('#submit-button');
+        function showLoadingAnimation() {
+            loadingElement.style.display = 'block';
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        }
+
+        function hideLoadingAnimation() {
+            loadingElement.style.display = 'none';
+        }
+        function submitContent(){
+             showLoadingAnimation();
+                // Continue with the form submission
+                form.submit();
+        }
+         // Add an event listener to the form submission
+        form.addEventListener('submit', function(event) {
+            if (inputField.value.trim() === '') {
+                 // Block the form submission
+                event.preventDefault();
+                alert('Bitte geben Sie etwas ein.'); // Display an error message
+            } else {
+               submitContent();
+            }
+        });
+</script>
 </body>
 </html>
