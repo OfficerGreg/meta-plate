@@ -1,11 +1,11 @@
-from flask import Flask, render_template, redirect, url_for
+from flask import Flask, render_template, redirect, url_for, request
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired, Length, ValidationError
 from flask_bcrypt import Bcrypt
 
-from models import db, User
+from models import db, User, Note
 from register import RegisterForm
 from login import LoginForm
 from apikey import ApiKeyForm
@@ -70,17 +70,29 @@ def dashboard():
    notes_form = NotesForm()
    if notes_form.validate_on_submit():
       # Add a new note
-      user.add_note(notes_form.note.data)
+      user.add_note(notes_form.note.data, "")
       db.session.commit()
       return redirect(url_for("dashboard"))
 
    notes = user.get_notes()
    return render_template("dashboard.html", api_form=api_form, notes_form=notes_form, notes=notes)
 
-@app.route("/note/<note>", methods=["GET"])
+@app.route("/note/<note_name>", methods=["GET", "POST"])
 @login_required
-def note(note):
-    return render_template("note.html", note=note)
+def note(note_name):
+   note = Note.query.filter_by(name=note_name).first()
+
+   # Anti hecker security 
+   if note.user_id != current_user.id:
+      return "NAAAWWWWWWW BRO PROBIERT HÄCKE🤓💀💀💀💀"
+
+   # submit
+   if request.method == "POST":
+      note_content = request.form.get("note_content")
+      note.text = note_content
+      db.session.commit()
+
+   return render_template("note.html", note=note)
 
 
 @app.route("/logout", methods=["GET", "POST"])
@@ -106,14 +118,12 @@ def register():
 @app.route("/notes", methods=["GET", "POST"])
 @login_required
 def notes():
-   # Get the logged-in user
    user = current_user
 
    # Add a new note
-   user.add_note("This is a new note")
+   user.add_note("This is a new note", "Hi i am a new note!")
    db.session.commit()
 
-   # Retrieve all notes
    notes = user.get_notes()
 
    return render_template("notes.html", notes=notes)
