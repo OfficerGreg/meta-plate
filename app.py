@@ -70,8 +70,10 @@ def dashboard():
    notes_form = NotesForm()
    if notes_form.validate_on_submit():
       # Add a new note
-      user.add_note(notes_form.note.data, "")
-      return redirect(url_for("dashboard"))
+      if user.add_note(notes_form.note.data, ""):
+         return redirect(url_for("dashboard"))
+      else:
+         return "bruh"
       #note = Note(name=notes_form.note.data, text="", user_id=current_user.id)
       #db.session.add(note)
       #db.session.commit()

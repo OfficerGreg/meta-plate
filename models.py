@@ -24,9 +24,6 @@ class User(db.Model, UserMixin):
          db.session.add(note)
          db.session.commit()
 
-
-   
-
    def delete_note_by_name(self, note_name):
       note = next((note for note in self.notes if note.name == note_name), None)
       if note:
