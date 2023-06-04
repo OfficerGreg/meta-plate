@@ -1,6 +1,7 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 
+import uuid
 import json
 
 db = SQLAlchemy()
@@ -23,6 +24,9 @@ class User(db.Model, UserMixin):
          db.session.add(note)
          db.session.commit()
 
+
+   
+
    def delete_note_by_name(self, note_name):
       note = next((note for note in self.notes if note.name == note_name), None)
       if note:
@@ -38,7 +42,12 @@ class User(db.Model, UserMixin):
 
 # Note Table Model for DB
 class Note(db.Model):
-   id = db.Column(db.Integer, primary_key=True)
-   name = db.Column(db.String(30), unique=True, nullable=False)
+   #id = db.Column(db.Integer, primary_key=True)
+   #id = db.Column(db.String(36), primary_key=True, default=str(uuid.uuid4()))
+   id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
+
+
+   #id = db.Column(db.String(36), primary_key=True, default=uuid.uuid4)
+   name = db.Column(db.String(30), nullable=False)
    text = db.Column(db.String)
    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)

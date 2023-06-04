@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, request
+from flask import Flask, render_template, redirect, url_for, request, flash
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
@@ -61,7 +61,7 @@ def dashboard():
 
    api_form = ApiKeyForm()
    if api_form.validate_on_submit():
-      user = current_user
+      #user = current_user
       # Update the user's API key
       user.api_key = api_form.api_key.data
       db.session.commit()
@@ -71,20 +71,18 @@ def dashboard():
    if notes_form.validate_on_submit():
       # Add a new note
       user.add_note(notes_form.note.data, "")
-      db.session.commit()
       return redirect(url_for("dashboard"))
+      #note = Note(name=notes_form.note.data, text="", user_id=current_user.id)
+      #db.session.add(note)
+      #db.session.commit()
 
    notes = user.get_notes()
    return render_template("dashboard.html", api_form=api_form, notes_form=notes_form, notes=notes)
 
-from flask import render_template
-
-# ...
-
-@app.route("/note/<note_name>", methods=["GET", "POST"])
+@app.route("/note/<note_id>", methods=["GET", "POST"])
 @login_required
-def note(note_name):
-   note = Note.query.filter_by(name=note_name).first()
+def note(note_id):
+   note = Note.query.get(note_id)
 
    # Anti hacker security 
    if note.user_id != current_user.id:
@@ -95,7 +93,7 @@ def note(note_name):
       note_content = request.form.get("note_content")
       note.text = note_content
       db.session.commit()
-      return redirect(url_for('note', note_name=note_name))
+      return redirect(url_for('note', note_id=note_id))
 
    return render_template("note.html", note=note)
 
@@ -121,18 +119,18 @@ def register():
 
    return render_template("register.html", form=form)
 
-@app.route("/notes", methods=["GET", "POST"])
-@login_required
-def notes():
-   user = current_user
+# @app.route("/notes", methods=["GET", "POST"])
+# @login_required
+# def notes():
+#    user = current_user
 
-   # Add a new note
-   user.add_note("This is a new note", "Hi i am a new note!")
-   db.session.commit()
+#    # Add a new note
+#    user.add_note("This is a new note", "Hi i am a new note!")
+#    db.session.commit()
 
-   notes = user.get_notes()
+#    notes = user.get_notes()
 
-   return render_template("notes.html", notes=notes)
+#    return render_template("notes.html", notes=notes)
 
 
 

@@ -21,15 +21,15 @@
     </form>
 
     <h3>Notes: </h3>
-    <p>Add note: </p>
+    <p>create new note: </p>
     <form method="POST" action="">
         {{ notes_form.hidden_tag() }}
-        {{ notes_form.note.label }} {{ notes_form.note }}
+        {{ notes_form.note }}
         {{ notes_form.submit }}
     </form>
     <ul>
         {% for note in notes %}
-        <li><a href="{{ url_for('note', note_name=note.name) }}">{{ note.name }}</a></li>
+        <li><a href="{{ url_for('note', note_id=note.id) }}">{{ note.name }}</a></li>
         {% endfor %}
     </ul>
     

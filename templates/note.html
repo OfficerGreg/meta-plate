@@ -11,7 +11,7 @@
 
 <body>
     <h1>Note: {{ note.name }}</h1>
-    <form action="{{ url_for('note', note_name=note.name) }}" method="POST">
+    <form action="{{ url_for('note', note_id=note.id) }}" method="POST">
         <textarea id="text_area" rows="40" cols="80" name="note_content">{{note.text}}</textarea>
         <button type="submit">Save</button>
     </form>
