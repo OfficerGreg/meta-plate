@@ -77,22 +77,28 @@ def dashboard():
    notes = user.get_notes()
    return render_template("dashboard.html", api_form=api_form, notes_form=notes_form, notes=notes)
 
+from flask import render_template
+
+# ...
+
 @app.route("/note/<note_name>", methods=["GET", "POST"])
 @login_required
 def note(note_name):
    note = Note.query.filter_by(name=note_name).first()
 
-   # Anti hecker security 
+   # Anti hacker security 
    if note.user_id != current_user.id:
-      return "NAAAWWWWWWW BRO PROBIERT HÄCKE🤓💀💀💀💀"
+      return render_template("unauthorized.html")
 
-   # submit
+   # Submit
    if request.method == "POST":
       note_content = request.form.get("note_content")
       note.text = note_content
       db.session.commit()
+      return redirect(url_for('note', note_name=note_name))
 
    return render_template("note.html", note=note)
+
 
 
 @app.route("/logout", methods=["GET", "POST"])
