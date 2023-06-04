@@ -26,3 +26,7 @@ class User(db.Model, UserMixin):
       if note not in notes:
          notes.append(note)
          self.set_notes(notes)
+
+
+class Note(db.Model):
+   

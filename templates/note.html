@@ -11,10 +11,11 @@
 
 <body>
     <h1>Note: {{ note }}</h1>
-
-    <textarea id="text_area" rows="40" cols="80"></textarea>
-
-    <button style="text-align: center;">Save</button>
+    <form action="{{ url_for('note') }}" method="POST">
+        <h1>Note: {{ note }}</h1>
+        <textarea id="text_area" rows="40" cols="80" name="note_content"></textarea>
+        <button type="submit">Save</button>
+    </form>
 </body>
 
 </html>
