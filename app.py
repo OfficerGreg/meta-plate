@@ -10,13 +10,20 @@ from register import RegisterForm
 from login import LoginForm
 from apikey import ApiKeyForm
 from notes import NotesForm
+from ai import AI
+
+import sys
 
 
 app = Flask(__name__)
 
 bcrypt = Bcrypt(app)
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db/database.db"
+ai = AI()
+
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
+#move database.db to root if upper cocmmand not working
+#app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
 app.config["SECRET_KEY"] = "secret_key"
 
 login_manager = LoginManager()
@@ -70,10 +77,9 @@ def dashboard():
    notes_form = NotesForm()
    if notes_form.validate_on_submit():
       # Add a new note
-      if user.add_note(notes_form.note.data, ""):
-         return redirect(url_for("dashboard"))
-      else:
-         return "bruh"
+      user.add_note(notes_form.note.data, "")
+      
+      return redirect(url_for("dashboard"))
       #note = Note(name=notes_form.note.data, text="", user_id=current_user.id)
       #db.session.add(note)
       #db.session.commit()
@@ -94,10 +100,15 @@ def note(note_id):
    if request.method == "POST":
       note_content = request.form.get("note_content")
       note.text = note_content
+      answer = ai.answer_question(note_content,"")
+      print(answer, file=sys.stderr)
+      note.text += answer
+
       db.session.commit()
       return redirect(url_for('note', note_id=note_id))
 
    return render_template("note.html", note=note)
+
 
 
 

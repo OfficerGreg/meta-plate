@@ -11,8 +11,11 @@ class User(db.Model, UserMixin):
    id = db.Column(db.Integer, primary_key=True)
    username = db.Column(db.String(30), nullable=False, unique=True)
    password = db.Column(db.String(100), nullable=False)
-   api_key  = db.Column(db.String(100))
+   api_key  = db.Column(db.String(200))
    notes    = db.relationship("Note", backref="user", lazy=True)
+
+   def get_api_key(self):
+        return self.api_key
 
    def get_notes(self):
       return self.notes
