@@ -1,2 +1,10 @@
-flask
-openai
+Flask==2.*
+Flask-WTF==1.1.*
+WTForms==3.*
+Flask-Bcrypt==1.0.1
+Flask-Login==0.6.2
+Flask-SQLAlchemy==3.0.3
+openai==0.*
+
+pyttsx3==2.90
+SpeechRecognition==3.10.0

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/note.css') }}">
+    <title>Note</title>
+</head>
+
+<body>
+    <h1>Note: {{ note.name }}</h1>
+    <form action="{{ url_for('note', note_id=note.id) }}" method="POST">
+        <textarea id="text_area" rows="40" cols="80" name="note_content">{{note.text}}</textarea>
+        <button type="submit">Save</button>
+    </form>
+</body>
+
+</html>
