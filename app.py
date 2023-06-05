@@ -102,7 +102,8 @@ def note(note_id):
       note.text = note_content
       answer = ai.answer_question(note_content,"")
       print(answer, file=sys.stderr)
-      note.text += answer
+      note.text += "\n"
+      note.text +=  answer
 
       db.session.commit()
       return redirect(url_for('note', note_id=note_id))
