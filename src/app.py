@@ -6,9 +6,7 @@ from flask_bcrypt import Bcrypt
 from models import db, User, Note
 from register import RegisterForm
 from login import LoginForm
-from apikey import ApiKeyForm
 from notes import NotesForm
-from ai import AI
 
 import sys
 
@@ -19,7 +17,6 @@ app = Flask(__name__, template_folder=template_dir, static_folder=static_dir)
 
 bcrypt = Bcrypt(app)
 
-ai = AI()
 
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
 # move database.db to root if upper cocmmand not working
@@ -71,13 +68,6 @@ def login():
 def dashboard():
     user = current_user
 
-    api_form = ApiKeyForm()
-    if api_form.validate_on_submit():
-        #user = current_user
-        # Update the user's API key
-        user.api_key = api_form.api_key.data
-        db.session.commit()
-        return redirect(url_for("dashboard"))
 
     notes_form = NotesForm()
     if notes_form.validate_on_submit():
@@ -90,7 +80,7 @@ def dashboard():
         # db.session.commit()
 
     notes = user.get_notes()
-    return render_template("dashboard.html", api_form=api_form, notes_form=notes_form, notes=notes)
+    return render_template("dashboard.html", notes_form=notes_form, notes=notes)
 
 
 @app.route("/note/<note_id>", methods=["GET", "POST"])
@@ -106,11 +96,6 @@ def note(note_id):
     if request.method == "POST":
         note_content = request.form.get("note_content")
         note.text = note_content
-        #answer = ai.answer_question(note_content, "")
-        #print(answer, file=sys.stderr)
-        #note.text += "\n"
-        #note.text += answer
-
         db.session.commit()
         return redirect(url_for('note', note_id=note_id))
 

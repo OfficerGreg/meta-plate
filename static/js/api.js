@@ -1,8 +1,4 @@
-//import { getSessionData } from "./cookie";
-
-
 const API_URL = "https://api.pawan.krd/v1/chat/completions";
-//const API_KEY = "pk-zVSypLIUDIVmaRXdLncxpIOZSuJXIPGBCjVhkyCFRPokWMYb";
 const API_KEY = getSessionData("api_key");
 
 const question = document.getElementById("promptInput");
@@ -38,19 +34,20 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+//const apiKeyParagraph = document.getElementById("api_key_paragraph");
+//apiKeyParagraph.textContent = API_KEY;
+
 
 
 const generate = async () => {
   console.log(getSessionData("api_key"));
 
-  // Alert the user if no prompt value
   if (!question.value) {
     alert("Please enter a prompt.");
     return;
   }
   answer.value = "";
 
-  // Disable the generate button and enable the stop button
   generateBtn.disabled = true;
   stopBtn.disabled = false;
   //sanswer.value = " ";

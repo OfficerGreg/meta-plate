@@ -8,23 +8,34 @@
     <title>Dashboard</title>
 
     <script src="../static/js/api.js" type="module"></script>
+    <script>
+        function toggleKey() {
+            var x = document.getElementById("api_key_div");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
+    </script>
 
 </head>
 
 <body>
     <h1>Logged in</h1>
     <a href="{{url_for('logout')}}">Log out</a>
-    <h3>api key: {{current_user.api_key}}</h3>
 
-    <form method="POST" action="">
-        update api key:
-        {{ api_form.hidden_tag()}}
-        {{ api_form.api_key}}
-        {{ api_form.submit}}
-    </form>
+    <br>
+    <br>
 
     <input type="text" id="api_key_input" placeholder="Enter API key">
     <button id="saveBtn">Save API Key</button>
+    <br>
+    <button onclick="toggleKey()" id="show_api_key">Show api key</button>
+    <div id="api_key_div" style="display: none;">
+        <p style="font-weight: 1000;">API KEY:</p><p id="api_key_paragraph"></p>
+    </div>
+
 
     <h3>Notes: </h3>
     <p>create new note: </p>
