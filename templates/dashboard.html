@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+
+    <script src="../static/js/api.js" type="module"></script>
+
 </head>
 
 <body>
@@ -20,6 +23,9 @@
         {{ api_form.submit}}
     </form>
 
+    <input type="text" id="api_key_input" placeholder="Enter API key">
+    <button id="saveBtn">Save API Key</button>
+
     <h3>Notes: </h3>
     <p>create new note: </p>
     <form method="POST" action="">
@@ -32,7 +38,7 @@
         <li><a href="{{ url_for('note', note_id=note.id) }}">{{ note.name }}</a></li>
         {% endfor %}
     </ul>
-    
+
 
 </body>
 

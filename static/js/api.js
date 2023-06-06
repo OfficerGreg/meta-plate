@@ -1,5 +1,9 @@
-const API_URL = "https://api.openai.com/v1/chat/completions";
-const API_KEY = "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";
+//import { getSessionData } from "./cookie";
+
+
+const API_URL = "https://api.pawan.krd/v1/chat/completions";
+//const API_KEY = "pk-zVSypLIUDIVmaRXdLncxpIOZSuJXIPGBCjVhkyCFRPokWMYb";
+const API_KEY = getSessionData("api_key");
 
 const question = document.getElementById("promptInput");
 const generateBtn = document.getElementById("generateBtn");
@@ -8,7 +12,37 @@ const answer = document.getElementById("text_area");
 
 let controller = null; // Store the AbortController instance
 
+function setSessionData(key, value) {
+  document.cookie = `${key}=${value}`;
+}
+
+function getSessionData(key) {
+  const cookies = document.cookie.split("; ");
+  for (let i = 0; i < cookies.length; i++) {
+    const [cookieKey, cookieValue] = cookies[i].split("=");
+    if (cookieKey === key) {
+      return cookieValue;
+    }
+  }
+  return null; // Cookie not found
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+  const api_key_input = document.getElementById("api_key_input");
+  const saveBtn = document.getElementById("saveBtn");
+
+  saveBtn.addEventListener("click", function () {
+    const api_key = api_key_input.value;
+    setSessionData("api_key", api_key);
+    console.log("api key stored:", api_key);
+  });
+});
+
+
+
 const generate = async () => {
+  console.log(getSessionData("api_key"));
+
   // Alert the user if no prompt value
   if (!question.value) {
     alert("Please enter a prompt.");
@@ -100,3 +134,5 @@ question.addEventListener("keyup", (event) => {
 });
 generateBtn.addEventListener("click", generate);
 stopBtn.addEventListener("click", stop);
+
+
