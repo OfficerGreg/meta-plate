@@ -8,7 +8,6 @@ from register import RegisterForm
 from login import LoginForm
 from notes import NotesForm
 
-import sys
 
 template_dir = "../templates/"
 static_dir = "../static/"
@@ -116,10 +115,11 @@ def register():
 
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data)
-        new_user = User(username=form.username.data, password=hashed_password)
+        new_user = User(username=form.username.data, email=form.email.data, password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
-        return redirect(url_for("login"))
+        login_user(new_user)
+        return redirect(url_for("dashboard"))
 
     return render_template("register.html", form=form)
 
@@ -139,6 +139,10 @@ def delete_note():
 
     flash("Note deleted successfully", "success")
     return redirect(url_for("dashboard"))
+
+
+
+#Error handling
 
 
 
