@@ -30,10 +30,12 @@
 
     <input type="text" id="api_key_input" placeholder="Enter API key">
     <button id="saveBtn">Save API Key</button>
+    <button id="saveBtn">Delete API Key</button>
     <br>
     <button onclick="toggleKey()" id="show_api_key">Show api key</button>
     <div id="api_key_div" style="display: none;">
-        <p style="font-weight: 1000;">API KEY:</p><p id="api_key_paragraph"></p>
+        <p style="font-weight: 1000;">API KEY:</p>
+        <p id="api_key_paragraph"></p>
     </div>
 
 
@@ -44,11 +46,24 @@
         {{ notes_form.note }}
         {{ notes_form.submit }}
     </form>
-    <ul>
-        {% for note in notes %}
-        <li><a href="{{ url_for('note', note_id=note.id) }}">{{ note.name }}</a></li>
-        {% endfor %}
-    </ul>
+    <br>
+    {% for note in notes %}
+    <table style="width: 25%; background-color: rgb(0, 0, 0);">
+        <tr style="background-color: rgb(235, 235, 235);">
+            <td>
+                <a href="{{ url_for('note', note_id=note.id) }}">{{ note.name }}</a>
+                <form method="POST" action="{{ url_for('delete_note', note_id=note.id) }}">
+                    <input type="hidden" name="note_id" value="{{ note.id }}">
+                    <button type="submit">Delete</button>
+                </form>
+            </td>
+        </tr>
+    </table>
+{% endfor %}
+
+
+
+
 
 
 </body>

@@ -124,5 +124,23 @@ def register():
     return render_template("register.html", form=form)
 
 
+@app.route("/delete_note", methods=["POST"])
+@login_required
+def delete_note():
+    note_id = request.form.get("note_id")
+    note = Note.query.get(note_id)
+
+    # Anti-hacker security
+    if note.user_id != current_user.id:
+        return render_template("unauthorized.html")
+
+    db.session.delete(note)
+    db.session.commit()
+
+    flash("Note deleted successfully", "success")
+    return redirect(url_for("dashboard"))
+
+
+
 if __name__ == "__main__":
     app.run(debug=True)
