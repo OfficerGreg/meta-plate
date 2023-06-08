@@ -1,9 +1,9 @@
-from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
+from wtforms import StringField, TextAreaField, SelectField, SubmitField
 from wtforms.validators import InputRequired, Length
-
+from flask_wtf import FlaskForm
 
 class NotesForm(FlaskForm):
-   note = StringField(validators=[InputRequired(), 
-      Length(min=4, max=30)], render_kw={"placeholder": "note"})
-   submit = SubmitField("add note")
+    folder_id = SelectField("Folder", coerce=int, validators=[InputRequired()])
+    note_name = StringField("Note Name", validators=[InputRequired(), Length(max=50)])
+    note_text = TextAreaField("Note Text", validators=[InputRequired()])
+    submit = SubmitField("Create Note")

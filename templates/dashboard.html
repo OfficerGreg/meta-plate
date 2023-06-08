@@ -18,12 +18,11 @@
             }
         }
     </script>
-
 </head>
 
 <body>
     <h1>Logged in</h1>
-    <a href="{{url_for('logout')}}">Log out</a>
+    <a href="{{ url_for('logout') }}">Log out</a>
 
     <br>
     <br>
@@ -31,40 +30,53 @@
     <input type="text" id="api_key_input" placeholder="Enter API key">
     <button id="saveBtn">Save API Key</button>
     <br>
-    <button onclick="toggleKey()" id="show_api_key">Show api key</button>
+    <button onclick="toggleKey()" id="show_api_key">Show API key</button>
     <div id="api_key_div" style="display: none;">
         <p style="font-weight: 1000;">API KEY:</p>
         <p id="api_key_paragraph"></p>
     </div>
 
-
-    <h3>Notes: </h3>
-    <p>create new note: </p>
+    <h3>Folders:</h3>
+    <p>Create a new folder:</p>
     <form method="POST" action="">
-        {{ notes_form.hidden_tag() }}
-        {{ notes_form.note }}
-        {{ notes_form.submit }}
+        {{ folder_form.hidden_tag() }}
+        {{ folder_form.folder }}
+        {{ folder_form.submit }}
     </form>
-    <br>
-    {% for note in notes %}
+    {% for folder in user.folders %}
     <table style="width: 25%; background-color: rgb(0, 0, 0);">
         <tr style="background-color: rgb(235, 235, 235);">
+            <td>
+                <a href="{{ url_for('note', note_id=folder.id) }}">{{ folder.name }}</a>
+                <form method="POST" action="{{ url_for('delete_folder', folder_id=folder.id) }}">
+                    <input type="hidden" name="folder_id" value="{{ folder.id }}">
+                    <button type="submit">Delete Folder</button>
+                </form>
+            </td>
+        </tr>
+        {% for note in folder.notes %}
+        <tr style="background-color: rgb(255, 0, 0);">
             <td>
                 <a href="{{ url_for('note', note_id=note.id) }}">{{ note.name }}</a>
                 <form method="POST" action="{{ url_for('delete_note', note_id=note.id) }}">
                     <input type="hidden" name="note_id" value="{{ note.id }}">
-                    <button type="submit">Delete</button>
+                    <button type="submit">Delete Note</button>
                 </form>
             </td>
         </tr>
+        {% endfor %}
     </table>
-{% endfor %}
+    {% endfor %}
 
-
-
-
-
-
+    <h3>Notes:</h3>
+    <p>Create a new note:</p>
+    <form method="POST" action="">
+        {{ notes_form.hidden_tag() }}
+        {{ notes_form.folder_id.label }} {{ notes_form.folder_id }}
+        {{ notes_form.note_name.label }} {{ notes_form.note_name }}
+        {{ notes_form.note_text.label }} {{ notes_form.note_text }}
+        {{ notes_form.submit }}
+    </form>
 </body>
 
 </html>
