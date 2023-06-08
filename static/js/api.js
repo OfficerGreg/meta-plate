@@ -1,4 +1,4 @@
-const API_URL = "https://api.pawan.krd/v1/chat/completions";
+const API_URL = "https://chimeragpt.adventblocks.cc/v1/chat/completions";
 const API_KEY = getSessionData("api_key");
 
 const question = document.getElementById("promptInput");
