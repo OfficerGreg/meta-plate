@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import "../css/dashboard.css";
 import { User } from '../../types';
 import httpClient from '../../httpClient';
+import GlobalFooter from "../GlobalFooter";
 
 const Dashboard: React.FC = () => {
     const [user, setUser] = useState<User | null>(null);
@@ -45,6 +46,7 @@ const Dashboard: React.FC = () => {
 
     return (
         <div>
+            <GlobalFooter/>
             <h1>Logged In</h1>
             <p>User ID: {user.id}</p>
             <p>Username: {user.username}</p>
