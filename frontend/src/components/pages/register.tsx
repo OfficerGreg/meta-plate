@@ -12,24 +12,28 @@ const Register: React.FC = () => {
         //debug
         console.log(username, email, password)
 
-
-        try{
+        try {
             const response = await httpClient.post("//localhost:5000/register", {
                 username, email, password
             });
 
             window.location.href = "/dashboard";
-        }catch(e : any){
-            if(e.response.status === 401){
+        } catch (e: any) {
+            if (e.response.status === 401) {
                 alert("Invalid credentials!")
             }
         }
     };
 
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault(); // Prevent the default form submission
+        registerUser();
+    };
+
     return (
         <div>
             <h1>Register</h1>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div className="register-username-input">
                     <label>Username</label>
                     <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} id=""></input>
@@ -42,11 +46,12 @@ const Register: React.FC = () => {
                     <label>Password</label>
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} id=""></input>
                 </div>
-                <button type="button" onClick={() => registerUser()}>Submit</button>
+                <button type="submit">Submit</button>
+                <a href="/login">already have an account?</a>
             </form>
 
         </div>
     );
 };
 
-export default Register
+export default Register;
