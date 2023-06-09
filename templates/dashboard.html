@@ -6,6 +6,62 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #f7f7f7;
+            color: #333333;
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            color: #0070c9;
+            text-decoration: none;
+        }
+
+        h1 {
+            font-size: 40px;
+            font-weight: 300;
+            margin: 0;
+            padding: 10px;
+        }
+
+        input[type="text"],
+        button {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            background-color: #ffffff;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        button[type="submit"] {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
 
     <script src="../static/js/api.js" type="module"></script>
     <script>
@@ -18,53 +74,60 @@
             }
         }
     </script>
-
 </head>
 
 <body>
-    <h1>Logged in</h1>
-    <a href="{{url_for('logout')}}">Log out</a>
+    <header style="background-color: #000000; padding: 20px;">
+        <nav style="display: flex; justify-content: space-between; align-items: center;">
+            <h1 style="color: #ffffff;">Logged in</h1>
+            <a href="{{url_for('logout')}}" style="color: #ffffff;">Log out</a>
+        </nav>
+    </header>
 
-    <br>
-    <br>
+    <section style="background-color: #ffffff; padding: 20px;">
+        <h3>API Key:</h3>
+        <div id="api_key_div" style="display: none;">
+            <p style="font-weight: bold;">API KEY:</p>
+            <p id="api_key_paragraph"></p>
+        </div>
 
-    <input type="text" id="api_key_input" placeholder="Enter API key">
-    <button id="saveBtn">Save API Key</button>
-    <br>
-    <button onclick="toggleKey()" id="show_api_key">Show api key</button>
-    <div id="api_key_div" style="display: none;">
-        <p style="font-weight: 1000;">API KEY:</p>
-        <p id="api_key_paragraph"></p>
-    </div>
+        <form style="margin-bottom: 20px;">
+            <input type="text" id="api_key_input" placeholder="Enter API key">
+            <button id="saveBtn">Save API Key</button>
+        </form>
 
+        <button onclick="toggleKey()" id="show_api_key">Show API key</button>
+    </section>
 
-    <h3>Notes: </h3>
-    <p>create new note: </p>
-    <form method="POST" action="">
-        {{ notes_form.hidden_tag() }}
-        {{ notes_form.note }}
-        {{ notes_form.submit }}
-    </form>
-    <br>
-    {% for note in notes %}
-    <table style="width: 25%; background-color: rgb(0, 0, 0);">
-        <tr style="background-color: rgb(235, 235, 235);">
-            <td>
-                <a href="{{ url_for('note', note_id=note.id) }}">{{ note.name }}</a>
-                <form method="POST" action="{{ url_for('delete_note', note_id=note.id) }}">
-                    <input type="hidden" name="note_id" value="{{ note.id }}">
-                    <button type="submit">Delete</button>
-                </form>
-            </td>
-        </tr>
-    </table>
-{% endfor %}
+    <section style="background-color: #f7f7f7; padding: 20px;">
+        <h3>Notes:</h3>
+        <p>Create a new note:</p>
+        <form method="POST" action="" style="margin-bottom: 20px;">
+            {{ notes_form.hidden_tag() }}
+            {{ notes_form.note }}
+            {{ notes_form.submit }}
+        </form>
 
-
-
-
-
-
+        <table>
+            <tbody>
+                {% for note in notes %}
+                <tr>
+                    <td>
+                        <a href="{{ url_for('note', note_id=note.id) }}">{{ note.name }}</a>
+                    </td>
+                    <td>{{ note.date_created }}</td>
+                    <td>{{ note.last_updated }}</td>
+                    <td>
+                        <form method="POST" action="{{ url_for('delete_note', note_id=note.id) }}">
+                            <input type="hidden" name="note_id" value="{{ note.id }}">
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
 </body>
 
 </html>
