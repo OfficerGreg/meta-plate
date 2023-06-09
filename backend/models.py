@@ -55,6 +55,7 @@ class User(db.Model, UserMixin):
         folder = Folder(name=folder_name, user=self)
         db.session.add(folder)
         db.session.commit()
+        
 
     def add_note_to_folder(self, folder_id, note_name, note_text):
         folder = Folder.query.get(folder_id)

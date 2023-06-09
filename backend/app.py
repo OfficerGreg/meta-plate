@@ -3,7 +3,8 @@ from flask_bcrypt import Bcrypt
 from flask_cors import CORS, cross_origin
 from flask_session import Session
 from config import ApplicationConfig
-from models import db, User
+from models import db, User, Folder
+
 
 app = Flask(__name__)
 app.config.from_object(ApplicationConfig)
@@ -20,8 +21,9 @@ db.init_app(app)
 with app.app_context():
     db.create_all()
 
-@app.route("/@me")
-def get_current_user():
+
+@app.route("/folders", methods=["POST"])
+def create_folder():
     user_id = session.get("user_id")
 
     if not user_id:
@@ -29,12 +31,67 @@ def get_current_user():
     
     user = User.query.filter_by(id=user_id).first()
 
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+    
+    folder_name = request.json.get("name")
+
+    if not folder_name:
+        return jsonify({"error": "Folder name is required"}), 400
+    
+    existing_folder = Folder.query.filter_by(user_id=user.id, name=folder_name).first()
+
+    if existing_folder:
+        return jsonify({"error": "Folder already exists"}), 409
+    
+    new_folder = Folder(name=folder_name, user_id=user.id)
+    db.session.add(new_folder)
+    db.session.commit()
+
+    return jsonify({
+        "id": new_folder.id,
+        "name": new_folder.name,
+        "user_id": new_folder.user_id
+    })
+
+@app.route("/dashboard")
+def dashboard():
+    user_id = session.get("user_id")
+
+    if not user_id:
+        return jsonify({"error": "unauthorized"}), 401
+
+    user = User.query.filter_by(id=user_id).first()
+
+    user.add_folder("test")
+
     return jsonify({
         "id": user.id,
         "username": user.username,
-        "email": user.email
+        "email": user.email,
+        "folders": [
+            {"id": folder.id, "name": folder.name} for folder in user.folders
+        ]
     })
 
+
+@app.route("/@me")
+def get_current_user():
+    user_id = session.get("user_id")
+
+    if not user_id:
+        return jsonify({"error": "unauthorized"}), 401
+
+    user = User.query.filter_by(id=user_id).first()
+
+    return jsonify({
+        "id": user.id,
+        "username": user.username,
+        "email": user.email,
+        "folders": [
+            {"id": folder.id, "name": folder.name} for folder in user.folders
+        ]
+    })
 
 
 # register
