@@ -2,6 +2,7 @@ import {BrowserRouter, Routes, Route} from "react-router-dom"
 import React from 'react'
 
 import Home from "./components/pages/home"
+import Note from "./components/pages/note"
 import Login from "./components/pages/login"
 import Register from "./components/pages/register"
 import NotFound from "./components/pages/not_found"
@@ -15,6 +16,7 @@ const Router = () => {
             <Route path="/login" Component={Login}/>
             <Route path="/register" Component={Register}/>
             <Route path="/dashboard" Component={Dashboard}/>
+            <Route path="/note" Component={Note}/>
             <Route Component={NotFound}/>
         </Routes>
     </BrowserRouter>
