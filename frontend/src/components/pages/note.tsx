@@ -1,16 +1,19 @@
 import React, { useEffect } from 'react'
-import ReactDOM from "react-dom";
 import MDEditor, { selectWord } from "@uiw/react-md-editor";
 
 import "../css/note.css"
 
-
+const defualtMsg = ` 
+# h1 hello world
+## h2 hello world
+### h3 hello world
+`;
 
 
 const Note: React.FC = () => {
 
     
-    const [value, setValue] = React.useState<string | undefined>("");
+    const [value, setValue] = React.useState<string | undefined>(defualtMsg);
 
     return (
         <div className="container">
