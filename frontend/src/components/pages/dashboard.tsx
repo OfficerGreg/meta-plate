@@ -5,6 +5,7 @@ import "../css/dashboard.css";
 import { User } from '../../types';
 import httpClient from '../../httpClient';
 import GlobalFooter from "../GlobalFooter";
+import GlobalNavbar from "../GlobalNavbar";
 
 const Dashboard: React.FC = () => {
     const [user, setUser] = useState<User | null>(null);
@@ -46,7 +47,8 @@ const Dashboard: React.FC = () => {
 
     return (
         <div>
-            <GlobalFooter/>
+            <GlobalNavbar/>
+           <video className="background" muted={true} loop={true} autoPlay={true} src="//cdn.shopify.com/s/files/1/0526/6905/5172/t/5/assets/footer.mp4?v=29581141968431347981633714450" ></video>
             <h1>Logged In</h1>
             <p>User ID: {user.id}</p>
             <p>Username: {user.username}</p>
@@ -75,7 +77,9 @@ const Dashboard: React.FC = () => {
                 </table>
 
             </div>
+            <GlobalFooter/>
         </div>
+
     );
 };
 
