@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import "../css/dashboard.css";
-import { User } from '../../types';
+import { User, Folder, Note } from '../../types';
 import httpClient from '../../httpClient';
 import GlobalFooter from "../GlobalFooter";
 import GlobalNavbar from "../GlobalNavbar";
@@ -10,12 +10,30 @@ import GlobalNavbar from "../GlobalNavbar";
 const Dashboard: React.FC = () => {
     const [user, setUser] = useState<User | null>(null);
     const [newFolderName, setNewFolderName] = useState("");
+    const [newNoteName, setNewNoteName] = useState("");
+    const [newNoteText, setNewNoteText] = useState("");
+
     const navigate = useNavigate();
 
     const logoutUser = async () => {
         await httpClient.post("//localhost:5000/logout");
         navigate("/");
     };
+
+    const createNote = async (folderId: number) => {
+        try {
+            await httpClient.post("//localhost:5000/note", {
+                folder_id: folderId,
+                name: newNoteName,
+                text: newNoteText,
+            });
+            // Refresh the user data to display the updated list of notes
+            await fetchUserData();
+        } catch (error) {
+            console.log("Error creating note:", error);
+        }
+    };
+
 
     const createFolder = async () => {
         try {
@@ -47,8 +65,8 @@ const Dashboard: React.FC = () => {
 
     return (
         <div>
-            <GlobalNavbar/>
-           <video className="background" muted={true} loop={true} autoPlay={true} src="//cdn.shopify.com/s/files/1/0526/6905/5172/t/5/assets/footer.mp4?v=29581141968431347981633714450" ></video>
+            <GlobalNavbar />
+            <video className="background" muted={true} loop={true} autoPlay={true} src="//cdn.shopify.com/s/files/1/0526/6905/5172/t/5/assets/footer.mp4?v=29581141968431347981633714450"></video>
             <h1>Logged In</h1>
             <p>User ID: {user.id}</p>
             <p>Username: {user.username}</p>
@@ -69,17 +87,32 @@ const Dashboard: React.FC = () => {
                 <table>
                     <tbody>
                         {user.folders.map((folder) => (
-                            <tr style={{backgroundColor: "red"}} key={folder.id}>
+                            <tr style={{ backgroundColor: "red" }} key={folder.id}>
                                 <td>{folder.name}</td>
+                                <td>
+                                    <div>
+                                        <label>New Note:</label>
+                                        <input
+                                            type="text"
+                                            value={newNoteName}
+                                            onChange={(e) => setNewNoteName(e.target.value)}
+                                        />
+                                        <textarea
+                                            value={newNoteText}
+                                            onChange={(e) => setNewNoteText(e.target.value)}
+                                        ></textarea>
+                                        <button onClick={() => createNote(folder.id)}>
+                                            Create Note
+                                        </button>
+                                    </div>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
                 </table>
-
             </div>
-            <GlobalFooter/>
+            <GlobalFooter />
         </div>
-
     );
 };
 
