@@ -1,6 +1,6 @@
 import React from 'react'
 import "../components/css/GlobalFooter.css"
-import "./img/github.png"
+import GitHub from "./svg/github-mark-white.svg"
 
 const GlobalFooter: React.FC = () => {
     return(
@@ -9,10 +9,10 @@ const GlobalFooter: React.FC = () => {
 
             <div className="footer-right">
 
-                <a href="#"><i className="fa fa-facebook"><img src="img/github.png" ></img> </i></a>
+                <a href="#"> </a>
                 <a href="#"><i className="fa fa-instergram"></i></a>
                 <a href="#"><i className="fa fa-linkedin"></i></a>
-                <a href="#"><i className="fa fa-github"></i></a>
+                <a href="#"><img src={GitHub} width="35"/></a>
 
             </div>
 

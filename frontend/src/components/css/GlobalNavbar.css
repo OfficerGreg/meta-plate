@@ -259,3 +259,30 @@ body {
     display: flex;
     flex-direction: column;
 }
+
+.navbar-coin{
+    margin-left: 80px;
+     justify-content: center;
+    width: 100%;
+    padding: 0.4em 0.8em;
+    border-radius: 5px;
+
+}
+.navbar-coin:focus,
+.navbar-coin:hover {
+    color: var(--navbar-text-color-focus);
+    background-color: var(--navbar-bg-contrast);
+}
+
+.navbar-user{
+  justify-content: center;
+    width: 100%;
+    padding: 0.4em 0.8em;
+    border-radius: 5px;
+}
+
+.navbar-user:focus,
+.navbar-user:hover {
+    color: var(--navbar-text-color-focus);
+    background-color: var(--navbar-bg-contrast);
+}
