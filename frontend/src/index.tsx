@@ -3,13 +3,18 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import Router from './Router';
+import GlobalFooter from "./components/GlobalFooter";
+import GlobalNavbar from "./components/GlobalNavbar";
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
+      <GlobalNavbar/>
+      <video className="background" muted={true} loop={true} autoPlay={true} src="//cdn.shopify.com/s/files/1/0526/6905/5172/t/5/assets/footer.mp4?v=29581141968431347981633714450" ></video>
     <Router />
+      <GlobalFooter/>
   </React.StrictMode>
 );
 

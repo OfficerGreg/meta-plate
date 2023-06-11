@@ -64,7 +64,7 @@ const GlobalNavbar: React.FC = () => {
   return (
     <header id="navbar">
       <nav className="navbar-container container">
-        <a href="/" className="home-link">
+        <a href="/dashboard" className="home-link">
           <div className="navbar-logo"></div>
           Meta-Plate
         </a>
@@ -82,8 +82,8 @@ const GlobalNavbar: React.FC = () => {
         <div id="navbar-menu" className="detached">
           <ul className="navbar-links">
             <li className="navbar-item">
-              <a className="navbar-link" href="/about">
-                About
+              <a className="navbar-link" href="/dashboard">
+                Workspace
               </a>
             </li>
             <li className="navbar-item">
@@ -97,16 +97,22 @@ const GlobalNavbar: React.FC = () => {
               </a>
             </li>
             <li className="navbar-item">
-              <a className="navbar-link" href="/contact">
-                Contact
+              <a className="navbar-link" href="/shop">
+
+                Shop
               </a>
             </li>
              <li className="navbar-coin">
-                <img  src={Vbucks} alt="coind" width="25" />
+               <a className="navbar-link" href="/contact">
+               <img  src={Vbucks} alt="coind" width="25" />
+              </a>
+
             </li>
 
             <li className="navbar-user">
-                <img  src={User} alt="user" width="30" />
+              <a className="navbar-link" href="/user">
+               <img  src={User} alt="user" width="30" />
+              </a>
             </li>
           </ul>
 

@@ -28,13 +28,16 @@ body {
 }
 
 #navbar {
-    --navbar-height: 64px;
-    height: var(--navbar-height);
-    background-color: var(--navbar-bg-color);
-    left: 0;
-    right: 0;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  --navbar-height: 64px;
+  background-color: rgba(0, 0, 0, 0.8); /* Anpassung der Transparenz (0.8) */
+  left: 0;
+  right: 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  position: fixed;
+  top: 0;
+  z-index: 999;
 }
+
 .navbar-container {
     display: flex;
     justify-content: space-between;
@@ -158,7 +161,7 @@ body {
 }
 
 #navbar.opened #navbar-menu {
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.8); /* Anpassung der Transparenz (0.8) */
     opacity: 1;
     visibility: visible;
 }
@@ -176,7 +179,6 @@ body {
     max-height: 0;
     overflow: hidden;
     position: absolute;
-    background-color: var(--navbar-bg-color);
     display: flex;
     flex-direction: column;
     align-items: center;
