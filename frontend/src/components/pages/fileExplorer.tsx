@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
-import "../css/dashboard.css";
+import "../css/fileExplorer.css";
 import { User, Folder, Note } from '../../types';
 import httpClient from '../../httpClient';
 
@@ -86,54 +86,52 @@ const Dashboard: React.FC = () => {
   }
 
   return (
-    <div className="section">
-      <button onClick={logoutUser}>Logout</button>
-      <div>
-        <div>
-          <label>New Folder:</label>
-          <input
-            type="text"
-            value={newFolderName}
-            onChange={(e) => setNewFolderName(e.target.value)}
-          />
-          <button onClick={createFolder}>Create Folder</button>
-        </div>
-        <p>Folders:</p>
-        <table style={{ width: "100%" }}>
-          <tbody>
-            {user.folders.map((folder) => (
-              <tr style={{ backgroundColor: "red" }} key={folder.id}>
-                <td>{folder.name}</td>
-                <td>
-                  <div>
-                    <label>New Note:</label>
-                    <input
-                      type="text"
-                      value={newNoteNames[folder.id] || ""}
-                      onChange={(e) => handleNoteNameChange(folder.id, e.target.value)}
-                    />
-                    <button onClick={() => createNote(folder.id)}>
-                      Create Note
-                    </button>
-                    {folder.notes && folder.notes.length > 0 && (
-                      <td style={{ backgroundColor: "gray"}}>
-                        {folder.notes.map((note) => (
-                          <tr key={note.id}>
-                            <td >
-                              <Link to={`/folders/${folder.id}/${note.id}`}>{note.name}</Link>
-                            </td>
-                          </tr>
-                        ))}
-                      </td>
-                    )}
+      <section className="faqs" id="soft-skills">
+
+          <h2 className="border_bottom">M127
+          </h2>
+          <div className="information">
+              <p>note</p>
+              <p>note</p>
+              <p>note</p>
+          </div>
+          <div className="container faqs_container">
+
+              <article className="faq">
+                  <div className="faq_icon">
+                      <i className="fa-solid fa-plus"></i>
                   </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </div>
+                  <div className="question_ans">
+                      <h4>M495</h4>
+                      <p>note</p>
+                      <p>note</p>
+                      <p>note</p>
+                  </div>
+              </article>
+              <article className="faq">
+                  <div className="faq_icon">
+                      <i className="fa-solid fa-plus"></i>
+                  </div>
+                  <div className="question_ans">
+                      <h4>M235</h4>
+                      <p>note</p>
+                      <p>note</p>
+                      <p>note</p>
+                  </div>
+              </article>
+              <article className="faq">
+                  <div className="faq_icon">
+                      <i className="fa-solid fa-plus"></i>
+                  </div>
+                  <div className="question_ans">
+                      <h4>M112</h4>
+                     <p>note</p>
+                      <p>note</p>
+                      <p>note</p>
+                  </div>
+              </article>
+          </div>
+      </section>
   );
 
 };
