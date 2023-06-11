@@ -10,8 +10,7 @@ import GlobalNavbar from "../GlobalNavbar";
 const Dashboard: React.FC = () => {
     const [user, setUser] = useState<User | null>(null);
     const [newFolderName, setNewFolderName] = useState("");
-    const [newNoteName, setNewNoteName] = useState("");
-    const [newNoteText, setNewNoteText] = useState("");
+    const [newNoteNames, setNewNoteNames] = useState<{ [key: number]: string }>({});
 
     const navigate = useNavigate();
 
@@ -24,8 +23,8 @@ const Dashboard: React.FC = () => {
         try {
             await httpClient.post("//localhost:5000/note", {
                 folder_id: folderId,
-                name: newNoteName,
-                text: newNoteText,
+                name: newNoteNames[folderId] || "",
+                text: " ",
             });
             // Refresh the user data to display the updated list of notes
             await fetchUserData();
@@ -47,17 +46,40 @@ const Dashboard: React.FC = () => {
 
     const fetchUserData = async () => {
         try {
-            const response = await httpClient.get("//localhost:5000/@me");
-            setUser(response.data);
-        } catch (e) {
-            console.log("Not authenticated");
-            navigate("/login");
+          const response = await httpClient.get("//localhost:5000/@me");
+          const userData = response.data;
+      
+          const foldersWithNotes = await Promise.all(
+            userData.folders.map(async (folder: Folder) => {
+              const notesResponse = await httpClient.get(
+                `//localhost:5000/folders/${folder.id}/notes`
+              );
+              const notes = notesResponse.data;
+              folder.notes = notes;
+              return folder;
+            })
+          );
+      
+          setUser({
+            ...userData,
+            folders: foldersWithNotes,
+          });
+        } catch (error) {
+          console.log("Not authenticated");
+          navigate("/login");
         }
-    };
+      };
 
     useEffect(() => {
         fetchUserData();
     }, []);
+
+    const handleNoteNameChange = (folderId: number, value: string) => {
+        setNewNoteNames((prevState) => ({
+            ...prevState,
+            [folderId]: value,
+        }));
+    };
 
     if (user === null) {
         return <h1>Loading...</h1>;
@@ -94,16 +116,19 @@ const Dashboard: React.FC = () => {
                                         <label>New Note:</label>
                                         <input
                                             type="text"
-                                            value={newNoteName}
-                                            onChange={(e) => setNewNoteName(e.target.value)}
+                                            value={newNoteNames[folder.id] || ""}
+                                            onChange={(e) => handleNoteNameChange(folder.id, e.target.value)}
                                         />
-                                        <textarea
-                                            value={newNoteText}
-                                            onChange={(e) => setNewNoteText(e.target.value)}
-                                        ></textarea>
                                         <button onClick={() => createNote(folder.id)}>
                                             Create Note
                                         </button>
+                                        {folder.notes && folder.notes.length > 0 && (
+                                            <ul>
+                                                {folder.notes.map((note) => (
+                                                    <li key={note.id}>{note.name}</li>
+                                                ))}
+                                            </ul>
+                                        )}
                                     </div>
                                 </td>
                             </tr>

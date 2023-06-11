@@ -22,8 +22,6 @@ with app.app_context():
     db.create_all()
 
 # note
-
-
 @app.route("/note", methods=["POST"])
 def create_note():
     user_id = session.get("user_id")
@@ -56,6 +54,27 @@ def create_note():
         "note_name": note_name,
         "note_text": note_text
     })
+
+#note by folder
+@app.route("/folders/<int:folder_id>/notes", methods=["GET"])
+def get_notes_by_folder(folder_id):
+    user_id = session.get("user_id")
+
+    if not user_id:
+        return jsonify({"error": "unauthorized"}), 401
+
+    folder = Folder.query.filter_by(id=folder_id, user_id=user_id).first()
+
+    if not folder:
+        return jsonify({"error": "Folder not found"}), 404
+
+    notes = [
+        {"id": note.id, "name": note.name, "text": note.text}
+        for note in folder.notes
+    ]
+
+    return jsonify(notes)
+
 
 
 # folder
@@ -104,14 +123,18 @@ def dashboard():
 
     user.add_folder("test")
 
+    folders = [
+        {"id": folder.id, "name": folder.name, "notes": folder.notes} 
+        for folder in user.folders
+    ]
+
     return jsonify({
         "id": user.id,
         "username": user.username,
         "email": user.email,
-        "folders": [
-            {"id": folder.id, "name": folder.name} for folder in user.folders
-        ]
+        "folders": folders
     })
+
 
 
 @app.route("/@me")
