@@ -7,6 +7,8 @@ import Login from "./components/pages/login"
 import Register from "./components/pages/register"
 import NotFound from "./components/pages/not_found"
 import Dashboard from "./components/pages/dashboard"
+import UserProfile from "./components/pages/UserProfile";
+import Progressbar from "./components/Progressbar";
 
 const Router = () => {
   return (
@@ -17,7 +19,9 @@ const Router = () => {
             <Route path="/register" Component={Register}/>
             <Route path="/dashboard" Component={Dashboard}/>
             <Route path="/note" Component={Note}/>
+            <Route path="/user" Component={UserProfile}/>
             <Route Component={NotFound}/>
+            <Route path="/progress" Component={Progressbar}/>
         </Routes>
     </BrowserRouter>
   )

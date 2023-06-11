@@ -1,0 +1,109 @@
+
+:root {
+    --primary: #29e9bc;
+    --normal: #ffffff;
+    --black: #13131a;
+    --bg: #0c1013;
+    --danger: #f75842;
+    --border: 0.1rem solid rgba(255, 255, 255, 0.3);
+
+
+    --container-width-lg: 80%;
+    --container-width-md: 90%;
+    --container-width-sm: 94%;
+}
+
+/* ======SKILLS======= */
+.skills .new {
+    text-align: center;
+}
+
+
+
+.box-container-skills{
+    flex:1 1 40rem;
+    display: flex;
+    flex-wrap: wrap;
+    margin:auto ;
+    width: 70%;
+    margin-top: 5rem;
+     margin-bottom: 4rem;
+    gap:1.5rem;
+    color:#13131a;
+    padding: 30px;
+    border-radius: .5rem;
+    box-shadow: 0 0.5rem 1rem rgb(164, 179, 140);
+}
+
+.box-container-skills .box{
+    flex:1 1 15rem;
+    background: var(--normal);
+    padding:2rem;
+    border-radius: .5rem;
+    box-shadow: 0 0.5rem 1rem rgb(164, 179, 140);
+}
+
+
+/* ======profile======= */
+
+.profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .profile img {
+    border-radius: 50%;
+  }
+
+  .profile h4 {
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+
+  .profile p {
+    margin-bottom: 5px;
+  }
+
+  .profile .btn-primary {
+    margin-top: 10px;
+  }
+
+/* ======InfoCard====== */
+
+  .info-card {
+
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    width: 400px;
+    height: 10px;
+  }
+
+  .text {
+    width: 150px;
+  }
+
+
+  .info{
+
+  }
+
+  .edit-btn {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+
+  .edit-btn:hover {
+    background-color: #0069d9;
+  }
+

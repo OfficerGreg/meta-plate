@@ -1,0 +1,204 @@
+/* ======statistic====== */
+
+  .panel {
+    flex:1 1 15rem;
+    background: #838CC7;
+    box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.10);
+    overflow: hidden;
+    border-radius: .5rem;
+    box-shadow: 0 0.5rem 1rem rgb(164, 179, 140);
+
+  }
+   /* ======statistic header====== */
+  .panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    height: 60px;
+    background: #fff;
+  }
+
+  .title {
+    color: #5E6977;
+    font-weight: 500;
+  }
+
+  .calendar-views span {
+    font-size: 14px;
+    font-weight: 300;
+    color: #6a727a;
+    padding: 6px 14px;
+    border: 2px solid transparent;
+  }
+
+
+
+  .panel-body {
+    display: flex;
+    height: 340px;
+  }
+
+  .categories {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-basis: 25%;
+    padding: 39px 0px 41px 26px;
+  }
+  .category {
+    display: flex;
+    flex-direction: column;
+  }
+  .category span:first-child {
+    font-weight: 300;
+    font-size: 14px;
+    opacity: 0.6;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .category span:last-child {
+    font-size: 32px;
+    font-weight: 300;
+    color: #fff;
+  }
+
+
+
+
+
+  .chart {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
+    position: relative;
+  }
+
+  .operating-systems {
+    display: flex;
+    justify-content: space-between;
+    width: 215px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+  }
+  span[class*="-os"] {
+    font-size: 14px;
+    font-weight: 300;
+    color: #c3c6e4;
+  }
+
+  span[class*="-os"] span {
+    width: 9px;
+    height: 9px;
+    display: inline-block;
+    border-radius: 50%;
+    margin-right: 9px;
+  }
+  .android-os span {
+    background: #80B354;
+  }
+  .ios-os span {
+    background-color: #F5A623;
+  }
+  .windows-os span {
+    background: #F8E71C;
+  }
+
+
+
+  div[class*="-stats"] {
+    position: absolute;
+    color: #fff;
+    font-size: 12px;
+    display: flex;
+    opacity: 0;
+    animation: showstats 0.6s linear 1.8s forwards;
+  }
+
+  div[class*="-stats"] span {
+    height: 12px;
+    width: 12px;
+    margin: 0 7px;
+    background-color: #fff;
+    border: 2px solid transparent;
+    border-radius: 50%;
+  }
+
+
+  .android-stats {
+    bottom: 184px;
+    left: 39px;
+  }
+
+  .ios-stats {
+    bottom: 133px;
+    left: 262px;
+  }
+
+  .windows-stats {
+    bottom: 145px;
+    left: 449px;
+  }
+
+
+/* ======statistic animated====== */
+  .calendar-views span:hover {
+    border: 2px solid #BDC6CF;
+    cursor: pointer;
+    border-radius: 15px;
+  }
+
+
+  div[class*="-stats"] span:hover {
+    transform: scale(1.4) rotate(0.02deg);
+    border: 2px solid #fff;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+  }
+
+  .android-stats span:hover {
+    background: #80B354;
+  }
+
+  .ios-stats span:hover {
+    background: #F5A623;
+  }
+
+  .windows-stats span:hover {
+    background: #F8E71C;
+  }
+
+  .dataset-1 {
+    animation: raise .8s linear 1;
+    transform-origin: bottom;
+  }
+  .dataset-2 {
+    animation: raise 1.6s linear 1;
+    transform-origin: bottom;
+  }
+  .dataset-3 {
+    animation: raise 1.8s linear 1;
+    transform-origin: bottom;
+  }
+
+  .lines {
+    opacity: 0;
+    animation: showlines 0.6s linear 1.6s;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes showlines {
+    to { opacity: 0.2; }
+  }
+
+  @keyframes showstats {
+    to { opacity: 1; }
+  }
+
+  @keyframes raise {
+    0% { transform: scaleY(0.01); }
+    75% { transform: scaleY(1.1); }
+    100% { transform: scaleY(1); }
+  }
