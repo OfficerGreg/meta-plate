@@ -1,30 +1,29 @@
-import {BrowserRouter, Routes, Route} from "react-router-dom"
-import React from 'react'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import React from 'react';
 
-import Home from "./components/pages/home"
-import Note from "./components/pages/note"
-import Login from "./components/pages/login"
-import Register from "./components/pages/register"
-import NotFound from "./components/pages/not_found"
-import Dashboard from "./components/pages/dashboard"
-import UserProfile from "./components/pages/UserProfile";
-import Progressbar from "./components/Progressbar";
+import Home from "./components/pages/home";
+//import Note from "./components/pages/note";
+import Login from "./components/pages/login";
+import Register from "./components/pages/register";
+import NotFound from "./components/pages/not_found";
+import Dashboard from "./components/pages/dashboard";
+import NotePage from "./components/pages/note_page";
+import Settings from "./components/pages/settings";
 
 const Router = () => {
   return (
     <BrowserRouter>
-        <Routes>
-            <Route path="/" Component={Home}/>
-            <Route path="/login" Component={Login}/>
-            <Route path="/register" Component={Register}/>
-            <Route path="/dashboard" Component={Dashboard}/>
-            <Route path="/note" Component={Note}/>
-            <Route path="/user" Component={UserProfile}/>
-            <Route Component={NotFound}/>
-            <Route path="/progress" Component={Progressbar}/>
-        </Routes>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/settings" element={<Settings />} />
+        <Route path="/folders/:folderId/:noteId" element={<NotePage />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </BrowserRouter>
-  )
+  );
 }
 
-export default Router
+export default Router;
