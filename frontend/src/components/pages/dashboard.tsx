@@ -46,15 +46,9 @@ const Dashboard: React.FC = () => {
     }
 
     return (
-        <div>
-            <GlobalNavbar/>
-           <video className="background" muted={true} loop={true} autoPlay={true} src="//cdn.shopify.com/s/files/1/0526/6905/5172/t/5/assets/footer.mp4?v=29581141968431347981633714450" ></video>
-            <h1>Logged In</h1>
-            <p>User ID: {user.id}</p>
-            <p>Username: {user.username}</p>
-            <p>Email: {user.email}</p>
-            <br />
-            <button onClick={logoutUser}>Logout</button>
+        <div className="section">
+            <h1>Dashboard</h1>
+
             <div>
                 <div>
                     <label>New Folder:</label>
@@ -77,7 +71,6 @@ const Dashboard: React.FC = () => {
                 </table>
 
             </div>
-            <GlobalFooter/>
         </div>
 
     );

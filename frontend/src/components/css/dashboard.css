@@ -1,11 +1,16 @@
-.background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    object-fit: cover;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    overflow: hidden;
-    border: none;
-  }
+
+
+
+.section {
+  display: inline-block;
+
+  height: 100vh; /* Die Höhe auf 100vh setzen */
+  width: 100%;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  text-decoration: underline;
+    margin-top: 4rem;
+
+}
+
