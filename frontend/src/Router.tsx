@@ -8,6 +8,7 @@ import Register from "./components/pages/register";
 import NotFound from "./components/pages/not_found";
 import Dashboard from "./components/pages/dashboard";
 import NotePage from "./components/pages/note_page";
+import Settings from "./components/pages/settings";
 
 const Router = () => {
   return (
@@ -17,6 +18,7 @@ const Router = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/settings" element={<Settings />} />
         <Route path="/folders/:folderId/:noteId" element={<NotePage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
