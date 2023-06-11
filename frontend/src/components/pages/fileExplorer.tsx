@@ -32,7 +32,7 @@ const Dashboard: React.FC = () => {
       console.log("Error creating note:", error);
     }
   };
-  //TODO delete Note
+
 
   const createFolder = async () => {
     try {
