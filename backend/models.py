@@ -80,7 +80,7 @@ class Folder(db.Model):
 
 class Note(db.Model):
     id = db.Column(db.String(36), primary_key=True, default=lambda: str(uuid.uuid4()))
-    name = db.Column(db.String(30), nullable=False)
+    name = db.Column(db.String(30), unique=True, nullable=False)
     text = db.Column(db.String)
     folder_id = db.Column(db.Integer, db.ForeignKey("folder.id"), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
