@@ -31,7 +31,7 @@ const NotePage: React.FC = () => {
     }, [folderId, noteId]);
 
     return (
-        <div className="container">
+        <div style={{marginTop: 200}}className="container">
             <h3>Note</h3>
             <div data-color-mode="light">
                 <MDEditor height={600} value={value} onChange={setValue} />
