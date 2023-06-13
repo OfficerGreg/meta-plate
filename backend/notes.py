@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from models import User, Folder, Note
+from models import User, Folder, Note, db
 
 notes_bp = Blueprint("notes", __name__)
 
@@ -78,3 +78,31 @@ def get_note_text(folder_id, note_id):
         return jsonify({"error": "Note not found"}), 404
 
     return jsonify({"text": note.text})
+
+# update the text of a specific note
+@notes_bp.route("/folders/<int:folder_id>/notes/<string:note_id>", methods=["PUT"])
+def update_note_text(folder_id, note_id):
+    user_id = session.get("user_id")
+
+    if not user_id:
+        return jsonify({"error": "unauthorized"}), 401
+
+    folder = Folder.query.filter_by(id=folder_id, user_id=user_id).first()
+
+    if not folder:
+        return jsonify({"error": "Folder not found"}), 404
+
+    note = Note.query.filter_by(id=note_id, folder_id=folder_id).first()
+
+    if not note:
+        return jsonify({"error": "Note not found"}), 404
+
+    new_text = request.json.get("text")
+
+    if not new_text:
+        return jsonify({"error": "Invalid request data"}), 400
+
+    note.text = new_text
+    db.session.commit()
+
+    return jsonify({"message": "Note text updated successfully"})

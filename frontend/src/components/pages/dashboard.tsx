@@ -12,7 +12,19 @@ const Dashboard: React.FC = () => {
   const [newNoteNames, setNewNoteNames] = useState<{ [key: number]: string }>({});
   const [isDeletingNote, setIsDeletingNote] = useState(false);
 
+  const [folderVisibility, setFolderVisibility] = useState<{ [key: number]: boolean }>({});
+
+
   const navigate = useNavigate();
+
+
+
+  const toggleNoteTable = (folderId: number) => {
+    setFolderVisibility((prevState) => ({
+      ...prevState,
+      [folderId]: !prevState[folderId],
+    }));
+  };
 
   const logoutUser = async () => {
     await httpClient.post("//localhost:5000/logout");
@@ -100,9 +112,10 @@ const Dashboard: React.FC = () => {
         </div>
         <p>Folders:</p>
         <table style={{ width: "100%" }}>
-          <tbody>
-            {user.folders.map((folder) => (
-              <tr style={{ backgroundColor: "red" }} key={folder.id}>
+        <tbody>
+          {user.folders.map((folder) => (
+            <React.Fragment key={folder.id}>
+              <tr style={{ backgroundColor: "red" }}>
                 <td>{folder.name}</td>
                 <td>
                   <div>
@@ -110,28 +123,38 @@ const Dashboard: React.FC = () => {
                     <input
                       type="text"
                       value={newNoteNames[folder.id] || ""}
-                      onChange={(e) => handleNoteNameChange(folder.id, e.target.value)}
+                      onChange={(e) =>
+                        handleNoteNameChange(folder.id, e.target.value)
+                      }
                     />
                     <button onClick={() => createNote(folder.id)}>
                       Create Note
                     </button>
-                    {folder.notes && folder.notes.length > 0 && (
-                      <td style={{ backgroundColor: "gray"}}>
-                        {folder.notes.map((note) => (
-                          <tr key={note.id}>
-                            <td >
-                              <Link to={`/folders/${folder.id}/${note.id}`}>{note.name}</Link>
-                            </td>
-                          </tr>
-                        ))}
-                      </td>
-                    )}
+                    <button onClick={() => toggleNoteTable(folder.id)}>
+                      {folderVisibility[folder.id] ? "Hide" : "Show"}
+                    </button>
                   </div>
                 </td>
               </tr>
-            ))}
-          </tbody>
-        </table>
+              {folder.notes && folder.notes.length > 0 && folderVisibility[folder.id] && (
+                <tr>
+                  <td style={{ backgroundColor: "gray" }} colSpan={2}>
+                    {folder.notes.map((note) => (
+                      <tr key={note.id}>
+                        <td>
+                          <Link to={`/folders/${folder.id}/${note.id}`}>
+                            {note.name}
+                          </Link>
+                        </td>
+                      </tr>
+                    ))}
+                  </td>
+                </tr>
+              )}
+            </React.Fragment>
+          ))}
+        </tbody>
+      </table>
       </div>
     </div>
   );
