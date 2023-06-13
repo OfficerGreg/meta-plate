@@ -12,6 +12,8 @@
     "@types/react-dom": "^18.2.4",
     "@uiw/react-md-editor": "^3.23.3",
     "axios": "^1.4.0",
+    "katex": "^0.16.7",
+    "mermaid": "^10.2.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router": "^6.12.1",
@@ -43,5 +45,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/katex": "^0.16.0"
   }
 }
