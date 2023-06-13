@@ -58,6 +58,21 @@ const NotePage: React.FC = () => {
         }
     };
 
+    const handleExport = async () => {
+        const fileContent = value || "";
+        const file = new Blob([fileContent], { type: "text/plain" });
+        const fileURL = URL.createObjectURL(file);
+        const element = document.createElement("a");
+
+        element.href = fileURL;
+        element.download = "test.md";
+        element.style.display = "none";
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
+        URL.revokeObjectURL(fileURL);
+
+    }
 
     return (
         <div style={{ marginTop: 50 }} className="container">
@@ -107,7 +122,7 @@ const NotePage: React.FC = () => {
                 />
             </div>
             <button onClick={handleSave}>Save</button>
-            <button>Export</button>
+            <button onClick={handleExport}>Export</button>
         </div>
     );
 };
