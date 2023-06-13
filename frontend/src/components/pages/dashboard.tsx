@@ -24,7 +24,7 @@ const Dashboard: React.FC = () => {
       await httpClient.post("//localhost:5000/note", {
         folder_id: folderId,
         name: newNoteNames[folderId] || "",
-        text: "testing this func ",
+        text: " ",
       });
       // Refresh the user data to display the updated list of notes
       await fetchUserData();
