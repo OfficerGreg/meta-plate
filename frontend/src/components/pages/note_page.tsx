@@ -6,6 +6,8 @@ import "katex/dist/katex.css";
 import { getCodeString } from 'rehype-rewrite';
 import katex from "katex";
 
+import Switch from "@mui/material/Switch"
+
 import '../css/note.css';
 import httpClient from '../../httpClient';
 
@@ -20,6 +22,15 @@ interface NotePageParams {
 const NotePage: React.FC = () => {
     const { folderId, noteId } = useParams<NotePageParams>();
     const [value, setValue] = React.useState<string | undefined>('');
+
+    const [theme, setTheme] = React.useState<string>("light");
+    const [checked, setChecked] = React.useState(true);
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setChecked(event.target.checked);
+        setTheme(event.target.checked ? "dark" : "light");
+    }
+
 
     React.useEffect(() => {
         const fetchNoteData = async () => {
@@ -49,10 +60,17 @@ const NotePage: React.FC = () => {
 
 
     return (
-        <div style={{ marginTop: 200 }} className="container">
+        <div style={{ marginTop: 50 }} className="container">
+            <Switch
+                checked={checked}
+                onChange={handleChange}
+                inputProps={{ 'aria-label': 'controlled' }}
+            />
+
             <h3>Note</h3>
-            <div data-color-mode="light">
+            <div data-color-mode={theme}>
                 <MDEditor
+                    height={600}
                     value={value}
                     onChange={(newValue) => setValue(newValue!)}
                     textareaProps={{
@@ -89,6 +107,7 @@ const NotePage: React.FC = () => {
                 />
             </div>
             <button onClick={handleSave}>Save</button>
+            <button>Export</button>
         </div>
     );
 };

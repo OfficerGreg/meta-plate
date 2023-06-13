@@ -10,7 +10,6 @@ const Dashboard: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
   const [newFolderName, setNewFolderName] = useState("");
   const [newNoteNames, setNewNoteNames] = useState<{ [key: number]: string }>({});
-  const [isDeletingNote, setIsDeletingNote] = useState(false);
 
   const [folderVisibility, setFolderVisibility] = useState<{ [key: number]: boolean }>({});
 
