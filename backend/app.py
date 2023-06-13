@@ -3,7 +3,7 @@ from flask_bcrypt import Bcrypt
 from flask_cors import CORS, cross_origin
 from flask_session import Session
 from config import ApplicationConfig
-from models import db, User, Folder
+from models import db, User, Folder, Note
 
 
 app = Flask(__name__)
@@ -75,10 +75,9 @@ def get_notes_by_folder(folder_id):
 
     return jsonify(notes)
 
-#delete note
-# note by folder
-@app.route("/folders/<int:folder_id>/notes/<string:note_id>", methods=["DELETE"])
-def delete_note(folder_id, note_id):
+#get note
+@app.route("/folders/<int:folder_id>/notes/<string:note_id>/text", methods=["GET"])
+def get_note_text(folder_id, note_id):
     user_id = session.get("user_id")
 
     if not user_id:
@@ -89,15 +88,12 @@ def delete_note(folder_id, note_id):
     if not folder:
         return jsonify({"error": "Folder not found"}), 404
 
-    note = folder.get_note_by_id(note_id)
+    note = Note.query.filter_by(id=note_id, folder_id=folder_id).first()
 
     if not note:
         return jsonify({"error": "Note not found"}), 404
 
-    db.session.delete(note)
-    db.session.commit()
-
-    return jsonify({"message": "Note deleted successfully"})
+    return jsonify({"text": note.text})
 
 
 

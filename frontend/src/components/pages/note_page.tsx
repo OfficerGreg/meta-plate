@@ -19,12 +19,12 @@ const NotePage: React.FC = () => {
         const fetchNoteData = async () => {
             try {
                 const response = await httpClient.get(
-                    `//localhost:5000/folders/${folderId}/notes/${noteId}`
+                    `//localhost:5000/folders/${folderId}/notes/${noteId}/text`
                 );
-                const note = response.data;
-                setValue(note.text);
+                const noteData = response.data;
+                setValue(noteData.text);
             } catch (error) {
-                console.log('Error fetching note data:', error);
+                console.log("Error fetching note data:", error);
             }
         };
         fetchNoteData();
