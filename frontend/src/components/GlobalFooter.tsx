@@ -24,8 +24,6 @@ const GlobalFooter: React.FC = () => {
                 <p className="footer-links">
                     <a className="link-1" href="#">Home</a>
 
-                    <a href="#">Blog</a>
-
                     <a href="#">Pricing</a>
 
                     <a href="#">About</a>

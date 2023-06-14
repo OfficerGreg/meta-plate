@@ -132,6 +132,9 @@ const Dashboard: React.FC = () => {
                     <button onClick={() => toggleNoteTable(folder.id)}>
                       {folderVisibility[folder.id] ? "Hide" : "Show"}
                     </button>
+                    <button onClick={() => alert("dont work yet")}>
+                      Import Note
+                    </button>
                   </div>
                 </td>
               </tr>
