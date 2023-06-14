@@ -10,6 +10,7 @@ import Dashboard from "./components/pages/dashboard";
 import NotePage from "./components/pages/note_page";
 import Settings from "./components/pages/settings";
 import UserProfile from "./components/pages/UserProfile";
+import ApiTest from "./components/pages/api_test"
 
 const Router = () => {
   return (
@@ -21,6 +22,7 @@ const Router = () => {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/user" element={<UserProfile />} />
+        <Route path="/completionChat" element={<ApiTest />} />
         <Route path="/folders/:folderId/:noteId" element={<NotePage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
