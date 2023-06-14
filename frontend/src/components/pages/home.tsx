@@ -68,7 +68,7 @@ const Home: React.FC = () => {
         </svg>
       </div>
 
-      <video className="container-home" muted={true} loop={true} autoPlay={true} src="//cdn.shopify.com/s/files/1/0526/6905/5172/t/5/assets/footer.mp4?v=29581141968431347981633714450"></video>
+      {/* <video className="container-home" muted={true} loop={true} autoPlay={true} src="//cdn.shopify.com/s/files/1/0526/6905/5172/t/5/assets/footer.mp4?v=29581141968431347981633714450"></video> */}
 
       {isModalOpen && (
         <div className="modal is-open">
@@ -97,7 +97,7 @@ const Home: React.FC = () => {
 
 
             <div className="modal-right">
-              <video className="background" muted={true} loop={true} autoPlay={true} src="//cdn.shopify.com/s/files/1/0526/6905/5172/t/5/assets/footer.mp4?v=29581141968431347981633714450"></video>
+              {/* <video className="background" muted={true} loop={true} autoPlay={true} src="//cdn.shopify.com/s/files/1/0526/6905/5172/t/5/assets/footer.mp4?v=29581141968431347981633714450"></video> */}
             </div>
             <button className="icon-button close-button" onClick={closeModal}>
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50">
