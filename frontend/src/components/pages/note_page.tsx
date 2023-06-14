@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import MDEditor from '@uiw/react-md-editor';
 //import mermaid from "mermaid"; diagrams
@@ -25,6 +25,60 @@ const NotePage: React.FC = () => {
 
     const [theme, setTheme] = React.useState<string>("light");
     const [checked, setChecked] = React.useState(true);
+
+    //sse
+    const [data, setData] = useState<string>('Initializing');
+    const [eventSource, setEventSource] = useState<EventSource | null>(null);
+    const [question, setQuestion] = useState<string>('');
+
+    const handleStream = (e: MessageEvent<any>) => {
+        console.log(e);
+        const newData = e.data.trim();
+        setData(prevData => prevData + newData);
+        if (newData) {
+          setValue(prevValue => (prevValue ? prevValue + " " + newData : newData));
+        }
+      }
+
+    const startSSE = () => {
+        if (question) {
+            fetch('//localhost:5000/ask', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ question }),
+            })
+                .then(response => {
+                    if (response.ok) {
+                        const newEventSource = new EventSource('//localhost:5000/stream');
+                        newEventSource.onmessage = handleStream;
+                        newEventSource.onerror = () => {
+                            newEventSource.close();
+                        }
+                        setEventSource(newEventSource);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    }
+
+
+    const stopSSE = () => {
+        if (eventSource) {
+            eventSource.close();
+            setEventSource(null);
+        }
+    }
+
+    const handleQuestionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setQuestion(e.target.value);
+    }
+
+    //sse end
+
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setChecked(event.target.checked);
@@ -123,6 +177,9 @@ const NotePage: React.FC = () => {
             </div>
             <button onClick={handleSave}>Save</button>
             <button onClick={handleExport}>Export</button>
+            <input type="text" value={question} onChange={handleQuestionChange} />
+            <button onClick={startSSE}>Generate</button>
+            <button onClick={stopSSE}>Stop</button>
         </div>
     );
 };
