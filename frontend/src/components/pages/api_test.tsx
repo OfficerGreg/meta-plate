@@ -2,30 +2,34 @@ import React, { useEffect, useState } from 'react';
 
 const CompletionChat: React.FC = () => {
   const [data, setData] = useState<string>('Initializing');
+  const [eventSource, setEventSource] = useState<EventSource | null>(null);
 
-  useEffect(() => {
-    const eventSource = new EventSource('//localhost:5000/stream');
+  const handleStream = (e: MessageEvent<any>) => {
+    console.log(e);
+    setData(prevData => prevData + e.data);
+  }
 
-    function handleStream(e: MessageEvent<any>){
-      console.log(e)
-      setData(e.data)
+  const startSSE = () => {
+    const newEventSource = new EventSource('//localhost:5000/stream');
+    newEventSource.onmessage = handleStream;
+    newEventSource.onerror = () => {
+      newEventSource.close();
     }
+    setEventSource(newEventSource);
+  }
 
-    eventSource.onmessage = e => {handleStream(e)}
-
-    eventSource.onerror = e => {
-        eventSource.close()
+  const stopSSE = () => {
+    if (eventSource) {
+      eventSource.close();
+      setEventSource(null);
     }
-
-    return () => {
-      eventSource.close()
-    }
-
-  }, []);
+  }
 
   return (
     <div style={{ marginTop: 200 }}>
-    Last stream: {data}
+      <button onClick={startSSE}>Generate</button>
+      <button onClick={stopSSE}>Stop</button>
+      <div>Last stream: {data}</div>
     </div>
   );
 };
