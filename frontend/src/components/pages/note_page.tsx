@@ -36,9 +36,20 @@ const NotePage: React.FC = () => {
         const newData = e.data.trim();
         setData(prevData => prevData + newData);
         if (newData) {
-          setValue(prevValue => (prevValue ? prevValue + " " + newData : newData));
+          setValue(prevValue => {
+            const marker = '#!';
+            const markerIndex = prevValue?.indexOf(marker) ?? -1;
+            if (markerIndex !== -1) {
+              const beforeMarker = prevValue?.substring(0, markerIndex + marker.length) ?? '';
+              const afterMarker = prevValue?.substring(markerIndex + marker.length) ?? '';
+              return beforeMarker + ' ' + newData + ' ' + afterMarker;
+            } else {
+              return (prevValue ?? '') + ' ' + newData;
+            }
+          });
         }
-      }
+      };
+      
 
     const startSSE = () => {
         if (question) {

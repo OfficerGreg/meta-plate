@@ -5,8 +5,8 @@ api_bp = Blueprint("api", __name__)
 
 # remove # from API KEY
 
-API_KEY = 'hBah7VMdi_6TsDBGE4PeFwJauklPpPcB7bPS45UveNg'
-API_URL = 'https://chimeragpt.adventblocks.cc/v1'
+API_KEY = 'pk-zVSypLIUDIVmaRXdLncxpIOZSuJXIPGBCjVhkyCFRPokWMYb'
+API_URL = 'https://api.pawan.krd/v1'
 
 openai.api_key = API_KEY
 openai.api_base = API_URL
