@@ -31,7 +31,7 @@ const Register: React.FC = () => {
     };
 
     return (
-        <div>
+        <section>
             <h1>Register</h1>
             <form onSubmit={handleSubmit}>
                 <div className="register-username-input">
@@ -50,7 +50,7 @@ const Register: React.FC = () => {
                 <a href="/login">already have an account?</a>
             </form>
 
-        </div>
+        </section>
     );
 };
 

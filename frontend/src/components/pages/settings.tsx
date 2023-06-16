@@ -24,12 +24,12 @@ const Settings: React.FC = () => {
   }
 
   return (
-    <div>
+    <section>
       <h1>User Information:</h1>
       <p>ID: {user.id}</p>
       <p>Email: {user.email}</p>
       <p>Username: {user.username}</p>
-    </div>
+    </section>
   );
 };
 

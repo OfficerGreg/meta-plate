@@ -60,7 +60,7 @@ const Home: React.FC = () => {
   };
 
   return (
-    <div>
+    <section>
       <div className="scroll-down">
         SCROLL DOWN
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
@@ -113,7 +113,7 @@ const Home: React.FC = () => {
           <button className="modal-button" onClick={openModal}>Click here to login</button>
         </div>
       )}
-    </div>
+    </section>
   );
 };
 

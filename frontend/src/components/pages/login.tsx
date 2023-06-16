@@ -29,7 +29,7 @@ const Login: React.FC = () => {
     };
 
     return (
-        <div>
+        <section>
             <h1>Login</h1>
             <form onSubmit={handleSubmit}>
                 <div className="login-username-input">
@@ -44,7 +44,7 @@ const Login: React.FC = () => {
                 <a href="/register">dont have an account?</a>
             </form>
 
-        </div>
+        </section>
     );
 };
 

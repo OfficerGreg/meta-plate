@@ -140,7 +140,7 @@ const NotePage: React.FC = () => {
     }
 
     return (
-        <div style={{ marginTop: 50 }} className="container">
+        <section>
             <Switch
                 checked={checked}
                 onChange={handleChange}
@@ -191,7 +191,7 @@ const NotePage: React.FC = () => {
             <input type="text" value={question} onChange={handleQuestionChange} />
             <button onClick={startSSE}>Generate</button>
             <button onClick={stopSSE}>Stop</button>
-        </div>
+        </section>
     );
 };
 

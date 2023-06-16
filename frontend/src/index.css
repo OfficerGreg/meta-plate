@@ -12,6 +12,20 @@ code {
     monospace;
 }
 
+section {
+  display: inline-block;
+  height: 100vh; /* Die Höhe auf 100vh setzen */
+  width: 100%;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  text-decoration: underline;
+    padding:50px;
+    padding-top: 4rem;
+}
+
+
+
 .background {
     position: absolute;
     top: 0;

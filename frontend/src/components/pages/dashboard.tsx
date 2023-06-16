@@ -97,7 +97,7 @@ const Dashboard: React.FC = () => {
   }
 
   return (
-    <div className="section">
+    <section>
       <button onClick={logoutUser}>Logout</button>
       <div>
         <div>
@@ -158,7 +158,7 @@ const Dashboard: React.FC = () => {
         </tbody>
       </table>
       </div>
-    </div>
+    </section>
   );
 
 };

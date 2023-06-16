@@ -16,12 +16,12 @@ const Note: React.FC = () => {
     const [value, setValue] = React.useState<string | undefined>(defualtMsg);
 
     return (
-        <div className="container">
+        <section>
             <h3>Note</h3>
             <div data-color-mode="light">
                 <MDEditor height={600} value={value} onChange={setValue} />
             </div>
-        </div>
+        </section>
     )
 };
 

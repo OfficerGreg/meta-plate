@@ -3,10 +3,10 @@ import "../css/not_found.css"
 
 
 const NotFound: React.FC = () => {
-    return <div>
+    return <section>
         <h1 className='testing'>404 page not found</h1>
         <br/>
-    </div>
+    </section>
 };
 
 export default NotFound
