@@ -1,75 +1,41 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import '../css/home.css';
-import httpClient from "../../httpClient";
+import welcomeImage from '../img/hintergrund.png';
 
 const Home: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [username, setUsername] = useState<string>("");
-    const [password, setPassword] = useState<string>("");
+    const containerRef = useRef<HTMLDivElement>(null);
 
-    const logInUser = async () => {
-        console.log(username, password)
+    useEffect(() => {
+        const handleScroll = () => {
+            if (containerRef.current) {
+                const containerPosition = containerRef.current.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.5;
 
-        try {
-            const response = await httpClient.post("//localhost:5000/login", {
-                username, password,
-            });
-
-            window.location.href = "/dashboard";
-        } catch (e: any) {
-            if (e.response.status === 401) {
-                alert("Invalid credentials!")
+                if (containerPosition < screenPosition) {
+                    containerRef.current.classList.add('show');
+                }
             }
-        }
-    };
+        };
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault(); // Prevent the default form submission
-        logInUser();
-    };
+        window.addEventListener('scroll', handleScroll);
 
-  const openModal = () => {
-    setIsModalOpen(true);
-    document.body.style.overflow = "hidden";
-  };
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
-  const closeModal = () => {
-    setIsModalOpen(false);
-    document.body.style.overflow = "initial";
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > window.innerHeight / 3 && !isModalOpen) {
-        openModal();
-      }
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [isModalOpen]);
-
-  const handleKeyDown = (evt: React.KeyboardEvent) => {
-    if (evt.key === 'Escape') {
-      closeModal();
-    }
-  };
-
-  return (
-    <section>
-        <div className="container">
-            <h1>Welcome to Meta Plate!</h1>
-            <div className="buttons">
-                <a href="{{url_for('login')}}">Login</a>
-                <a href="{{url_for('register')}}">Register</a>
+    return (
+        <section>
+            <div className="home" ref={containerRef}>
+                <h1>Welcome to Meta Plate!</h1>
+                <div className="buttons">
+                    <Link to="/login">Login</Link>
+                    <Link to="/register">Register</Link>
+                </div>
             </div>
-        </div>
-    </section>
-  );
+        </section>
+    );
 };
 
 export default Home;

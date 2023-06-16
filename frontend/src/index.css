@@ -13,6 +13,7 @@ code {
 }
 
 section {
+    background-color: #f7f7f7;
   display: inline-block;
   height: 100vh; /* Die Höhe auf 100vh setzen */
   width: 100%;
