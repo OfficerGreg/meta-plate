@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-import httpClient from '../httpClient';
+import httpClient from '../../httpClient';
 
-const Login = () => {
+const Register = () => {
     const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const logInUser = async () => {
-        console.log(username, password);
+    const registerUser = async () => {
+        //debug
+        console.log(username, email, password);
 
         try {
-            const response = await httpClient.post("//localhost:5000/login", {
-                username, password,
+            const response = await httpClient.post("//localhost:5000/register", {
+                username, email, password
             });
 
             window.location.href = "/dashboard";
@@ -23,26 +25,29 @@ const Login = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault(); // Prevent the default form submission
-        logInUser();
+        registerUser();
     };
 
     return (
         <section>
-            <h1>Login</h1>
+            <h1>Register</h1>
             <form onSubmit={handleSubmit}>
-                <div className="login-username-input">
+                <div className="register-username-input">
                     <label>Username</label>
                     <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} id="" />
                 </div>
-                <div className="login-password-input">
+                <div className="register-email-input">
+                    <label>Email</label>
+                    <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} id="" />
+                </div>
+                <div className="register-password-input">
                     <label>Password</label>
                     <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} id="" />
                 </div>
                 <button type="submit">Submit</button>
-                <a href="/Register.jsx">Don't have an account?</a>
+                <a href="/login">Already have an account?</a>
             </form>
         </section>
     );
 };
-
-export default Login;
+export default Register;
