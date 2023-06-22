@@ -15,7 +15,7 @@ with open("./data/cases.json", "r") as f:
 
 @gamba_bp.route("/gamba", methods=["GET"])
 def gen_cases():
-    num_cases = 10
+    num_cases = 105
     
     results = []
     for _ in range(num_cases):

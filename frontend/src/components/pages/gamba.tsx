@@ -25,19 +25,24 @@ const Gamba: React.FC = () => {
     }
   };
 
-  const loadImage = async (caseIndex: number) => {
+  const loadImage = async (caseIndex: number, caseItem: any) => {
     try {
       const img = new window.Image();
-      img.src = process.env.PUBLIC_URL + '/images/' + cases[caseIndex].detail + '.jpg';
+      img.src = process.env.PUBLIC_URL + '/images/' + caseItem.detail + '.jpg';
       await new Promise((resolve, reject) => {
         img.onload = resolve;
         img.onerror = reject;
       });
-      setImages((prevImages) => [...prevImages, img]); // Add the loaded image to the state array
+      setImages((prevImages) => {
+        const updatedImages = [...prevImages];
+        updatedImages[caseIndex] = img; // Store the loaded image at the correct index
+        return updatedImages;
+      });
     } catch (error) {
       console.error('Error:', error);
     }
   };
+  
 
   useEffect(() => {
     fetchData();
@@ -46,21 +51,21 @@ const Gamba: React.FC = () => {
   useEffect(() => {
     if (cases.length > 0) {
       setImages([]); // Reset the images array when cases change
-      for (let i = 0; i < cases.length; i++) {
-        loadImage(i);
-      }
+      cases.forEach((caseItem, index) => {
+        loadImage(index, caseItem);
+      });
     }
   }, [cases]);
 
   return (
     <section>
-      <Stage width={window.innerWidth} height={window.innerHeight}>
+      <Stage width={window.innerWidth - 200} height={window.innerHeight}>
         <Layer>
           {cases.map((caseItem, index) => (
             <React.Fragment key={index}>
               <Rect
-                x={200 + index * 220} // Adjust the x position based on the index
-                y={200}
+                x={index * 220} // Adjust the x position based on the index
+                y={220}
                 width={200}
                 height={200}
                 fill={caseItem.result}
@@ -70,7 +75,7 @@ const Gamba: React.FC = () => {
               />
               {images[index] && (
                 <Image
-                  x={200 + index * 220} // Adjust the x position based on the index
+                  x={index * 220} // Adjust the x position based on the index
                   y={200}
                   width={200}
                   height={200}
