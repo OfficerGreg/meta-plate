@@ -4,17 +4,18 @@ import { Route, Switch } from 'react-router-dom'
 
 import Dashboard from '../pages/Dashboard'
 import Customers from '../pages/Customers'
-import Login from "../pages/Login";
-import Register from "../pages/Register";
+import Userprofile from "../pages/Userprofile";
+
 
 const Routes = () => {
     return (
         <Switch>
 
-            <Route path="/login" component={Login} />
-            <Route path="/register" component={Register} />
+
+
             <Route path="/dashboard" component={Dashboard} />
             <Route path='/customers' component={Customers}/>
+            <Route path='/profile' component={Userprofile}/>
 
 
         </Switch>
