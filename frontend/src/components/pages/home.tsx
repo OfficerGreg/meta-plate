@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import '../css/home.css';
-import welcomeImage from '../img/hintergrund.png';
 
 const Home: React.FC = () => {
     const containerRef = useRef<HTMLDivElement>(null);

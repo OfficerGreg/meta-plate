@@ -16,6 +16,8 @@ from user import user_bp
 
 from api import api_bp
 
+from gamba import gamba_bp
+
 app = Flask(__name__)
 app.config.from_object(ApplicationConfig)
 
@@ -27,6 +29,7 @@ app.register_blueprint(register_bp)
 app.register_blueprint(dashboard_bp)
 app.register_blueprint(user_bp)
 app.register_blueprint(api_bp)
+app.register_blueprint(gamba_bp)
 
 CORS(app, supports_credentials=True)
 

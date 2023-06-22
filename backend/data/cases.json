@@ -1,0 +1,32 @@
+{
+    "cases": {
+      "Homeless case": {
+        "blue": {
+          "Sy Viet" : "blue",
+          "Hobo" : "blue",
+          "Brick" : "blue",
+          "Trojaner" : "blue",
+          "Pampers" : "blue"
+        } ,
+        "purple": {
+          "Vergaser" : "purple",
+          "V-Bucks" : "purple",
+          "Bumblebee bottle" : "purple",
+          "Metal plate" : "purple"
+        } ,
+        "pink": {
+          "Kerosene" : "pink",
+          "Yankee with no brim" : "pink",
+          "Robux" : "pink"
+        } ,
+        "red": {
+          "Diesel Generator" : "red",
+          "Uranium" : "red"
+  
+        } ,
+        "gold": {
+          "Meth" : "gold"
+        }
+      }
+    }
+  }

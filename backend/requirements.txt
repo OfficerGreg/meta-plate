@@ -7,3 +7,4 @@ flask-session
 redis
 flask-cors
 openai
+numpy
