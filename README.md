@@ -26,6 +26,7 @@ npm install
 npm start
 ```
 3. Öffnen Sie anschließend Ihren Webbrowser und navigieren Sie zur folgenden URL: [http://localhost:3000](http://localhost:3000)
+4. Falls error: `error:03000086:digital envelope routines::initialization` auftreten sollte: https://appdividend.com/2022/12/23/error-03000086-digital-envelope-routines-initialization/
 
 
 ## Login:
