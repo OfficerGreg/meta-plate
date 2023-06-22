@@ -1,6 +1,7 @@
 # meta-plate Projekt
 
 
+
 ## Requirements:
  - redis: **windows** -> https://redis.io/docs/getting-started/installation/install-redis-on-windows/
  - sqlite3
@@ -11,6 +12,20 @@
 
 ## Website:
 -https://icons8.com/icons/
+
+
+## Instalation
+
+
+
+
+1. Öffnen Sie das Frontend-Projektverzeichnis in Ihrer Entwicklungsumgebung.
+2. Führen Sie den folgenden Befehl aus, um das Frontend zu starten:
+```sh
+npm install
+npm start
+```
+3. Öffnen Sie anschließend Ihren Webbrowser und navigieren Sie zur folgenden URL: [http://localhost:3000](http://localhost:3000)
 
 
 ## Login:
