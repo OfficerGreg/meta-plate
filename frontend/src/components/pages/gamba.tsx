@@ -3,11 +3,15 @@ import Konva from 'konva';
 import { Stage, Layer, Rect, Image } from 'react-konva';
 import axios from 'axios';
 
+import '../css/gamba.css';
+
 const Gamba: React.FC = () => {
   const [cases, setCases] = useState<any[]>([]); // Array to store the fetched cases
   const [result, setResult] = useState('');
   const [detail, setDetail] = useState('');
   const [images, setImages] = useState<HTMLImageElement[]>([]); // Array to store the loaded images
+  const [isRolling, setIsRolling] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(1); // Current image index
 
   const handleBeforeDraw = (context: Konva.Context) => {
     context.fillStyle = result;
@@ -42,7 +46,11 @@ const Gamba: React.FC = () => {
       console.error('Error:', error);
     }
   };
-  
+
+  const startRollingAnimation = () => {
+    setIsRolling(true);
+    fetchData();
+  };
 
   useEffect(() => {
     fetchData();
@@ -57,36 +65,90 @@ const Gamba: React.FC = () => {
     }
   }, [cases]);
 
+  useEffect(() => {
+    // Update the image index when isRolling is true
+    if (isRolling) {
+      const interval = setInterval(() => {
+        setCurrentImageIndex((prevIndex) => {
+          // Check if the current image is the last image (6)
+          if (prevIndex === 6) {
+            return prevIndex; // Stay at image 6
+          } else {
+            return prevIndex + 1; // Move to the next image
+          }
+        });
+      }, 200); // Change image every 1 second
+  
+      return () => {
+        clearInterval(interval); // Cleanup the interval on component unmount
+        if (currentImageIndex === 6) {
+          setIsRolling(false); // Stop the animation if the last image is reached
+        }
+      };
+    }
+  }, [isRolling, currentImageIndex]);
+  
+
+  const path_test = process.env.PUBLIC_URL + '/images/case_anim/' + currentImageIndex + '.png';
+
+  const imgPath = new window.Image();
+  imgPath.src = path_test;
+
   return (
     <section>
-      <Stage width={window.innerWidth - 200} height={window.innerHeight}>
+      <Stage width={window.innerWidth - 200} height={220} style={{ marginTop: 100 }}>
         <Layer>
-          {cases.map((caseItem, index) => (
-            <React.Fragment key={index}>
-              <Rect
-                x={index * 220} // Adjust the x position based on the index
-                y={220}
-                width={200}
-                height={200}
-                fill={caseItem.result}
-                perfectDrawEnabled={false}
-                listening={false}
-                onBeforeDraw={handleBeforeDraw}
-              />
-              {images[index] && (
-                <Image
-                  x={index * 220} // Adjust the x position based on the index
-                  y={200}
-                  width={200}
-                  height={200}
-                  image={images[index]}
-                />
-              )}
-            </React.Fragment>
-          ))}
+          <div>
+            <Rect
+              x={window.innerWidth / 2 - 100}
+              y={0}
+              width={400}
+              height={200}
+              fill="white"
+              perfectDrawEnabled={false}
+              listening={false}
+              onBeforeDraw={handleBeforeDraw}
+            />
+            <Image
+              x={window.innerWidth / 2 - 100}
+              y={0}
+              width={400}
+              height={200}
+              image={imgPath}
+            />
+          </div>
+          {isRolling && currentImageIndex === 6 && (
+            <div className="cases-container">
+              {cases.map((caseItem, index) => (
+                <React.Fragment key={index}>
+                  <Rect
+                    x={index * 220}
+                    y={20}
+                    width={200}
+                    height={200}
+                    fill={caseItem.result}
+                    perfectDrawEnabled={false}
+                    listening={false}
+                    onBeforeDraw={handleBeforeDraw}
+                  />
+                  {images[index] && (
+                    <Image
+                      x={index * 220}
+                      y={0}
+                      width={200}
+                      height={200}
+                      image={images[index]}
+                    />
+                  )}
+                </React.Fragment>
+              ))}
+            </div>
+          )}
         </Layer>
       </Stage>
-      <button onClick={fetchData}>Roll</button>
+      {!isRolling ? (
+        <button onClick={startRollingAnimation}>Open</button>
+      ) : null}
     </section>
   );
 };
