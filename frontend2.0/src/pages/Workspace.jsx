@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
-import "../css/dashboard.css";
-import { User, Folder, Note } from '../../types';
-import httpClient from '../../httpClient';
+import { User, Folder, Note } from '../types';
+import httpClient from '../httpClient';
 
-const Dashboard = () => {
+const Workspace = () => {
   const [user, setUser] = useState(null);
   const [newFolderName, setNewFolderName] = useState("");
   const [newNoteNames, setNewNoteNames] = useState({});
   const [folderVisibility, setFolderVisibility] = useState({});
 
-  const navigate = useNavigate();
+  const history = useHistory();
 
   const toggleNoteTable = (folderId) => {
     setFolderVisibility((prevState) => ({
@@ -22,7 +21,7 @@ const Dashboard = () => {
 
   const logoutUser = async () => {
     await httpClient.post("//localhost:5000/logout");
-    navigate("/");
+    history.push("/");
   };
 
   const createNote = async (folderId) => {
@@ -71,7 +70,7 @@ const Dashboard = () => {
       });
     } catch (error) {
       console.log("Not authenticated");
-      navigate("/login");
+      history.push("/login");
     }
   };
 
@@ -156,4 +155,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Workspace;
