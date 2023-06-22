@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import httpClient from '../httpClient';
 
-import "../css/register.css";
-
 const Register = () => {
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
@@ -52,5 +50,4 @@ const Register = () => {
         </section>
     );
 };
-
 export default Register;
