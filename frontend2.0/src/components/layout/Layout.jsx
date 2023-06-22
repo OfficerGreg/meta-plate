@@ -7,7 +7,9 @@ import TopNav from '../topnav/TopNav';
 import Routes from '../Routes';
 
 import './layout.css';
-import Products from "../../pages/Products";
+import Home from "../../pages/welcome/Home";
+import Login from "../../pages/welcome/Login";
+import Register from "../../pages/welcome/Register";
 
 const Layout = () => {
   const themeReducer = useSelector((state) => state.ThemeReducer);
@@ -24,7 +26,9 @@ const Layout = () => {
     <BrowserRouter>
       <div className={`layout ${themeReducer.mode} ${themeReducer.color}`}>
         <Switch>
-          <Route exact path="/" component={Products} />
+          <Route exact path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
           <Route
             render={(props) => (
               <>
