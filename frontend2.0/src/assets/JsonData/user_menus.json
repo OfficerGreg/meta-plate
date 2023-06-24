@@ -1,18 +1,22 @@
 [
     {
         "icon": "bx bx-user",
-        "content": "Profile"
+        "content": "Profile",
+        "function": "navigateProfile"
     },
     {
         "icon": "bx bx-wallet-alt",
-        "content": "My Wallet"
+        "content": "My Wallet",
+        "function": ""
     },
     {
         "icon": "bx bx-cog",
-        "content": "Settings"
+        "content": "Settings",
+        "function": "navigateSettings"
     },
     {
         "icon": "bx bx-log-out-circle bx-rotate-180",
-        "content": "Logout"
+        "content": "Logout",
+        "function": "logoutUser"
     }
 ]
