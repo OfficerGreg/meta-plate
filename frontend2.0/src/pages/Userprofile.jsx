@@ -6,6 +6,8 @@ import httpClient from '../httpClient';
 
 import Statistic from "../components/statistic/Statistic";
 import Progressbar from "../components/statistic/Progressbar";
+import { User } from '../types';
+import UserProfileCard from "../components/userprofile-card/UserProfileCard";
 
 const Userprofile = () => {
     const [user, setUser] = useState(null);
@@ -46,18 +48,11 @@ const Userprofile = () => {
     }
 
     return (
-        <div className="box-container-skills">
+        <div>
+            <h2 className="page-header">Dashboard</h2>
+            <div className="row">
             <div className="card__body">
-                <div className="profile">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150" />
-                    <div className="">
-                        <h4>{user.username}</h4>
-                        <h4>ID:# {user.id}</h4>
-                        <p className="text-secondary mb-1"> Student Application Developer</p>
-                        <p className="text-muted font-size-sm">WISS Altstetten, ZH</p>
-                        <button onClick={logoutUser}>Logout</button>
-                    </div>
-                </div>
+                <UserProfileCard user={user} logoutUser={logoutUser} />
             </div>
 
             <div className="box">
@@ -115,6 +110,7 @@ const Userprofile = () => {
 
             <Progressbar />
             <Statistic />
+            </div>
         </div>
     );
 };
