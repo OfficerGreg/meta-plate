@@ -1,7 +1,7 @@
 [
     {
         "icon": "bx bx-error",
-        "content": "Curabitur id eros quis nunc suscipit blandit"
+        "content": "Du hast deine Noten aus dem M450 erhalten."
     },
     {
         "icon": "bx bx-package",
@@ -13,7 +13,7 @@
     },
     {
         "icon": "bx bx-error",
-        "content": "In gravida mauris et nisi"
+        "content": "Verwalte deine Abwesenheiten im M322 "
     },
     {
         "icon": "bx bx-cart",

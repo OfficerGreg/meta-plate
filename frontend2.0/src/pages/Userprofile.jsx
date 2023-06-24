@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { User } from '../types';
+
 import httpClient from '../httpClient';
 
 import Statistic from "../components/statistic/Statistic";
@@ -47,7 +47,7 @@ const Userprofile = () => {
 
     return (
         <div className="box-container-skills">
-            <div className="box">
+            <div className="card__body">
                 <div className="profile">
                     <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" className="rounded-circle" width="150" />
                     <div className="">

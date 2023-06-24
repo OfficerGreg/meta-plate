@@ -8,6 +8,8 @@ import Userprofile from "../pages/Userprofile";
 import ApiTest from "../pages/ApiTest";
 import NotePage from "../pages/NotePage";
 import Workspace from "../pages/Workspace";
+import NotFound from "../pages/NotFound";
+
 
 
 const Routes = () => {
@@ -19,6 +21,7 @@ const Routes = () => {
             <Route path='/profile' component={Userprofile}/>
             <Route path='/completionChat' component={ApiTest}/>
             <Route path='/folders/:folderId/:noteId' component={NotePage}/>
+            <Route path="/*" component={NotFound} />
         </Switch>
     )
 }

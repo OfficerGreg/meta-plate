@@ -11,6 +11,7 @@ import Home from "../../pages/welcome/Home";
 import Login from "../../pages/welcome/Login";
 import Register from "../../pages/welcome/Register";
 
+
 const Layout = () => {
   const themeReducer = useSelector((state) => state.ThemeReducer);
   const dispatch = useDispatch();
