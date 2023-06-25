@@ -9,6 +9,7 @@ import katex from "katex";
 import Switch from "@mui/material/Switch"
 
 import httpClient from '../httpClient';
+import ActionButtons from "../components/action/ActionButton";
 
 const NotePage = () => {
   const { folderId, noteId } = useParams();
@@ -84,7 +85,7 @@ const NotePage = () => {
 
   const handleChange = (event) => {
     setChecked(event.target.checked);
-    setTheme(event.target.checked ? "dark" : "light");
+    setTheme(event.target.checked ? "light" : "dark");
   }
 
 
@@ -131,15 +132,16 @@ const NotePage = () => {
   }
 
   return (
-    <section>
+    <div>
+      <h2 className="page-header">Note</h2>
       <Switch
-        checked={checked}
-        onChange={handleChange}
-        inputProps={{ 'aria-label': 'controlled' }}
+          checked={checked}
+          onChange={handleChange}
+          inputProps={{ 'aria-label': 'controlled' }}
       />
 
-      <h3>Note</h3>
-      <div data-color-mode={theme}>
+      <div className="row">
+      <div data-color-mode={theme} className="col-12">
         <MDEditor
           height={600}
           value={value}
@@ -177,12 +179,16 @@ const NotePage = () => {
           }}
         />
       </div>
-      <button onClick={handleSave}>Save</button>
-      <button onClick={handleExport}>Export</button>
-      <input type="text" value={question} onChange={handleQuestionChange} />
-      <button onClick={startSSE}>Generate</button>
-      <button onClick={stopSSE}>Stop</button>
-    </section>
+      </div>
+      <ActionButtons
+          handleSave={handleSave}
+          handleExport={handleExport}
+          question={question}
+          handleQuestionChange={handleQuestionChange}
+          startSSE={startSSE}
+          stopSSE={stopSSE}
+      />
+    </div>
   );
 };
 
