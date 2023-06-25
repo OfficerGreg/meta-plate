@@ -16,10 +16,10 @@ import statusCards from '../assets/JsonData/status-card-data.json'
 
 const chartOptions = {
     series: [{
-        name: 'Online Customers',
+        name: 'Note',
         data: [40,70,20,90,36,80,30,91,60]
     }, {
-        name: 'Store Customers',
+        name: 'Learn time',
         data: [40, 30, 70, 80, 40, 16, 40, 20, 51, 10]
     }],
     options: {
