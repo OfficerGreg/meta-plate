@@ -4,12 +4,9 @@ import { useHistory } from 'react-router-dom';
 
 import httpClient from '../httpClient';
 
-import Statistic from "../components/statistic/Statistic";
-import Progressbar from "../components/statistic/Progressbar";
-import { User } from '../types';
 import UserProfileCard from "../components/userprofile-card/UserProfileCard";
-import UserInfoCard from "../components/infocard/UserInfoCard";
-import UserAccounts from "../components/infocard/UserAccounts";
+import UserInfoCard from "../components/info-card/UserInfoCard";
+import UserAccounts from "../components/info-card/UserAccounts";
 
 const Userprofile = () => {
     const [user, setUser] = useState(null);
