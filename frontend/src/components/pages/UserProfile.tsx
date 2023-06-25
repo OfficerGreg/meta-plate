@@ -48,7 +48,7 @@ const UserProfile: React.FC = () => {
     }
 
     return (
-        <div className="box-container-skills">
+        <div>
 
             <div className="box">
 

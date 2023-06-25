@@ -1,0 +1,22 @@
+[
+    {
+        "icon": "bx bx-error",
+        "content": "Du hast deine Noten aus dem M450 erhalten."
+    },
+    {
+        "icon": "bx bx-package",
+        "content": "Duis malesuada justo eu sapien elementum, in semper diam posuere"
+    },
+    {
+        "icon": "bx bx-cart",
+        "content": "Donec at nisi sit amet tortor commodo porttitor pretium a erat"
+    },
+    {
+        "icon": "bx bx-error",
+        "content": "Verwalte deine Abwesenheiten im M322 "
+    },
+    {
+        "icon": "bx bx-cart",
+        "content": "Curabitur id eros quis nunc suscipit blandit"
+    }
+]

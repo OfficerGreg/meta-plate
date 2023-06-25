@@ -1,0 +1,40 @@
+.user-accounts {
+    border-radius: 4px;
+    padding: 1px;
+}
+
+.user-accounts h3 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.user-accounts div {
+    margin-bottom: 10px;
+}
+
+.user-accounts span {
+    display: block;
+    font-weight: bold;
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.user-accounts a {
+    text-decoration: none;
+    color: #777;
+}
+
+.user-accounts a:hover {
+    text-decoration: underline;
+    color: #555;
+}
+
+.user-accounts a:visited {
+    color: #555;
+}
+
+.user-accounts a:hover,
+.user-accounts a:visited:hover {
+    text-decoration: none;
+    color: var(--second-color);
+}

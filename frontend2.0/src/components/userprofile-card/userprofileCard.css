@@ -1,0 +1,60 @@
+.user-profile-card {
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    background-color: var(--main-bg);
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 0.5s ease 0s;
+    margin-bottom: 30px;
+}
+
+.user-profile-card__image-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-profile-card__image {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+}
+
+.user-profile-card__info {
+    flex-grow: 1;
+    text-align: center;
+    z-index: 1;
+    text-transform: capitalize;
+}
+
+.user-profile-card__info > h4 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+
+
+.user-profile-card:hover::before {
+    transform: scale(3);
+}
+
+
+
+.user-profile-card__edit-btn{
+    background-color: var(--second-color);
+    color: var(--txt-white);
+    padding: 8px 12px;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.top-btn{
+    margin-top:20px;
+}
+
+
