@@ -2,15 +2,15 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import React from 'react';
 
 import Home from "./components/pages/home";
-//import Note from "./components/pages/note";
 import Login from "./components/pages/login";
 import Register from "./components/pages/register";
 import NotFound from "./components/pages/not_found";
 import Dashboard from "./components/pages/dashboard";
+import Grades from "./components/pages/grades";
 import NotePage from "./components/pages/note_page";
-import Settings from "./components/pages/settings";
 import UserProfile from "./components/pages/UserProfile";
-import ApiTest from "./components/pages/api_test"
+import Calendar from "react-calendar";
+import Gamba from "./components/pages/gamba"
 
 const Router = () => {
   return (
@@ -19,10 +19,11 @@ const Router = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/grades" element={<Grades />} />        
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/settings" element={<Settings />} />
         <Route path="/user" element={<UserProfile />} />
-        <Route path="/completionChat" element={<ApiTest />} />
+        <Route path="/calendar" element={<Calendar />} />
+        <Route path="/gamba" element={<Gamba />} />
         <Route path="/folders/:folderId/:noteId" element={<NotePage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
