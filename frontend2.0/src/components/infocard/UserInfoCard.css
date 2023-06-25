@@ -1,0 +1,44 @@
+.info-card {
+    overflow-y: auto;
+    padding: 20px;
+    background-color: var(--main-bg);
+    border-radius: var(--border-radius);
+    margin: 5px;
+
+}
+
+.user-info-card__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 400px;
+    margin-top: 20px;
+}
+
+.user-info-card__text h3 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.user-info-card__info {
+    font-size: 1.1rem;
+    font-weight: 600;
+    flex-grow: 1;
+    text-align: right;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid var(--second-bg);
+    margin: 10px 0;
+}
+
+.user-info-card__edit-btn {
+    background-color: var(--second-color);
+    color: var(--txt-white);
+    padding: 8px 12px;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+

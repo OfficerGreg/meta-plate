@@ -1,5 +1,5 @@
 import React from 'react';
-import './userproileCard.css';
+import './userprofileCard.css';
 
 const UserProfileCard = ({ user, logoutUser }) => {
     return (
@@ -17,7 +17,9 @@ const UserProfileCard = ({ user, logoutUser }) => {
                     <h4>ID: #{user.id}</h4>
                     <p className="text-secondary mb-1">Student Application Developer</p>
                     <p className="text-muted font-size-sm">WISS Altstetten, ZH</p>
-                    <button onClick={logoutUser}>Logout</button>
+                <div className="top-btn">
+                    <a className="user-profile-card__edit-btn" onClick={logoutUser}>Logout</a>
+            </div>
                 </div>
             </div>
         </div>

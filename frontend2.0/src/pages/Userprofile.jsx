@@ -8,6 +8,8 @@ import Statistic from "../components/statistic/Statistic";
 import Progressbar from "../components/statistic/Progressbar";
 import { User } from '../types';
 import UserProfileCard from "../components/userprofile-card/UserProfileCard";
+import UserInfoCard from "../components/infocard/UserInfoCard";
+import UserAccounts from "../components/infocard/UserAccounts";
 
 const Userprofile = () => {
     const [user, setUser] = useState(null);
@@ -49,67 +51,28 @@ const Userprofile = () => {
 
     return (
         <div>
-            <h2 className="page-header">Dashboard</h2>
+            <h2 className="page-header">Profile</h2>
             <div className="row">
-            <div className="card__body">
-                <UserProfileCard user={user} logoutUser={logoutUser} />
-            </div>
 
-            <div className="box">
-                <div className="info-card">
-                    <div className="row">
-                        <div className="text">
-                            <h3>Full Name</h3>
-                        </div>
-                        <div className="info">
-                            {user.username}
-                        </div>
-                    </div>
-                    <hr />
-                    <div className="row">
-                        <div className="text">
-                            <h3>Email</h3>
-                        </div>
-                        <div className="info">
-                            {user.email}
-                        </div>
-                    </div>
-                    <hr />
-                    <div className="row">
-                        <div className="text">
-                            <h3>Phone</h3>
-                        </div>
-                        <div className="info">
-                            076 449 816 9029
-                        </div>
-                    </div>
-                    <hr />
-                    <div className="row">
-                        <div className="text">
-                            <h3>Password</h3>
-                        </div>
-                        <div className="info">
-                            ****************
-                        </div>
-                    </div>
-                    <hr />
-                    <div className="row">
-                        <div className="col-sm-12">
-                            <a className="edit-btn" target="__blank" href="https://www.bootdey.com/snippets/view/profile-edit-data-and-skills">Edit</a>
-                        </div>
+                <div className="col-3" >
+                <div className="card__body">
+                <UserProfileCard user={user} logoutUser={logoutUser} />
+                </div>
+                </div>
+
+                <div className="col-6">
+                    <div className="card full-height">
+                    <UserInfoCard user={user} />
                     </div>
                 </div>
+
+
+                <div className="col-3" >
+                    <div className="card full-height">
+                        <UserAccounts user={user} />
+                    </div>
             </div>
 
-            <div className="box">
-                <h3> Datenbanken </h3>
-                <p>- MySQL</p>
-                <p>- MongoDB</p>
-                <p>- Redis</p>
-            </div>
-
-            <Progressbar />
-            <Statistic />
             </div>
         </div>
     );

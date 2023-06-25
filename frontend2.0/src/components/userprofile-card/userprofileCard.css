@@ -19,8 +19,8 @@
 }
 
 .user-profile-card__image {
-    width: 150px;
-    height: 150px;
+    width: 130px;
+    height: 130px;
     border-radius: 50%;
 }
 
@@ -32,27 +32,29 @@
 }
 
 .user-profile-card__info > h4 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     margin-bottom: 10px;
 }
 
-.user-profile-card::before {
-    content: "";
-    width: 100%;
-    padding-top: 100%;
-    border-radius: 50%;
-    background-image: linear-gradient(to top right, var(--main-color), var(--second-color));
-    position: absolute;
-    left: -50%;
-    top: 0;
-    transform: scale(0);
-    transition: transform 0.8s ease 0s;
-}
+
 
 .user-profile-card:hover::before {
     transform: scale(3);
 }
 
-.user-profile-card:hover {
+
+
+.user-profile-card__edit-btn{
+    background-color: var(--second-color);
     color: var(--txt-white);
+    padding: 8px 12px;
+    border-radius: var(--border-radius);
+    text-decoration: none;
+    transition: background-color 0.3s ease;
 }
+
+.top-btn{
+    margin-top:20px;
+}
+
+
