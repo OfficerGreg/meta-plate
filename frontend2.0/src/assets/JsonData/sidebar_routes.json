@@ -5,6 +5,11 @@
         "icon": "bx bx-category-alt"
     },
     {
+        "display_name": "workspace",
+        "route": "/workspace",
+        "icon": "bx bx-list-ol"
+    },
+    {
         "display_name": "Customers",
         "route": "/customers",
         "icon": "bx bx-user-pin"
@@ -18,16 +23,6 @@
         "display_name": "Orders",
         "route": "/orders",
         "icon": "bx bx-cart"
-    },
-    {
-        "display_name": "Analytics",
-        "route": "/analytics",
-        "icon": "bx bx-bar-chart-alt"
-    },
-    {
-        "display_name": "categories",
-        "route": "/categories",
-        "icon": "bx bx-list-ol"
     },
     {
         "display_name": "discount",

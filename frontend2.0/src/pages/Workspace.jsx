@@ -90,8 +90,8 @@ const Workspace = () => {
   }
 
   return (
-    <section>
-      <button onClick={logoutUser}>Logout</button>
+    <div>
+      <h2 className="page-header">Workspace</h2>
       <div>
         <div>
           <label>New Folder:</label>
@@ -103,11 +103,12 @@ const Workspace = () => {
           <button onClick={createFolder}>Create Folder</button>
         </div>
         <p>Folders:</p>
-        <table style={{ width: "100%" }}>
-          <tbody>
+        <div className="row">
             {user.folders.map((folder) => (
+                <div className="col-6">
+                  <div className="card full-height">
               <React.Fragment key={folder.id}>
-                <tr style={{ backgroundColor: "red" }}>
+                <tr>
                   <td>{folder.name}</td>
                   <td>
                     <div>
@@ -147,11 +148,12 @@ const Workspace = () => {
                   </tr>
                 )}
               </React.Fragment>
+                </div>
+                </div>
             ))}
-          </tbody>
-        </table>
+        </div>
       </div>
-    </section>
+    </div>
   );
 };
 
