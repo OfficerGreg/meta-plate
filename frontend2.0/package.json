@@ -20,23 +20,16 @@
     "react-scripts": "4.0.3",
     "redux": "^4.1.0",
     "web-vitals": "^1.1.2",
-
     "@emotion/react": "^11.11.1",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.34",
     "@types/react": "^18.2.9",
     "@types/react-dom": "^18.2.4",
-     "mermaid": "^10.2.3",
+    "mermaid": "^10.2.3",
     "npm-check": "^6.0.1",
     "react-router": "^6.12.1",
     "typescript": "^4.9.5",
-    "rehype-rewrite": ""
-
-
-
-
-
-
+    "rehype-rewrite": "^2.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
