@@ -5,26 +5,25 @@ import Table from '../components/table/Table'
 import customerList from '../assets/JsonData/customers-list.json'
 
 const customerTableHead = [
-    '',
-    'name',
-    'email',
-    'phone',
-    'total orders',
-    'total spend',
-    'location'
+    'date',
+    'time',
+    'location',
+    'instructor',
+    'course',
 ]
 
 const renderHead = (item, index) => <th key={index}>{item}</th>
 
 const renderBody = (item, index) => (
     <tr key={index}>
-        <td>{item.id}</td>
-        <td>{item.name}</td>
-        <td>{item.email}</td>
-        <td>{item.phone}</td>
+        <td>{item.date}</td>
+        <td>{item.time}</td>
+        <td>{item.location}</td>
+        <td>{item.instructor}</td>
+        <td>{item.course}</td>
         <td>{item.total_orders}</td>
         <td>{item.total_spend}</td>
-        <td>{item.location}</td>
+
     </tr>
 )
 

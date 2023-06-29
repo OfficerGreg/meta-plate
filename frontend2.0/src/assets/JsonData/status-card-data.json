@@ -1,22 +1,22 @@
 [
     {
-        "icon": "bx bx-shopping-bag",
-        "count": "1,995",
-        "title": "Total sales"
+        "icon": "bx bx-category-alt",
+        "count": "6h 30m",
+        "title": "Learn time"
     },
     {
-        "icon": "bx bx-cart",
-        "count": "2,001",
-        "title": "Daily visits"
+        "icon": "bx bx-list-ol",
+        "count": "32",
+        "title": "Added note"
     },
     {
         "icon": "bx bx-dollar-circle",
-        "count": "$2,632",
-        "title": "Total income"
+        "count": "2150",
+        "title": "Total Coins"
     },
     {
         "icon": "bx bx-receipt",
-        "count": "1,711",
-        "title": "Total orders"
+        "count": "4.75",
+        "title": "Grade Average"
     }
 ]

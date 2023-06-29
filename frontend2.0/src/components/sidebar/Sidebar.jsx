@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 import './sidebar.css'
 
-import logo from '../../assets/images/logo.svg'
+import logo from '../../assets/images/MetaPlate.svg'
 
 import sidebar_items from '../../assets/JsonData/sidebar_routes.json'
 

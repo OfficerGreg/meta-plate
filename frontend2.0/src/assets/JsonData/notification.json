@@ -5,18 +5,14 @@
     },
     {
         "icon": "bx bx-package",
-        "content": "Duis malesuada justo eu sapien elementum, in semper diam posuere"
+        "content": "Du hast deine Belohnung erhalten."
     },
     {
-        "icon": "bx bx-cart",
-        "content": "Donec at nisi sit amet tortor commodo porttitor pretium a erat"
+        "icon": "bx bx-error",
+        "content": "Morgen gibt es eine Prüfung im Moduk M184."
     },
     {
         "icon": "bx bx-error",
         "content": "Verwalte deine Abwesenheiten im M322 "
-    },
-    {
-        "icon": "bx bx-cart",
-        "content": "Curabitur id eros quis nunc suscipit blandit"
     }
 ]
