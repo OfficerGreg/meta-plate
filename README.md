@@ -29,7 +29,7 @@ npm start
 4. Falls error: `error:03000086:digital envelope routines::initialization` auftreten sollte: https://appdividend.com/2022/12/23/error-03000086-digital-envelope-routines-initialization/
 
 
-## Login:
+## BSP Login:
  - username: **student**
  - password: **student**
 
