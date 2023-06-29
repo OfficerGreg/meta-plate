@@ -5,8 +5,8 @@
         "function": "navigateProfile"
     },
     {
-        "icon": "bx bx-wallet-alt",
-        "content": "My Wallet",
+        "icon": "bx bx-dollar-circle",
+        "content": "My coins",
         "function": ""
     },
     {

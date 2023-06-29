@@ -18,7 +18,7 @@ const Routes = () => {
         <Switch>
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/workspace" component={Workspace} />
-            <Route path='/customers' component={Customers}/>
+            <Route path='/calendar' component={Customers}/>
             <Route path='/profile' component={Userprofile}/>
             <Route path='/completionChat' component={ApiTest}/>
             <Route path='/folders/:folderId/:noteId' component={NotePage}/>

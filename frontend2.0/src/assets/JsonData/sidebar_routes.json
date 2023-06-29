@@ -5,13 +5,13 @@
         "icon": "bx bx-category-alt"
     },
     {
-        "display_name": "workspace",
+        "display_name": "Workspace",
         "route": "/workspace",
         "icon": "bx bx-list-ol"
     },
     {
-        "display_name": "Customers",
-        "route": "/customers",
+        "display_name": "Calendar",
+        "route": "/calendar",
         "icon": "bx bx-user-pin"
     },
     {
