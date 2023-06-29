@@ -5,11 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a17da7a-0c43-46ee-be48-c423f406e573" name="Changes" comment="new home style">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_16_2023_7_11_PM_[Changes]/shelved.patch" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend2.0/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend2.0/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend2.0/yarn.lock" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/node_modules/.yarn-integrity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend2.0/public/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend2.0/public/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend2.0/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend2.0/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend2.0/src/assets/images/logo.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend2.0/src/components/Routes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend2.0/src/components/Routes.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,6 +125,7 @@
       <workItem from="1686980109961" duration="48000" />
       <workItem from="1686987855254" duration="1326000" />
       <workItem from="1687767661200" duration="520000" />
+      <workItem from="1688036578829" duration="1723000" />
     </task>
     <task id="LOCAL-00001" summary="added svg and img">
       <created>1686397392121</created>

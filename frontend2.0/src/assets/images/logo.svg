@@ -1,0 +1,15 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 198" width="1080" height="198">
+	<title>Meta Plate</title>
+	<style>
+		tspan { white-space:pre } 
+		.t0 { font-size: 120px;fill: #7f7f7f;font-weight: 400;font-family: "IBMPlexSansJP-Regular", "IBM Plex Sans JP" } 
+	</style>
+	<text id="Meta Plate X WISS" style="transform: matrix(1,0,0,1,0,45)" >
+		<tspan x="17.2" y="93.2" class="t0">Meta Plate X WISS
+</tspan>
+	</text>
+	<text id="" style="transform: matrix(1,0,0,1,474.5,79.5)" >
+	</text>
+	<text id="" style="transform: matrix(1,0,0,1,0,148.5)" >
+	</text>
+</svg>
