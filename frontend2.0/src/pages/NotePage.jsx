@@ -46,7 +46,6 @@ const NotePage = () => {
   const startSSE = () => {
     if (question) {
       question = "This is my note so far. [" + value + "] Your task: " + question
-      console.log("Question : "+question)
       fetch('//localhost:5000/ask', {
         method: 'POST',
         headers: {
@@ -69,7 +68,6 @@ const NotePage = () => {
           console.error('Error:', error);
         });
     }
-    console.log("Value: ", value)
   }
 
 
