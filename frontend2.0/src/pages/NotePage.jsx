@@ -21,7 +21,7 @@ const NotePage = () => {
   //sse
   const [data, setData] = useState('Initializing');
   const [eventSource, setEventSource] = useState(null);
-  const [question, setQuestion] = useState('');
+  let [question, setQuestion] = useState('');
 
   const handleStream = (e) => {
     console.log(e);
@@ -45,11 +45,14 @@ const NotePage = () => {
 
   const startSSE = () => {
     if (question) {
+      question = "This is my note so far. [" + value + "] Your task: " + question
+      console.log("Question : "+question)
       fetch('//localhost:5000/ask', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        
         body: JSON.stringify({ question }),
       })
         .then(response => {
@@ -66,6 +69,7 @@ const NotePage = () => {
           console.error('Error:', error);
         });
     }
+    console.log("Value: ", value)
   }
 
 
