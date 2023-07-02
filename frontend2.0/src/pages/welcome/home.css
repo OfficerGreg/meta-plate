@@ -12,6 +12,8 @@
   font-weight: 300;
   margin: 0;
   padding: 10px;
+  color: #000000; /* Added black color */
+  text-align: center; /* Centered text */
 }
 
 .home-buttons {

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import './Home.css';
 
 const Home = () => {
   const containerRef = useRef(null);
@@ -13,9 +13,9 @@ const Home = () => {
   return (
     <section>
       {showComponent && (
-        <div className="home" ref={containerRef}>
-          <h1>Welcome to Meta Plate!</h1>
-          <div className="buttons">
+        <div className="home-container" ref={containerRef}>
+          <h1 className="home-heading">Welcome to Meta Plate!</h1>
+          <div className="home-buttons">
             <Link to="/login">Login</Link>
             <Link to="/register">Register</Link>
           </div>
