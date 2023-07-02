@@ -1,16 +1,16 @@
 [
     {
-        "icon": "bx bx-category-alt",
+        "icon": "bx bxs-graduation",
         "count": "6h 30m",
         "title": "Learn time"
     },
     {
-        "icon": "bx bx-list-ol",
+        "icon": "bx bx-task",
         "count": "32",
-        "title": "Added note"
+        "title": "Task accomplished"
     },
     {
-        "icon": "bx bx-dollar-circle",
+        "icon": "bx bx-coin",
         "count": "2150",
         "title": "Total Coins"
     },

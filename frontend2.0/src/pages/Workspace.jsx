@@ -1,160 +1,110 @@
-import React, { useEffect, useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import React from 'react'
 
-import { User, Folder, Note } from '../types';
-import httpClient from '../httpClient';
+import {Link} from 'react-router-dom'
+
+import StatusCard from '../components/status-card/StatusCard'
+
+import Table from '../components/table/Table'
+
+
+import statusCards from '../assets/JsonData/workspace.json'
+
+const topStudent = {
+    head: [
+
+        'rank',
+        'student',
+        'total coins'
+    ],
+    body: [
+        {
+            "username": "Linus Mueller",
+            "order": "01",
+            "price": "$15,870"
+        },
+        {
+            "username": "Lucas Meier",
+            "order": "02",
+            "price": "$12,251"
+        },
+        {
+            "username": "Mike Heber",
+            "order": "03",
+            "price": "$10,840"
+        },
+        {
+            "username": "Marco Keller",
+            "order": "04",
+            "price": "$9,251"
+        },
+        {
+            "username": "Jakub Dan",
+            "order": "05",
+            "price": "$8,840"
+        }
+    ]
+}
+
+const renderStudentHead = (item, index) => (
+    <th key={index}>{item}</th>
+)
+
+const renderStudentBody = (item, index) => (
+    <tr key={index}>
+        <td>{item.order}</td>
+        <td>{item.username}</td>
+        <td>{item.price}</td>
+    </tr>
+)
+
 
 const Workspace = () => {
-  const [user, setUser] = useState(null);
-  const [newFolderName, setNewFolderName] = useState("");
-  const [newNoteNames, setNewNoteNames] = useState({});
-  const [folderVisibility, setFolderVisibility] = useState({});
 
-  const history = useHistory();
 
-  const toggleNoteTable = (folderId) => {
-    setFolderVisibility((prevState) => ({
-      ...prevState,
-      [folderId]: !prevState[folderId],
-    }));
-  };
-
-  const logoutUser = async () => {
-    await httpClient.post("//localhost:5000/logout");
-    history.push("/");
-  };
-
-  const createNote = async (folderId) => {
-    try {
-      await httpClient.post("//localhost:5000/note", {
-        folder_id: folderId,
-        name: newNoteNames[folderId] || "",
-        text: " ",
-      });
-
-      await fetchUserData();
-    } catch (error) {
-      console.log("Error creating note:", error);
-    }
-  };
-
-  const createFolder = async () => {
-    try {
-      await httpClient.post("//localhost:5000/folders", { name: newFolderName });
-
-      await fetchUserData();
-    } catch (error) {
-      console.log("Error creating folder:", error);
-    }
-  };
-
-  const fetchUserData = async () => {
-    try {
-      const response = await httpClient.get("//localhost:5000/@me");
-      const userData = response.data;
-
-      const foldersWithNotes = await Promise.all(
-        userData.folders.map(async (folder) => {
-          const notesResponse = await httpClient.get(
-            `//localhost:5000/folders/${folder.id}/notes`
-          );
-          const notes = notesResponse.data;
-          folder.notes = notes;
-          return folder;
-        })
-      );
-
-      setUser({
-        ...userData,
-        folders: foldersWithNotes,
-      });
-    } catch (error) {
-      console.log("Not authenticated");
-      history.push("/login");
-    }
-  };
-
-  useEffect(() => {
-    fetchUserData();
-  }, []);
-
-  const handleNoteNameChange = (folderId, value) => {
-    setNewNoteNames((prevState) => ({
-      ...prevState,
-      [folderId]: value,
-    }));
-  };
-
-  if (user === null) {
-    return <h1>Loading...</h1>;
-  }
-
-  return (
-    <div>
-      <h2 className="page-header">Workspace</h2>
-      <div>
+    return (
         <div>
-          <label>New Folder:</label>
-          <input
-            type="text"
-            value={newFolderName}
-            onChange={(e) => setNewFolderName(e.target.value)}
-          />
-          <button onClick={createFolder}>Create Folder</button>
-        </div>
-        <p>Folders:</p>
-        <div className="row">
-            {user.folders.map((folder) => (
-                <div className="col-6">
-                  <div className="card full-height">
-              <React.Fragment key={folder.id}>
-                <tr>
-                  <td>{folder.name}</td>
-                  <td>
-                    <div>
-                      <label>New Note:</label>
-                      <input
-                        type="text"
-                        value={newNoteNames[folder.id] || ""}
-                        onChange={(e) =>
-                          handleNoteNameChange(folder.id, e.target.value)
+            <h2 className="page-header">Workspace</h2>
+            <div className="row">
+                <div className="col-7">
+                    <div className="row">
+                        {
+                            statusCards.map((item, index) => (
+                                <div className="col-6" key={index}>
+                                    <a href={item.link} key={index}>
+                                    <StatusCard
+                                        icon={item.icon}
+                                        title={item.title}
+                                        count={item.count}
+                                    />
+                                    </a>
+                                </div>
+                            ))
                         }
-                      />
-                      <button onClick={() => createNote(folder.id)}>
-                        Create Note
-                      </button>
-                      <button onClick={() => toggleNoteTable(folder.id)}>
-                        {folderVisibility[folder.id] ? "Hide" : "Show"}
-                      </button>
-                      <button onClick={() => alert("dont work yet")}>
-                        Import Note
-                      </button>
                     </div>
-                  </td>
-                </tr>
-                {folder.notes && folder.notes.length > 0 && folderVisibility[folder.id] && (
-                  <tr>
-                    <td style={{ backgroundColor: "gray" }} colSpan={2}>
-                      {folder.notes.map((note) => (
-                        <tr key={note.id}>
-                          <td>
-                            <Link to={`/folders/${folder.id}/${note.id}`}>
-                              {note.name}
-                            </Link>
-                          </td>
-                        </tr>
-                      ))}
-                    </td>
-                  </tr>
-                )}
-              </React.Fragment>
                 </div>
-                </div>
-            ))}
-        </div>
-      </div>
-    </div>
-  );
-};
 
-export default Workspace;
+                <div className="col-5">
+                    <div className="card">
+                        <div className="card__header">
+                            <h3>top Student ranking</h3>
+                        </div>
+                        <div className="card__body">
+                            <Table
+                                headData={topStudent.head}
+                                renderHead={(item, index) => renderStudentHead(item, index)}
+                                bodyData={topStudent.body}
+                                renderBody={(item, index) => renderStudentBody(item, index)}
+                            />
+                        </div>
+                        <div className="card__footer">
+                            <Link to='/'>view all</Link>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    )
+}
+
+export default Workspace

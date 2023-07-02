@@ -1,0 +1,38 @@
+[
+  {
+    "icon": "bx bx-folder",
+    "title": "Modul Folders",
+    "count": "Folder",
+    "link": "/folders"
+  },
+  {
+    "icon": "bx bxl-react",
+    "title": "Quiz",
+    "count": "React",
+    "link": "/quiz"
+  },
+  {
+    "icon": "bx bxl-javascript",
+    "title": "Task",
+    "count": "Frontend",
+    "link": "/quiz"
+  },
+  {
+    "icon": "bx bx-git-branch",
+    "title": "Task",
+    "count": " Git",
+    "link": "https://learngitbranching.js.org/"
+  },
+  {
+    "icon": "bx bxl-python",
+    "title": "Read",
+    "count": "Python",
+    "link": "https://www.makeuseof.com/how-to-make-python-read-news-headlines/"
+  },
+  {
+    "icon": "bx bx-code-block",
+    "title": "IDE ",
+    "count": "VsCode",
+    "link": "https://vscode.dev/"
+  }
+]

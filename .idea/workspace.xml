@@ -5,17 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a17da7a-0c43-46ee-be48-c423f406e573" name="Changes" comment="Ivan 2. commit">
+      <change afterPath="$PROJECT_DIR$/frontend2.0/src/assets/JsonData/workspace.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend2.0/src/pages/FolderPage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_16_2023_7_09_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_6_16_2023_7_09_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_11_2023_1_16_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_11_2023_1_16_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_11_2023_1_17_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_11_2023_1_17_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_11_2023_1_19_PM__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_6_11_2023_1_19_PM__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend2.0/src/assets/JsonData/customers-list.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend2.0/src/assets/JsonData/customers-list.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend2.0/src/assets/JsonData/notification.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend2.0/src/assets/JsonData/notification.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend2.0/src/assets/JsonData/sidebar_routes.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend2.0/src/assets/JsonData/sidebar_routes.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend2.0/src/assets/JsonData/status-card-data.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend2.0/src/assets/JsonData/status-card-data.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend2.0/src/components/sidebar/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend2.0/src/components/sidebar/Sidebar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend2.0/src/pages/Customers.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend2.0/src/pages/Customers.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend2.0/src/components/Routes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend2.0/src/components/Routes.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend2.0/src/components/topnav/TopNav.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend2.0/src/components/topnav/TopNav.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend2.0/src/pages/Dashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend2.0/src/pages/Dashboard.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend2.0/src/pages/Workspace.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend2.0/src/pages/Workspace.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,6 +32,8 @@
         <option value="TypeScript File" />
         <option value="TypeScript JSX File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
+        <option value="tsconfig.json" />
       </list>
     </option>
   </component>
@@ -133,6 +138,7 @@
       <workItem from="1688036578829" duration="1723000" />
       <workItem from="1688038891618" duration="55000" />
       <workItem from="1688038951188" duration="6815000" />
+      <workItem from="1688306672730" duration="6861000" />
     </task>
     <task id="LOCAL-00001" summary="added svg and img">
       <created>1686397392121</created>

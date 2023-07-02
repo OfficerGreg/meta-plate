@@ -55,6 +55,15 @@ const Topnav = () => {
         </div>
     );
 
+    const renderCoin = () => (
+        <div className="topnav__right-user">
+            <div className="topnav__right-user__image">
+                <i className="bx bx-dollar-circle" style={{ fontSize: '42px'}}></i>
+            </div>
+            <div className="topnav__right-user__name">2150</div>
+        </div>
+    );
+
     const renderUserMenu = (item, index) => (
         <Link onClick={getOnClickHandler(item.function)} key={index}>
             <div className="notification-item">
@@ -83,9 +92,15 @@ const Topnav = () => {
         <div className="topnav">
             <div className="topnav__search">
                 <input type="text" placeholder="Search here..." />
-                <i className="bx bx-search"></i>
+                <i className="bx bx-code-block"></i>
             </div>
             <div className="topnav__right">
+                <div className="topnav__right-item">
+                    {/* dropdown here */}
+                    <Dropdown
+                        customToggle={() => renderCoin()}
+                    />
+                </div>
                 <div className="topnav__right-item">
                     {/* dropdown here */}
                     <Dropdown

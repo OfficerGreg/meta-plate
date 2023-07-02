@@ -7,31 +7,21 @@
     {
         "display_name": "Workspace",
         "route": "/workspace",
-        "icon": "bx bx-list-ol"
+        "icon": "bx bx-dock-left"
     },
     {
         "display_name": "Calendar",
         "route": "/calendar",
-        "icon": "bx bx-user-pin"
+        "icon": "bx bx-calendar"
     },
     {
-        "display_name": "Products",
-        "route": "/products",
-        "icon": "bx bx-package"
-    },
-    {
-        "display_name": "Orders",
-        "route": "/orders",
-        "icon": "bx bx-cart"
-    },
-    {
-        "display_name": "discount",
-        "route": "/discount",
+        "display_name": "Accessor",
+        "route": "/accessor",
         "icon": "bx bx-gift"
     },
     {
-        "display_name": "inventory",
-        "route": "/inventory",
+        "display_name": "Shop",
+        "route": "/shop",
         "icon": "bx bx-store-alt"
     },
     {

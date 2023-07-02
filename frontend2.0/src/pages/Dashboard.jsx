@@ -175,10 +175,12 @@ const Dashboard = () => {
                         {
                             statusCards.map((item, index) => (
                                 <div className="col-6" key={index}>
+
                                     <StatusCard
                                         icon={item.icon}
                                         count={item.count}
                                         title={item.title}
+
                                     />
                                 </div>
                             ))

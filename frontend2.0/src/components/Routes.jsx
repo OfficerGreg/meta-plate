@@ -10,6 +10,7 @@ import NotePage from "../pages/NotePage";
 import Workspace from "../pages/Workspace";
 import NotFound from "../pages/NotFound";
 import Products from "../pages/Products";
+import FolderPage from "../pages/FolderPage";
 
 
 
@@ -23,6 +24,7 @@ const Routes = () => {
             <Route path='/completionChat' component={ApiTest}/>
             <Route path='/folders/:folderId/:noteId' component={NotePage}/>
             <Route path="/products" component={Products} />
+            <Route path="/folders" component={FolderPage} />
             <Route path="/*" component={NotFound} />
         </Switch>
     )
