@@ -93,52 +93,46 @@ const FolderPage = () => {
         <div>
             <h2 className="page-header">Your Folders</h2>
             <div>
+                <h3 style={{ marginBottom: '10px' }}>New Folder:</h3>
+                <div className="topnav__search" style={{ width: '500px' }}>
 
-                <div className="topnav__search">
-                    <input type="text" placeholder="Search here..." />
-                    <i className="bx bx-dock-left"></i>
-                </div>
 
-                <div>
-                    <label>New Folder:</label>
-                    <input
+                <input
                         type="text"
+                        placeholder="create here..."
                         value={newFolderName}
                         onChange={(e) => setNewFolderName(e.target.value)}
                     />
-                    <button onClick={createFolder}>Create Folder</button>
+                    <i className="bx bx-add-to-queue" onClick={createFolder}></i>
                 </div>
-                <p>Folders:</p>
+                <h2 style={{ marginTop: '60px', marginBottom:'10px' }}>Folders:</h2>
                 <div className="row">
                     {user.folders.map((folder) => (
-                        <div className="col-6">
-                            <div className="card full-height">
+                        <div className="col-4" onClick={() => toggleNoteTable(folder.id)}>
+                            <div className="card full-height" >
                                 <React.Fragment key={folder.id}>
-                                    <tr>
-                                        <td>{folder.name}</td>
-                                        <td>
-                                            <div>
-                                                <label>New Note:</label>
-                                                <input
-                                                    type="text"
-                                                    value={newNoteNames[folder.id] || ""}
-                                                    onChange={(e) =>
-                                                        handleNoteNameChange(folder.id, e.target.value)
-                                                    }
-                                                />
-                                                <button onClick={() => createNote(folder.id)}>
-                                                    Create Note
-                                                </button>
-                                                <button onClick={() => toggleNoteTable(folder.id)}>
-                                                    {folderVisibility[folder.id] ? "Hide" : "Show"}
-                                                </button>
-                                                <button onClick={() => alert("dont work yet")}>
-                                                    Import Note
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                        <h1>{folder.name}</h1>
+
                                     {folder.notes && folder.notes.length > 0 && folderVisibility[folder.id] && (
+                                        <div>
+                                            <label>New Note:</label>
+                                            <input
+                                                type="text"
+                                                value={newNoteNames[folder.id] || ""}
+                                                onChange={(e) =>
+                                                    handleNoteNameChange(folder.id, e.target.value)
+                                                }
+                                            />
+                                            <button onClick={() => createNote(folder.id)}>
+                                                Create Note
+                                            </button>
+                                            <button onClick={() => toggleNoteTable(folder.id)}>
+                                                {folderVisibility[folder.id] ? "Hide" : "Show"}
+                                            </button>
+                                            <button onClick={() => alert("dont work yet")}>
+                                                Import Note
+                                            </button>
+
                                         <tr>
                                             <td style={{ backgroundColor: "gray" }} colSpan={2}>
                                                 {folder.notes.map((note) => (
@@ -152,6 +146,7 @@ const FolderPage = () => {
                                                 ))}
                                             </td>
                                         </tr>
+                                        </div>
                                     )}
                                 </React.Fragment>
                             </div>
