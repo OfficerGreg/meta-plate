@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 
-from models import User, Quiz, Question, db
+from models import User, Quiz, Question, Answer, db
 
 quiz_bp = Blueprint("quiz", __name__)
 
@@ -178,3 +178,81 @@ def edit_question(quiz_id, question_id):
     db.session.commit()
 
     return jsonify({"message": "Question updated successfully"})
+
+
+#add answer to question route
+@quiz_bp.route("/quiz/<int:quiz_id>/question/<int:question_id>/add-answer", methods=["POST"])
+def add_answer_to_question(quiz_id, question_id):
+    user_id = session.get("user_id")
+
+    if not user_id:
+        return jsonify({"error": "unauthorized"}), 401
+
+    user = User.query.get(user_id)
+    if not user:
+        return jsonify({"error": "user not found"}), 404
+    
+    quiz = Quiz.query.get(quiz_id)
+    if not quiz:
+        return jsonify({"error": "quiz not found"}), 404
+    
+    # check if the user is the creator of the quiz
+    if quiz.user_id != user.id:
+        return jsonify({"error": "forbidden"}), 403
+    
+    question = Question.query.get(question_id)
+    if not question:
+        return jsonify({"error": "question not found"}), 404
+    
+    # Extract answer details from the request
+    data = request.json
+    answer_text = data.get("answer")
+    is_correct = data.get("is_correct")
+
+    # Create the answer
+    answer = Answer(text=answer_text, is_correct=is_correct, question=question)
+    db.session.add(answer)
+    db.session.commit()
+
+    return jsonify({"message": "Answer added successfully"})
+
+
+#edit answer route
+@quiz_bp.route("/quiz/<int:quiz_id>/question/<int:question_id>/answer/<int:answer_id>/edit", methods=["POST"])
+def edit_answer(quiz_id, question_id, answer_id):
+    user_id = session.get("user_id")
+
+    if not user_id:
+        return jsonify({"error": "unauthorized"}), 401
+
+    user = User.query.get(user_id)
+    if not user:
+        return jsonify({"error": "user not found"}), 404
+    
+    quiz = Quiz.query.get(quiz_id)
+    if not quiz:
+        return jsonify({"error": "quiz not found"}), 404
+    
+    # check if the user is the creator of the quiz
+    if quiz.user_id != user.id:
+        return jsonify({"error": "forbidden"}), 403
+    
+    question = Question.query.get(question_id)
+    if not question:
+        return jsonify({"error": "question not found"}), 404
+    
+    answer = Answer.query.get(answer_id)
+    if not answer:
+        return jsonify({"error": "answer not found"}), 404
+    
+    # Extract answer details from the request
+    data = request.json
+    answer_text = data.get("answer")
+    is_correct = data.get("is_correct")
+
+    # Update the answer
+    answer.text = answer_text
+    answer.is_correct = is_correct
+    db.session.commit()
+
+    return jsonify({"message": "Answer updated successfully"})
