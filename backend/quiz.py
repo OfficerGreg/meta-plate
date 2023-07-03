@@ -79,6 +79,40 @@ def create_quiz():
     return jsonify({"message": "Quiz created successfully"})
 
 
+#edit quiz route
+@quiz_bp.route("/quiz/<int:quiz_id>/edit", methods=["POST"])
+def edit_quiz(quiz_id):
+    user_id = session.get("user_id")
+
+    if not user_id:
+        return jsonify({"error": "unauthorized"}), 401
+
+    user = User.query.get(user_id)
+    if not user:
+        return jsonify({"error": "user not found"}), 404
+    
+    quiz = Quiz.query.get(quiz_id)
+    if not quiz:
+        return jsonify({"error": "quiz not found"}), 404
+    
+    # check if the user is the creator of the quiz
+    if quiz.user_id != user.id:
+        return jsonify({"error": "forbidden"}), 403
+    
+    # Extract quiz details from the request
+    data = request.json
+    quiz_name = data.get("name")
+
+    # Update the quiz
+    quiz.name = quiz_name
+    db.session.commit()
+
+    return jsonify({"message": "Quiz updated successfully"})
+
+
+
+
+
 #add question to quiz route
 @quiz_bp.route("/quiz/<int:quiz_id>/add-question", methods=["POST"])
 def add_question_to_quiz(quiz_id):
@@ -110,3 +144,37 @@ def add_question_to_quiz(quiz_id):
 
     return jsonify({"message": "Question added successfully"})
 
+
+#edit question route
+@quiz_bp.route("/quiz/<int:quiz_id>/question/<int:question_id>/edit", methods=["POST"])
+def edit_question(quiz_id, question_id):
+    user_id = session.get("user_id")
+
+    if not user_id:
+        return jsonify({"error": "unauthorized"}), 401
+
+    user = User.query.get(user_id)
+    if not user:
+        return jsonify({"error": "user not found"}), 404
+    
+    quiz = Quiz.query.get(quiz_id)
+    if not quiz:
+        return jsonify({"error": "quiz not found"}), 404
+    
+    # check if the user is the creator of the quiz
+    if quiz.user_id != user.id:
+        return jsonify({"error": "forbidden"}), 403
+    
+    question = Question.query.get(question_id)
+    if not question:
+        return jsonify({"error": "question not found"}), 404
+    
+    # Extract question details from the request
+    data = request.json
+    question_text = data.get("question")
+
+    # Update the question
+    question.text = question_text
+    db.session.commit()
+
+    return jsonify({"message": "Question updated successfully"})
