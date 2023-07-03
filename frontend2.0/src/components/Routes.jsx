@@ -11,6 +11,7 @@ import Workspace from "../pages/Workspace";
 import NotFound from "../pages/NotFound";
 import Products from "../pages/Products";
 import FolderPage from "../pages/FolderPage";
+import Quiz from "../pages/quiz/Quiz";
 
 
 
@@ -25,6 +26,7 @@ const Routes = () => {
             <Route path='/folders/:folderId/:noteId' component={NotePage}/>
             <Route path="/products" component={Products} />
             <Route path="/folders" component={FolderPage} />
+            <Route path="/quiz" component={Quiz} />
             <Route path="/*" component={NotFound} />
         </Switch>
     )

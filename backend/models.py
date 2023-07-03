@@ -12,6 +12,9 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(50), nullable=False, unique=True)
     password = db.Column(db.String(100), nullable=False)
     folders = db.relationship("Folder", backref="user", lazy=True)
+    points = db.Column(db.Integer, nullable=False, default=0)
+    quizzes = db.relationship("Quiz", backref="user", lazy=True)
+
 
     def get_notes(self):
         notes = []
@@ -84,3 +87,23 @@ class Note(db.Model):
     text = db.Column(db.String)
     folder_id = db.Column(db.Integer, db.ForeignKey("folder.id"), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+
+
+class Quiz(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(30), unique=True, nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    questions = db.relationship("Question", backref="quiz", lazy=True)
+
+class Question(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    text = db.Column(db.String, nullable=False)
+    quiz_id = db.Column(db.Integer, db.ForeignKey("quiz.id"), nullable=False)
+    answers = db.relationship("Answer", backref="question", lazy=True)
+
+
+class Answer(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    text = db.Column(db.String, nullable=False)
+    is_correct = db.Column(db.Boolean, nullable=False, default=False)
+    question_id = db.Column(db.Integer, db.ForeignKey("question.id"), nullable=False)
