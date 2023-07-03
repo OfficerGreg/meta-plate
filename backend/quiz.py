@@ -70,13 +70,31 @@ def create_quiz():
     # Extract quiz details from the request
     data = request.json
     quiz_name = data.get("name")
+    questions = data.get("questions")
 
     # Create the quiz
     quiz = Quiz(name=quiz_name, user=user)
     db.session.add(quiz)
     db.session.commit()
 
+    # Add questions to the quiz
+    for question_data in questions:
+        question_text = question_data.get("question")
+        question = Question(text=question_text, quiz=quiz)
+        db.session.add(question)
+        db.session.commit()
+
+        # Add answers to the question
+        answers = question_data.get("answers")
+        for answer_data in answers:
+            answer_text = answer_data.get("answer")
+            is_correct = answer_data.get("isCorrect")
+            answer = Answer(text=answer_text, is_correct=is_correct, question=question)
+            db.session.add(answer)
+            db.session.commit()
+
     return jsonify({"message": "Quiz created successfully"})
+
 
 
 #edit quiz route
@@ -124,15 +142,15 @@ def add_question_to_quiz(quiz_id):
     user = User.query.get(user_id)
     if not user:
         return jsonify({"error": "user not found"}), 404
-    
+
     quiz = Quiz.query.get(quiz_id)
     if not quiz:
         return jsonify({"error": "quiz not found"}), 404
-    
+
     # check if the user is the creator of the quiz
     if quiz.user_id != user.id:
         return jsonify({"error": "forbidden"}), 403
-    
+
     # Extract question details from the request
     data = request.json
     question_text = data.get("question")
@@ -142,7 +160,8 @@ def add_question_to_quiz(quiz_id):
     db.session.add(question)
     db.session.commit()
 
-    return jsonify({"message": "Question added successfully"})
+    return jsonify({"message": "Question added successfully", "question_id": question.id})
+
 
 
 #edit question route
@@ -191,19 +210,19 @@ def add_answer_to_question(quiz_id, question_id):
     user = User.query.get(user_id)
     if not user:
         return jsonify({"error": "user not found"}), 404
-    
+
     quiz = Quiz.query.get(quiz_id)
     if not quiz:
         return jsonify({"error": "quiz not found"}), 404
-    
+
     # check if the user is the creator of the quiz
     if quiz.user_id != user.id:
         return jsonify({"error": "forbidden"}), 403
-    
+
     question = Question.query.get(question_id)
     if not question:
         return jsonify({"error": "question not found"}), 404
-    
+
     # Extract answer details from the request
     data = request.json
     answer_text = data.get("answer")
@@ -214,7 +233,8 @@ def add_answer_to_question(quiz_id, question_id):
     db.session.add(answer)
     db.session.commit()
 
-    return jsonify({"message": "Answer added successfully"})
+    return jsonify({"message": "Answer added successfully", "answer_id": answer.id})
+
 
 
 #edit answer route

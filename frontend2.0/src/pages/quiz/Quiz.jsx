@@ -9,22 +9,22 @@ const Quiz = () => {
 
   const fetchQuizData = async () => {
     try {
-      const response = await httpClient.get("//localhost:5000/quiz");
+      const response = await httpClient.get('//localhost:5000/quiz');
       const quizData = response.data.quizzes;
       setQuizzes(quizData);
     } catch (error) {
-      console.log("Error fetching quiz data:", error);
+      console.log('Error fetching quiz data:', error);
     }
   };
 
   const fetchUserData = async () => {
     try {
-      const response = await httpClient.get("//localhost:5000/@me");
+      const response = await httpClient.get('//localhost:5000/@me');
       const userData = response.data;
       setUser(userData);
     } catch (error) {
-      console.log("Not authenticated");
-      history.push("/login");
+      console.log('Not authenticated');
+      history.push('/login');
     }
   };
 
@@ -43,38 +43,67 @@ const Quiz = () => {
       <div className="row mb-3">
         <div className="col-6">
           {user && (
-            <Link to="/quiz/create" className="btn btn-primary">
-              Create Quiz
+            <Link to="/quiz/create" className="btn btn-primary" style={{borderStyle: "solid"}}>
+              <h1>Create Quiz</h1>
             </Link>
           )}
         </div>
       </div>
       <div className="row">
-        <div className="col-6">
+        <div className="col-6" >
+          <h4>Your Quizzes</h4>
           <div className="row">
-            {quizzes.map((quiz) => (
-              <div className="col-6" key={quiz.id}>
-                <div className="card">
-                  <div className="card-body">
-                    <h5 className="card-title">{quiz.name}</h5>
-                    <p className="card-text">
-                      Created by: {quiz.created_by.username}
-                    </p>
-                    {isQuizCreatedByUser(quiz) && (
-                      <Link
+            {quizzes.map((quiz) =>
+              isQuizCreatedByUser(quiz) ? (
+                <div className="col-6" key={quiz.id}>
+                  <div className="card">
+                    <div className="card-body">
+                      <h2 className="card-title">{quiz.name}</h2>
+                      <p className="card-text" >
+                        Created by: {quiz.created_by.username}
+                      </p>
+                      <Link style={{borderStyle: "solid"}}
                         to={`/quiz/${quiz.id}/edit`}
                         className="btn btn-primary"
                       >
                         Edit
                       </Link>
-                    )}
-                    <Link to={`/quiz/${quiz.id}`} className="btn btn-primary">
-                      Start Quiz
-                    </Link>
+                      <Link style={{borderStyle: "solid"}}
+                        to={`/quiz/${quiz.id}`}
+                        className="btn btn-primary"
+                      >
+                        Start Quiz
+                      </Link>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ) : null
+            )}
+          </div>
+        </div>
+        <div className="col-6">
+          <h4>All Quizzes</h4>
+          <div className="row">
+            {quizzes.map((quiz) =>
+              !isQuizCreatedByUser(quiz) ? (
+                <div className="col-6" key={quiz.id}>
+                  <div className="card">
+                    <div className="card-body">
+                      <h2 className="card-title">{quiz.name}</h2>
+                      <p className="card-text">
+                        Created by: {quiz.created_by.username}
+                      </p>
+                      <Link style={{borderStyle: "solid"}}
+                        to={`/quiz/${quiz.id}`}
+                        className="btn btn-primary"
+                      >
+                        Start Quiz
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ) : null
+            )}
           </div>
         </div>
       </div>
