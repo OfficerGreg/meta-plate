@@ -35,3 +35,25 @@
 .home-buttons a:hover {
   background-color: #333333;
 }
+
+.text-image-section {
+  display: flex;
+  align-items: center;
+  margin: 50px;
+  padding-left: 25%;
+  padding-right: 25%; ;
+}
+
+.text-left {
+  margin-right: 30px;
+}
+
+.newsSection{
+  padding: 20px;
+  background-color: #eaeaea;
+}
+
+.header-center {
+  text-align: center;
+  margin: 60px;
+}
