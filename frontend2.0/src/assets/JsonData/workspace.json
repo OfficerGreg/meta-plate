@@ -6,9 +6,9 @@
     "link": "/folders"
   },
   {
-    "icon": "bx bxl-react",
+    "icon": "bx bx-pencil",
     "title": "Quiz",
-    "count": "React",
+    "count": "Quizzes",
     "link": "/quiz"
   },
   {

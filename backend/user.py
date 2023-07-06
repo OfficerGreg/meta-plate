@@ -49,3 +49,31 @@ def set_score():
         "email": user.email,
         "points": user.points
     })
+
+
+# edit user route
+@user_bp.route("/@me/edit", methods=["POST"])
+def edit_user():
+    user_id = session.get("user_id")
+
+    if not user_id:
+        return jsonify({"error": "unauthorized"}), 401
+
+    user = User.query.filter_by(id=user_id).first()
+
+    username = request.json.get("username")
+    email = request.json.get("email")
+    password = request.json.get("password")
+    
+    user.username = username
+    user.email = email
+    user.password = password
+
+    db.session.commit()
+
+    return jsonify({
+        "id": user.id,
+        "username": user.username,
+        "email": user.email,
+        "points": user.points
+    })

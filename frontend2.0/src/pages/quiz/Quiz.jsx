@@ -44,11 +44,12 @@ const Quiz = () => {
         <div className="col-6">
           {user && (
             <Link to="/quiz/create" className="btn btn-primary" style={{borderStyle: "solid"}}>
-              <h1>Create Quiz</h1>
+              Create Quiz
             </Link>
           )}
         </div>
       </div>
+      <br/>
       <div className="row">
         <div className="col-6" >
           <h4>Your Quizzes</h4>

@@ -37,6 +37,7 @@ const Userprofile = () => {
             history.push("/login");
         }
     };
+    
 
     useEffect(() => {
         fetchUserData();

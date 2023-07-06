@@ -107,3 +107,6 @@ class Answer(db.Model):
     text = db.Column(db.String, nullable=False)
     is_correct = db.Column(db.Boolean, nullable=False, default=False)
     question_id = db.Column(db.Integer, db.ForeignKey("question.id"), nullable=False)
+
+
+

@@ -106,12 +106,12 @@ const FolderPage = () => {
                 <h2 style={{ marginTop: '60px', marginBottom:'10px' }}>Folders:</h2>
                 <div className="row">
                     {user.folders.map((folder) => (
-                        <div className="col-4" onClick={() => toggleNoteTable(folder.id)}>
+                        <div className="col-4">
                             <div className="card full-height" >
                                 <React.Fragment key={folder.id}>
-                                        <h1>{folder.name}</h1>
+                                        <h1 onClick={() => toggleNoteTable(folder.id)}>{folder.name}</h1>
 
-                                    {folder.notes && folder.notes.length > 0 && folderVisibility[folder.id] && (
+                                    {folder.notes && folder.notes.length >= 0 && folderVisibility[folder.id] && (
                                         <div>
                                             <label>New Note:</label>
                                             <input

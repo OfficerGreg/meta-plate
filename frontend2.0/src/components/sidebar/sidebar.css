@@ -13,7 +13,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    filter: white;
 }
+
+
+  
 
 .sidebar__logo > img {
     height: 45px;
@@ -53,3 +57,8 @@
     );
     color: var(--txt-white);
 }
+
+svg {
+    width: 250px;
+    height: 100px;
+  }

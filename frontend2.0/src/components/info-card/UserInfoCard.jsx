@@ -6,7 +6,7 @@ const UserInfoCard = ({ user }) => {
             <div className="info-card">
                 <div className="user-info-card__row">
                     <div className="user-info-card__text">
-                        <h3>Full Name</h3>
+                        <h3>username</h3>
                     </div>
                     <div className="user-info-card__info">
                         {user.username}
@@ -15,7 +15,7 @@ const UserInfoCard = ({ user }) => {
                 <hr />
                 <div className="user-info-card__row">
                     <div className="user-info-card__text">
-                        <h3>Email</h3>
+                        <h3>email</h3>
                     </div>
                     <div className="user-info-card__info">
                         {user.email}
@@ -24,7 +24,7 @@ const UserInfoCard = ({ user }) => {
                 <hr />
                 <div className="user-info-card__row">
                     <div className="user-info-card__text">
-                        <h3>Phone</h3>
+                        <h3>phone</h3>
                     </div>
                     <div className="user-info-card__info">
                         076 449 816 9029
@@ -42,7 +42,7 @@ const UserInfoCard = ({ user }) => {
                 <hr />
                 <div className="user-info-card__row">
                     <div>
-                        <a className="user-info-card__edit-btn" target="_blank">Edit</a>
+                        <a className="user-info-card__edit-btn" target="_blank">edit</a>
                     </div>
                 </div>
             </div>

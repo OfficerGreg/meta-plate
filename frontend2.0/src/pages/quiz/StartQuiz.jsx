@@ -108,6 +108,7 @@ const StartQuiz = () => {
                 points: user + Math.round(score), // Rounded score
             });
             console.log(response.data); // Optional: Handle the response as needed
+            history.push('/quiz');
         } catch (error) {
             console.log('Error setting score:', error);
         }
@@ -137,6 +138,7 @@ const StartQuiz = () => {
                             <h1>Quiz completed!</h1>
                             <p>Final Score: {score}</p>
                             <button className="button" onClick={setFinalScore}>Save Score</button>
+
                         </div>
                     ) : (
                         <div>
