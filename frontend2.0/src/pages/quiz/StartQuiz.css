@@ -1,8 +1,26 @@
 button.correct {
     background-color: green;
-  }
-  
-  button.incorrect {
+}
+
+button.incorrect {
     background-color: red;
+}
+
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 10px;
+}
+
+button {
+    padding: 20px;
+}
+
+.time-bar {
+    height: 10px;
+    background-color: #ddd;
+    margin-bottom: 10px;
+    transition: width 0.2s ease-in-out;
   }
-  

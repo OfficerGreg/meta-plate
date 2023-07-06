@@ -69,7 +69,7 @@ const Quiz = () => {
                         Edit
                       </Link>
                       <Link style={{borderStyle: "solid"}}
-                        to={`/quiz/${quiz.id}`}
+                        to={`/quiz/${quiz.id}/start`}
                         className="btn btn-primary"
                       >
                         Start Quiz
