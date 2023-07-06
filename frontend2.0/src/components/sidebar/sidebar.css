@@ -58,7 +58,7 @@
     color: var(--txt-white);
 }
 
-svg {
+.svg {
     width: 250px;
     height: 100px;
   }

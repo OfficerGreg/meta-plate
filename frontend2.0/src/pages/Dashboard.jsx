@@ -19,7 +19,7 @@ const chartOptions = {
         name: 'Your Points',
         data: [4000,7000,2000,9000,3600,7000,3000,9100,6000]
     }, {
-        name: 'Average Student Points',
+        name: 'Average Points',
         data: [4000, 3000, 7000, 8000, 4000, 1600, 4500, 2000, 5100]
     }],
     options: {
@@ -71,11 +71,6 @@ const topCustomers = {
             "username": "M117",
             "order": "Informatik und Netzwerkinfrastruktur",
             "price": "4.5"
-        },
-        {
-            "username": "M426",
-            "order": "Agile-Process",
-            "price": "5.0"
         }
     ]
 }

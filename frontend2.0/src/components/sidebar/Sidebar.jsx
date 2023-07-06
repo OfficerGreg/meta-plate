@@ -31,7 +31,7 @@ const Sidebar = props => {
     return (
         <div className='sidebar'>
             <div className="sidebar__logo">
-                <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 236" width="1120" height="236">
+                <svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 236" width="1120" height="236" className='svg'>
                     <title>New Project</title>
                     <defs>
                         <image width="1640" height="664" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABmgAAAKYAQMAAABNauWRAAAAAXNSR0IB2cksfwAAAAZQTFRF////////VXz1bAAAAAJ0Uk5T/wDltzBKAAACgElEQVR4nO3PQRHAIBDAQJzXWp1RCTybY3YVJGsBAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABHzx7FTZebLjddbrrcdLnpctPlpstNl5suN11uutx0uely0+Wmy02Xmy43XW663HS56XLT5abLTZebLjddbrrcdLnpctPlpstNl5suN11uutx0uely0+Wmy02Xmy43XW663HS56XLT5abLTZebLjddbrrcdLnpctPlpstNl5suN11uutx0uely0+Wmy02Xmy43XW663HS56XLT5abLTZebLjddbrrcdLnpctPlpstNl5suN11uutx0uely0+Wmy02Xmy43XW663HS56XLT5abLTZebLjddbrrcdLnpctPlpstNl5suN11uutx0uely0+Wmy02Xmy43XW663HS56XLT5abLTZebLjddbrrcdLnpctPlpstNl5suN11uutx0uely0+Wmy02Xmy43XW663HS56XLT5abLTZebLjddbrrcdLnpctPlpstNl5suN11uutx0uely0+Wmy02Xmy43XW663HS56XLT5abLTZebLjddbrrcdLnpctPlpstNl5suN11uutx0uely0+Wmy02Xmy43XW663HS56XLT5abLTZebLjddbrrcdLnpctPlpstNl5suN11uutx0uely0zX75j3ku/mPmy43XW663HS56XLT5abLTZebLjddbrrcdLnpctPlpstNl5suN11uutx0uely0+Wmy02Xmy43XW663HS56XLT5abLTZebLjddbrrcdLnpctPlpstNl5suN11uutx0uely0+Wmy02Xmy43XW663HS56XLT5abLTZebLjddbrrcdLnpctPlpuvumw8ejmjIDcRwEQAAAABJRU5ErkJggg==" />
