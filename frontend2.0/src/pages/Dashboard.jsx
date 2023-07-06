@@ -47,35 +47,35 @@ const chartOptions = {
 
 const topCustomers = {
     head: [
-        'user',
-        'total orders',
-        'total spending'
+        'Modul',
+        "Designation",
+        'Grade'
     ],
     body: [
         {
-            "username": "john doe",
-            "order": "490",
-            "price": "$15,870"
+            "username": "M324",
+            "order": "DevOps-Prozesse",
+            "price": "5.0"
         },
         {
-            "username": "frank iva",
-            "order": "250",
-            "price": "$12,251"
+            "username": "M165",
+            "order": "NoSQL-Datenbanken",
+            "price": "4.5"
         },
         {
-            "username": "anthony baker",
-            "order": "120",
-            "price": "$10,840"
+            "username": "M335",
+            "order": "Mobile Applikationen realisieren",
+            "price": "5.5"
         },
         {
-            "username": "frank iva",
-            "order": "110",
-            "price": "$9,251"
+            "username": "M117",
+            "order": "Informatik und Netzwerkinfrastruktur",
+            "price": "4.5"
         },
         {
-            "username": "anthony baker",
-            "order": "80",
-            "price": "$8,840"
+            "username": "M426",
+            "order": "Agile-Process",
+            "price": "5.0"
         }
     ]
 }
@@ -94,56 +94,56 @@ const renderCusomerBody = (item, index) => (
 
 const latestOrders = {
     header: [
-        "order id",
-        "user",
-        "total price",
-        "date",
-        "status"
+        "Modul",
+        "Designation",
+        "Teacher",
+        "Date",
+        "Status"
     ],
     body: [
         {
-            id: "#OD1711",
-            user: "john doe",
-            date: "17 Jun 2021",
-            price: "$900",
-            status: "shipping"
+            id: "M347",
+            user: "Dienst mit Container anwenden",
+            date: "21 Jun 2023",
+            price: "Patrick Venzin",
+            status: "open"
         },
         {
-            id: "#OD1712",
-            user: "frank iva",
-            date: "1 Jun 2021",
-            price: "$400",
-            status: "paid"
+            id: "M450",
+            user: "Applikation testen",
+            date: " 19 Jun 2023",
+            price: "Patrick Meier",
+            status: "present"
         },
         {
-            id: "#OD1713",
-            user: "anthony baker",
-            date: "27 Jun 2021",
-            price: "$200",
+            id: "M323",
+            user: "Funktionale Programmierung",
+            date: "15 Jun 2023",
+            price: "patrick Meier",
             status: "pending"
         },
         {
-            id: "#OD1712",
-            user: "frank iva",
-            date: "1 Jun 2021",
-            price: "$400",
-            status: "paid"
+            id: "M347",
+            user: "Dienst mit Container anwenden",
+            date: "14 Jun 2023",
+            price: "Patrick Venzin",
+            status: "absent"
         },
         {
-            id: "#OD1713",
-            user: "anthony baker",
-            date: "27 Jun 2021",
-            price: "$200",
-            status: "refund"
+            id: "M450",
+            user: "Applikation testen",
+            date: " 12 Jun 2023",
+            price: "Patrick Meier",
+            status: "present"
         }
     ]
 }
 
 const orderStatus = {
-    "shipping": "primary",
+    "open": "primary",
     "pending": "warning",
-    "paid": "success",
-    "refund": "danger"
+    "present": "success",
+    "absent": "danger"
 }
 
 const renderOrderHead = (item, index) => (
@@ -207,7 +207,7 @@ const Dashboard = () => {
                 <div className="col-4">
                     <div className="card">
                         <div className="card__header">
-                            <h3>top customers</h3>
+                            <h3>grade</h3>
                         </div>
                         <div className="card__body">
                             <Table
@@ -225,7 +225,7 @@ const Dashboard = () => {
                 <div className="col-8">
                     <div className="card">
                         <div className="card__header">
-                            <h3>latest orders</h3>
+                            <h3>absence status</h3>
                         </div>
                         <div className="card__body">
                             <Table
