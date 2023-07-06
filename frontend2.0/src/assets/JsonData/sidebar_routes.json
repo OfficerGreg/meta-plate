@@ -15,14 +15,14 @@
         "icon": "bx bx-dock-left"
     },
     {
+        "display_name": "module",
+        "route": "/module",
+        "icon": "bx bx-note"
+    },
+    {
         "display_name": "Calendar",
         "route": "/calendar",
         "icon": "bx bx-calendar"
-    },
-    {
-        "display_name": "Accessor",
-        "route": "/accessor",
-        "icon": "bx bx-gift"
     },
     {
         "display_name": "Shop",
