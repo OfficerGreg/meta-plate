@@ -16,11 +16,11 @@ import statusCards from '../assets/JsonData/status-card-data.json'
 
 const chartOptions = {
     series: [{
-        name: 'Note',
-        data: [40,70,20,90,36,80,30,91,60]
+        name: 'Your Points',
+        data: [4000,7000,2000,9000,3600,7000,3000,9100,6000]
     }, {
-        name: 'Learn time',
-        data: [40, 30, 70, 80, 40, 16, 40, 20, 51, 10]
+        name: 'Average Student Points',
+        data: [4000, 3000, 7000, 8000, 4000, 1600, 4500, 2000, 5100]
     }],
     options: {
         color: ['#6ab04c', '#2980b9'],
@@ -47,7 +47,7 @@ const chartOptions = {
 
 const topCustomers = {
     head: [
-        'Modul',
+        'Module',
         "Designation",
         'Grade'
     ],
