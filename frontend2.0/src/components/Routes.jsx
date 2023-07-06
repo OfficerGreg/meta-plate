@@ -17,6 +17,8 @@ import CreateQuiz from "../pages/quiz/CreateQuiz";
 import EditQuiz from "../pages/quiz/EditQuiz";
 import StartQuiz from "../pages/quiz/StartQuiz";
 
+import Module from "../pages/Module";
+
 
 
 const Routes = () => {
@@ -24,6 +26,7 @@ const Routes = () => {
         <Switch>
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/workspace" component={Workspace} />
+            <Route path="/module" component={Module} />
             <Route path='/calendar' component={Customers}/>
             <Route path='/profile' component={Userprofile}/>
             <Route path='/completionChat' component={ApiTest}/>
