@@ -95,9 +95,7 @@ const FolderPage = () => {
             <div>
                 <h3 style={{ marginBottom: '10px' }}>New Folder:</h3>
                 <div className="topnav__search" style={{ width: '500px' }}>
-
-
-                <input
+                    <input
                         type="text"
                         placeholder="create here..."
                         value={newFolderName}
@@ -125,9 +123,6 @@ const FolderPage = () => {
                                             />
                                             <button onClick={() => createNote(folder.id)}>
                                                 Create Note
-                                            </button>
-                                            <button onClick={() => toggleNoteTable(folder.id)}>
-                                                {folderVisibility[folder.id] ? "Hide" : "Show"}
                                             </button>
                                             <button onClick={() => alert("dont work yet")}>
                                                 Import Note
