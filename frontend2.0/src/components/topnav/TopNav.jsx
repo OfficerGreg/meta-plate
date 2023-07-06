@@ -12,11 +12,13 @@ const Topnav = () => {
     const [user, setUser] = useState(null);
     const history = useHistory();
 
+
     //special function for rendreUserMenu
     const logoutUser = async () => {
         await httpClient.post("//localhost:5000/logout");
         history.push('/');
     };
+
     const navigateProfile = async () => {
         history.push('/profile');
     };
@@ -60,7 +62,7 @@ const Topnav = () => {
             <div className="topnav__right-user__image">
                 <i className="bx bx-dollar-circle" style={{ fontSize: '42px'}}></i>
             </div>
-            <div className="topnav__right-user__name">2150</div>
+            <div className="topnav__right-user__name">{user && user.points}</div>
         </div>
     );
 

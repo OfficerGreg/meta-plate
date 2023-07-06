@@ -313,3 +313,5 @@ def start_quiz(quiz_id):
         question_list.append(question_dict)
 
     return jsonify({"quiz_name": quiz_name, "questions": question_list})
+
+

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import httpClient from '../../httpClient';
 import './StartQuiz.css';
+import { Button } from 'react-bootstrap';
 
 const StartQuiz = () => {
     const [quiz, setQuiz] = useState(null);
@@ -14,6 +15,7 @@ const StartQuiz = () => {
     const [remainingMilliseconds, setRemainingMilliseconds] = useState(10000);
     const [timeBarWidth, setTimeBarWidth] = useState(100);
     const [quizStarted, setQuizStarted] = useState(false);
+    const [user, setUser] = useState(null);
 
 
 
@@ -30,8 +32,22 @@ const StartQuiz = () => {
             console.log('Error fetching quiz data:', error);
         }
     };
+    
+    const fetchUserData = async () => {
+        try {
+            const response = await httpClient.get('//localhost:5000/@me');
+            setUser(response.data.points);
+        } catch (error) {
+            console.log('Not authenticated');
+            history.push('/login');
+        }
+    };
+
+
     useEffect(() => {
         fetchQuizData();
+        fetchUserData();
+
     }, []);
 
     useEffect(() => {
@@ -69,11 +85,11 @@ const StartQuiz = () => {
         setSelectedAnswerIndex(answerIndex);
         setIsAnswerCorrect(isCorrect);
         if (isCorrect) {
-          const currentTimeRemaining = remainingTime + remainingMilliseconds / 1000;
-          const newScore = score + 100 * currentTimeRemaining;
-          setScore(Math.round(newScore)); // Round the score to a whole number
+            const currentTimeRemaining = remainingTime + remainingMilliseconds / 1000;
+            const newScore = score + 10 * currentTimeRemaining;
+            setScore(Math.round(newScore)); // Round the score to a whole number
         }
-      };
+    };
 
     if (!quiz) {
         return <div>Loading...</div>;
@@ -82,6 +98,22 @@ const StartQuiz = () => {
     if (quiz.questions.length === 0) {
         return <div>Error: This quiz does not have any questions or answers.</div>;
     }
+
+
+
+    const setFinalScore = async () => {
+        try {
+            console.log(user);
+            const response = await httpClient.post('//localhost:5000/@me/score', {
+                points: user + Math.round(score), // Rounded score
+            });
+            console.log(response.data); // Optional: Handle the response as needed
+        } catch (error) {
+            console.log('Error setting score:', error);
+        }
+    };
+
+
 
 
     const currentQuestion = quiz.questions[currentQuestionIndex];
@@ -93,7 +125,7 @@ const StartQuiz = () => {
             {!quizStarted ? (
                 <div>
                     <h1>Welcome to the {quizName} quiz</h1>
-                    <button onClick={() => setQuizStarted(true)}>Begin Quiz</button>
+                    <button className="button" onClick={() => setQuizStarted(true)}>Begin Quiz</button>
 
                 </div>
             ) : (
@@ -104,6 +136,7 @@ const StartQuiz = () => {
                         <div>
                             <h1>Quiz completed!</h1>
                             <p>Final Score: {score}</p>
+                            <button className="button" onClick={setFinalScore}>Save Score</button>
                         </div>
                     ) : (
                         <div>
