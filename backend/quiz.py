@@ -2,6 +2,8 @@ from flask import Blueprint, jsonify, session, request
 
 from models import User, Quiz, Question, Answer, db
 
+import random
+
 quiz_bp = Blueprint("quiz", __name__)
 
 
@@ -276,3 +278,38 @@ def edit_answer(quiz_id, question_id, answer_id):
     db.session.commit()
 
     return jsonify({"message": "Answer updated successfully"})
+
+
+#start specific quiz route
+#get quiz name, questions, answers
+@quiz_bp.route("/quiz/<int:quiz_id>/start", methods=["GET"])
+def start_quiz(quiz_id):
+    quiz = Quiz.query.get(quiz_id)
+    if not quiz:
+        return jsonify({"error": "quiz not found"}), 404
+    
+    # Extract quiz details
+    quiz_name = quiz.name
+    questions = quiz.questions
+
+    # Extract question details
+    question_list = []
+    for question in questions:
+        question_dict = {}
+        question_dict["id"] = question.id
+        question_dict["question"] = question.text
+
+        # Extract answer details
+        answers = question.answers
+        answer_list = []
+        for answer in answers:
+            answer_dict = {}
+            answer_dict["id"] = answer.id
+            answer_dict["answer"] = answer.text
+            answer_dict["is_correct"] = answer.is_correct
+            answer_list.append(answer_dict)
+        
+        question_dict["answers"] = answer_list
+        question_list.append(question_dict)
+
+    return jsonify({"quiz_name": quiz_name, "questions": question_list})

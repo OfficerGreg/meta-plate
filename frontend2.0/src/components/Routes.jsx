@@ -15,6 +15,7 @@ import FolderPage from "../pages/FolderPage";
 import Quiz from "../pages/quiz/Quiz";
 import CreateQuiz from "../pages/quiz/CreateQuiz";
 import EditQuiz from "../pages/quiz/EditQuiz";
+import StartQuiz from "../pages/quiz/StartQuiz";
 
 
 
@@ -29,6 +30,7 @@ const Routes = () => {
             <Route path='/folders/:folderId/:noteId' component={NotePage}/>
             <Route path="/products" component={Products} />
             <Route path="/folders" component={FolderPage} />
+            <Route path="/quiz/:quizId/start" component={StartQuiz} />
             <Route path="/quiz/create" component={CreateQuiz} />
             <Route path="/quiz/:quizId/edit" component={EditQuiz} />
             <Route path="/quiz" component={Quiz} />
