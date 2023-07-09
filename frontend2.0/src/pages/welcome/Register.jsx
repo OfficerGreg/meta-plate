@@ -15,7 +15,7 @@ const Register = () => {
 
     try {
       const response = await httpClient.post("//localhost:5000/register", {
-        username, email, password
+        username, email, password, is_admin: false
       });
 
       window.location.href = "/dashboard";

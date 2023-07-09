@@ -11,9 +11,12 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(30), nullable=False, unique=True)
     email = db.Column(db.String(50), nullable=False, unique=True)
     password = db.Column(db.String(100), nullable=False)
+    is_admin = db.Column(db.Boolean, default=False)
+
     folders = db.relationship("Folder", backref="user", lazy=True)
     points = db.Column(db.Integer, nullable=False, default=0)
     quizzes = db.relationship("Quiz", backref="user", lazy=True)
+
 
 
     def get_notes(self):
