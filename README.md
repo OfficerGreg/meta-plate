@@ -14,11 +14,25 @@
 -https://icons8.com/icons/
 
 
-## Instalation
+## Installation
 
+### Backend
+1. Öffnen Sie das Backend-Projektverzeichnis in Ihrer Entwicklungsumgebung.
+2. Führen Sie den folgenden Befehl aus, um das Frontend zu starten:
 
+**windows:**
+```sh
+pip install -r requirements.txt
+python app.py
+```
+**linux:**
+```
+pip install -r requirements.txt
+python3 app.py
+```
+3. Starte den redis-cli server
 
-
+### Frontend
 1. Öffnen Sie das Frontend-Projektverzeichnis in Ihrer Entwicklungsumgebung.
 2. Führen Sie den folgenden Befehl aus, um das Frontend zu starten:
 ```sh
