@@ -24,7 +24,23 @@ class User(db.Model, UserMixin):
         db.session.add(modul)
         db.session.commit()
 
+    def add_zp(self, modul_name, zp):
+        modul = Modul.query.filter_by(name=modul_name).first()
+        if modul:
+            modul.zp_grade = zp
+            db.session.commit()
+        else:
+            raise ValueError("Module not found.")
+        
 
+    def add_lb(self, modul_name, lb):
+        modul = Modul.query.filter_by(name=modul_name).first()
+        if modul:
+            modul.lb_grade = lb
+            db.session.commit()
+        else:
+            raise ValueError("Module not found.")
+    
     def get_notes(self):
         notes = []
         for folder in self.folders:
@@ -121,8 +137,8 @@ class Answer(db.Model):
 class Modul(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), nullable=False)
-    zp_grade = db.Column(db.Integer, nullable=True)
-    lb_grade = db.Column(db.Integer, nullable=True)
+    zp_grade = db.Column(db.Float, nullable=True)
+    lb_grade = db.Column(db.Float, nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     
 
