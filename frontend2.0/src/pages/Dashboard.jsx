@@ -1,6 +1,7 @@
-import React, {useEffect} from 'react'
+import React, { useEffect, useState } from 'react'
+import { useHistory, Link } from 'react-router-dom';
 
-import { Link } from 'react-router-dom'
+
 
 import Chart from 'react-apexcharts'
 
@@ -14,10 +15,13 @@ import Badge from '../components/badge/Badge'
 
 import statusCards from '../assets/JsonData/status-card-data.json'
 
+import httpClient from '../httpClient';
+
+
 const chartOptions = {
     series: [{
         name: 'Your Points',
-        data: [4000,7000,2000,9000,3600,7000,3000,9100,6000]
+        data: [4000, 7000, 2000, 9000, 3600, 7000, 3000, 9100, 6000]
     }, {
         name: 'Average Points',
         data: [4000, 3000, 7000, 8000, 4000, 1600, 4500, 2000, 5100]
@@ -152,14 +156,55 @@ const renderOrderBody = (item, index) => (
         <td>{item.price}</td>
         <td>{item.date}</td>
         <td>
-            <Badge type={orderStatus[item.status]} content={item.status}/>
+            <Badge type={orderStatus[item.status]} content={item.status} />
         </td>
     </tr>
 )
 
+const renderModulHead = (modul, index) => <th key={index}>{modul}</th>;
+
+const renderModulBody = (modul, index) => (
+    <tr key={index}>
+        <td>{modul.name}</td>
+        <td>{modul.zp ? modul.zp : 'N/A'}</td>
+        <td>{modul.lb ? modul.lb : 'N/A'}</td>
+    </tr>
+);
+
 const Dashboard = () => {
+    const [user, setUser] = useState(null);
+    const [moduls, setModuls] = useState([]);
+    const history = useHistory();
 
     const themeReducer = useSelector(state => state.ThemeReducer.mode)
+
+    const fetchUserData = async () => {
+        try {
+            const response = await httpClient.get('//localhost:5000/@me');
+            const userData = response.data;
+            setUser(userData);
+        } catch (error) {
+            console.log('Not authenticated');
+            history.push('/login');
+        }
+    };
+
+    const fetchModulsData = async () => {
+        try {
+            const response = await httpClient.get('//localhost:5000/modul/get_all');
+            const modulsData = response.data.moduls;
+            console.log(modulsData); // Check the data received from the backend
+            setModuls(modulsData);
+        } catch (error) {
+            console.log('Error fetching modul data');
+        }
+    };
+
+    useEffect(() => {
+        fetchUserData();
+        fetchModulsData();
+    }, []);
+
 
     return (
         <div>
@@ -188,10 +233,10 @@ const Dashboard = () => {
                         <Chart
                             options={themeReducer === 'theme-mode-dark' ? {
                                 ...chartOptions.options,
-                                theme: { mode: 'dark'}
+                                theme: { mode: 'dark' }
                             } : {
                                 ...chartOptions.options,
-                                theme: { mode: 'light'}
+                                theme: { mode: 'light' }
                             }}
                             series={chartOptions.series}
                             type='line'
@@ -202,18 +247,22 @@ const Dashboard = () => {
                 <div className="col-4">
                     <div className="card">
                         <div className="card__header">
-                            <h3>grade</h3>
+                            <h3>grades</h3>
                         </div>
                         <div className="card__body">
-                            <Table
-                                headData={topCustomers.head}
-                                renderHead={(item, index) => renderCusomerHead(item, index)}
-                                bodyData={topCustomers.body}
-                                renderBody={(item, index) => renderCusomerBody(item, index)}
-                            />
+                            {moduls.length > 0 ? (
+                                <Table
+                                    headData={['Name', 'ZP Grade', 'LB Grade']}
+                                    renderHead={(item, index) => renderModulHead(item, index)}
+                                    bodyData={moduls}
+                                    renderBody={(item, index) => renderModulBody(item, index)}
+                                />
+                            ) : (
+                                <p>No modules found.</p>
+                            )}
                         </div>
                         <div className="card__footer">
-                            <Link to='/'>view all</Link>
+                            <Link to='/grades'>view all</Link>
                         </div>
                     </div>
                 </div>
