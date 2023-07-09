@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory, Link } from 'react-router-dom';
 import httpClient from '../../httpClient';
+import Button from "react-bootstrap/Button";
 
 const Quiz = () => {
   const [quizzes, setQuizzes] = useState([]);
@@ -45,11 +46,11 @@ const Quiz = () => {
 
   return (
     <div>
-      <h2 className="page-header">Quiz</h2>
+      <h1 className="page-header">Quiz</h1>
       <div className="row mb-3">
         <div className="col-6">
           {user && (
-            <Link to="/quiz/create" className="btn btn-primary" style={{borderStyle: "solid"}}>
+            <Link to="/quiz/create" className="user-info-card__edit-btn" >
               Create Quiz
             </Link>
           )}
@@ -69,15 +70,15 @@ const Quiz = () => {
                       <p className="card-text" style={{padding: 5}} >
                         Created by: {quiz.created_by.username}
                       </p>
-                      <Link style={{borderStyle: "solid"}}
+                      <Link
                         to={`/quiz/${quiz.id}/edit`}
-                        className="btn btn-primary"
+                        className="user-info-card__edit-btn"
                       >
                         Edit
                       </Link>
-                      <Link style={{borderStyle: "solid"}}
+                      <Link
                         to={`/quiz/${quiz.id}/start`}
-                        className="btn btn-primary"
+                        className="user-info-card__edit-btn"
                       >
                         Start Quiz
                       </Link>
@@ -100,9 +101,8 @@ const Quiz = () => {
                       <p className="card-text">
                         Created by: {quiz.created_by.username}
                       </p>
-                      <Link style={{borderStyle: "solid"}}
+                      <Link className="user-info-card__edit-btn"
                         to={`/quiz/${quiz.id}`}
-                        className="btn btn-primary"
                       >
                         Start Quiz
                       </Link>
