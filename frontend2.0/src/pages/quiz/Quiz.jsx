@@ -37,6 +37,12 @@ const Quiz = () => {
     return user && quiz.created_by.id === user.id;
   };
 
+  const getRandomColor = () => {
+    const colors = ['lightblue', 'lightgreen', 'lightpink', 'lightsalmon', 'lightyellow'];
+    const randomIndex = Math.floor(Math.random() * colors.length);
+    return colors[randomIndex];
+  };
+
   return (
     <div>
       <h2 className="page-header">Quiz</h2>
@@ -56,11 +62,11 @@ const Quiz = () => {
           <div className="row">
             {quizzes.map((quiz) =>
               isQuizCreatedByUser(quiz) ? (
-                <div className="col-6" key={quiz.id}>
-                  <div className="card">
+                <div className="col-0"  key={quiz.id}>
+                  <div className="card" style={{backgroundColor: getRandomColor()}}>
                     <div className="card-body">
                       <h2 className="card-title">{quiz.name}</h2>
-                      <p className="card-text" >
+                      <p className="card-text" style={{padding: 5}} >
                         Created by: {quiz.created_by.username}
                       </p>
                       <Link style={{borderStyle: "solid"}}
@@ -88,7 +94,7 @@ const Quiz = () => {
             {quizzes.map((quiz) =>
               !isQuizCreatedByUser(quiz) ? (
                 <div className="col-6" key={quiz.id}>
-                  <div className="card">
+                  <div className="card" style={{backgroundColor: getRandomColor()}}>
                     <div className="card-body">
                       <h2 className="card-title">{quiz.name}</h2>
                       <p className="card-text">

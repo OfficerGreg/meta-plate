@@ -1,11 +1,20 @@
-button.correct {
+.button-container button.correct {
     background-color: green;
 }
 
-button.incorrect {
+.button-container button.incorrect {
     background-color: red;
 }
 
+.button-container button:hover {
+    background-color: rgb(161, 160, 160);
+}
+
+.correct-answer {
+    color: green;
+    margin-top: 20px;
+    font-size: larger;
+}
 
 .button-container {
     display: flex;
@@ -14,13 +23,20 @@ button.incorrect {
     gap: 10px;
 }
 
-.button {
-    padding: 20px;
+.button-container button {
+    background-color: rgb(219, 219, 219);
+    border: none;
+    padding: 20px 30px;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 2px solid #000000;
+    font-size: 25px;
+    color: #000000;
 }
 
 .time-bar {
     height: 10px;
-    background-color: #ddd;
     margin-bottom: 10px;
     transition: width 0.2s ease-in-out;
-  }
+    background-color: red;
+}
