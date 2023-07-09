@@ -20,14 +20,14 @@
         "icon": "bx bx-note"
     },
     {
+        "display_name": "Grades",
+        "route": "/grades",
+        "icon": "bx bx-book"
+    },
+    {
         "display_name": "Calendar",
         "route": "/calendar",
         "icon": "bx bx-calendar"
-    },
-    {
-        "display_name": "Shop",
-        "route": "/shop",
-        "icon": "bx bx-store-alt"
     },
     {
         "display_name": "settings",

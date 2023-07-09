@@ -40,6 +40,9 @@ class User(db.Model, UserMixin):
             db.session.commit()
         else:
             raise ValueError("Module not found.")
+        
+    def get_modules(self):
+        return self.modules
     
     def get_notes(self):
         notes = []

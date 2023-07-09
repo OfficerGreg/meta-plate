@@ -62,3 +62,23 @@ def add_lb(user_id):
         return jsonify({"message": "LB grade added successfully."})
     
     return jsonify({"error": "unauthorized"}), 401
+
+
+# get all moduls for current user
+@modul_bp.route("/modul/get_all", methods=["GET"])
+def get_all_moduls():
+    user_id = session.get("user_id")
+
+    if not user_id:
+        return jsonify({"error": "unauthorized"}), 401
+
+
+    user = User.query.filter_by(id=user_id).first()
+
+    moduls = user.get_modules()
+
+    return jsonify({
+        "moduls": [
+            {"name": modul.name, "zp": modul.zp_grade, "lb": modul.lb_grade} for modul in moduls
+        ]
+    })

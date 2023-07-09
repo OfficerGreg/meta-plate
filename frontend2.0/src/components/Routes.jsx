@@ -19,6 +19,8 @@ import StartQuiz from "../pages/quiz/StartQuiz";
 
 import Module from "../pages/Module";
 
+import Grades from "../pages/Grades";
+
 
 
 const Routes = () => {
@@ -33,6 +35,7 @@ const Routes = () => {
             <Route path='/folders/:folderId/:noteId' component={NotePage}/>
             <Route path="/products" component={Products} />
             <Route path="/folders" component={FolderPage} />
+            <Route path="/grades" component={Grades} />
             <Route path="/quiz/:quizId/start" component={StartQuiz} />
             <Route path="/quiz/create" component={CreateQuiz} />
             <Route path="/quiz/:quizId/edit" component={EditQuiz} />
