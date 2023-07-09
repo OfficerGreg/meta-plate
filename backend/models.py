@@ -41,6 +41,14 @@ class User(db.Model, UserMixin):
         else:
             raise ValueError("Module not found.")
         
+    def add_teacher(self, modul_name, teacher_name):
+        modul = Modul.query.filter_by(name=modul_name).first()
+        if modul:
+            modul.teacher = teacher_name
+            db.session.commit()
+        else:
+            raise ValueError("Module not found.")
+        
     def get_modules(self):
         return self.modules
     
@@ -142,6 +150,7 @@ class Modul(db.Model):
     name = db.Column(db.String(30), nullable=False)
     zp_grade = db.Column(db.Float, nullable=True)
     lb_grade = db.Column(db.Float, nullable=True)
+    teacher = db.Column(db.String(30), nullable=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     
 
