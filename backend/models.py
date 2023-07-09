@@ -11,12 +11,18 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(30), nullable=False, unique=True)
     email = db.Column(db.String(50), nullable=False, unique=True)
     password = db.Column(db.String(100), nullable=False)
-    is_admin = db.Column(db.Boolean, default=False)
-
-    folders = db.relationship("Folder", backref="user", lazy=True)
     points = db.Column(db.Integer, nullable=False, default=0)
-    quizzes = db.relationship("Quiz", backref="user", lazy=True)
 
+    is_admin = db.Column(db.Boolean, default=False)
+    
+    folders = db.relationship("Folder", backref="user", lazy=True)
+    quizzes = db.relationship("Quiz", backref="user", lazy=True)
+    modules = db.relationship("Modul", backref="user", lazy=True)
+
+    def add_modul(self, modul_name):
+        modul = Modul(name=modul_name, user=self)
+        db.session.add(modul)
+        db.session.commit()
 
 
     def get_notes(self):
@@ -110,6 +116,15 @@ class Answer(db.Model):
     text = db.Column(db.String, nullable=False)
     is_correct = db.Column(db.Boolean, nullable=False, default=False)
     question_id = db.Column(db.Integer, db.ForeignKey("question.id"), nullable=False)
+
+
+class Modul(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(30), nullable=False)
+    zp_grade = db.Column(db.Integer, nullable=True)
+    lb_grade = db.Column(db.Integer, nullable=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
+    
 
 
 

@@ -77,3 +77,53 @@ def edit_user():
         "email": user.email,
         "points": user.points
     })
+
+
+# get all users route
+# gets only users that are not admins
+@user_bp.route("/@me/all", methods=["GET"])
+def get_all_users():
+    user_id = session.get("user_id")
+
+    if not user_id:
+        return jsonify({"error": "unauthorized"}), 401
+
+    users = User.query.all()
+
+    user = User.query.filter_by(id=user_id).first()
+
+    if user.is_admin == False:
+        return jsonify({"error": "unauthorized"}), 401
+
+    return jsonify([
+        {
+            "id": user.id,
+            "username": user.username,
+            "email": user.email,
+            "is_admin": user.is_admin,
+            "points": user.points
+        } for user in users if user.is_admin == False
+    ])
+
+
+# delete user route
+@user_bp.route("/@me/delete/<int:user_id>", methods=["DELETE"])
+def delete_user(user_id):
+    current_user_id = session.get("user_id")
+
+    if not current_user_id:
+        return jsonify({"error": "unauthorized"}), 401
+
+    current_user = User.query.filter_by(id=current_user_id).first()
+
+    if current_user.is_admin == False:
+        return jsonify({"error": "unauthorized"}), 401
+
+    user = User.query.filter_by(id=user_id).first()
+
+    db.session.delete(user)
+    db.session.commit()
+
+    return jsonify({
+        "message": "user deleted"
+    })
