@@ -32,15 +32,15 @@ const NotePage = () => {
         const marker = '#!';
         const markerIndex = prevValue?.indexOf(marker) ?? -1;
         if (markerIndex !== -1) {
-          const beforeMarker = prevValue?.substring(0, markerIndex + marker.length) ?? '';
-          const afterMarker = prevValue?.substring(markerIndex + marker.length) ?? '';
-          return beforeMarker + ' ' + newData + ' ' + afterMarker;
+          const beforeMarker = prevValue?.substring(0, markerIndex) ?? '';
+          return beforeMarker + ' ' + newData;
         } else {
           return (prevValue ?? '') + ' ' + newData;
         }
       });
     }
   };
+  
 
 
   const startSSE = () => {

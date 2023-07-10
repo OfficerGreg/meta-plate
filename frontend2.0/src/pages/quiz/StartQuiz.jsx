@@ -13,7 +13,7 @@ const StartQuiz = () => {
   const [isAnswerCorrect, setIsAnswerCorrect] = useState(null);
   const [score, setScore] = useState(0);
   const [remainingTime, setRemainingTime] = useState(5);
-  const [remainingMilliseconds, setRemainingMilliseconds] = useState(100000);
+  const [remainingMilliseconds, setRemainingMilliseconds] = useState(10000);
   const [timeBarWidth, setTimeBarWidth] = useState(100);
   const [quizStarted, setQuizStarted] = useState(false);
   const [user, setUser] = useState(null);

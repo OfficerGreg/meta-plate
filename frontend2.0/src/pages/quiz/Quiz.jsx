@@ -102,7 +102,7 @@ const Quiz = () => {
                         Created by: {quiz.created_by.username}
                       </p>
                       <Link className="user-info-card__edit-btn"
-                        to={`/quiz/${quiz.id}`}
+                        to={`/quiz/${quiz.id}/start`}
                       >
                         Start Quiz
                       </Link>

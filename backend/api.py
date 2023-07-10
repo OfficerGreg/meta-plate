@@ -5,8 +5,8 @@ api_bp = Blueprint("api", __name__)
 
 # remove # from API KEY
 
-API_KEY = 'pk-zVSypLIUDIVmaRXdLncxpIOZSuJXIPGBCjVhkyCFRPokWMYb'
-API_URL = 'https://api.pawan.krd/v1'
+API_KEY = 'API_KEY'
+API_URL = 'https://api.openai.com/v1'
 
 openai.api_key = API_KEY
 openai.api_base = API_URL
