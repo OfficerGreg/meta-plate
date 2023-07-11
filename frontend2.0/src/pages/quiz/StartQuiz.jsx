@@ -105,6 +105,7 @@ const StartQuiz = () => {
       });
       console.log(response.data); // Optional: Handle the response as needed
       history.push('/quiz');
+      window.location.reload(); // reload seit
     } catch (error) {
       console.log('Error setting score:', error);
     }
@@ -120,7 +121,7 @@ const StartQuiz = () => {
         <div className="card">
           <h1 style={{ textAlign: 'center' }}>Welcome to the {quizName} quiz</h1>
           <div className="align-button-center">
-            <button className="btn btn-primary" onClick={() => setQuizStarted(true)}>
+            <button className="user-info-card__edit-btn" onClick={() => setQuizStarted(true)}>
               Begin Quiz
             </button>
           </div>
@@ -132,8 +133,8 @@ const StartQuiz = () => {
           {currentQuestionIndex === quiz.questions.length ? (
             <div>
               <h1>Quiz completed!</h1>
-              <p>Final Score: {score}</p>
-              <button className="btn btn-primary" onClick={setFinalScore}>
+              <p style={{ marginBottom: "20px"}}>Final Score: {score}</p>
+              <button  className="user-info-card__edit-btn" onClick={setFinalScore}>
                 Save Score
               </button>
             </div>
@@ -164,7 +165,7 @@ const StartQuiz = () => {
             <br></br>
             <br></br>
             <br></br>
-              <button className="btn btn-primary" onClick={handleNextQuestion} disabled={selectedAnswerIndex === null}>
+              <button className="user-info-card__edit-btn" onClick={handleNextQuestion} disabled={selectedAnswerIndex === null}>
                 {buttonText}
               </button>
               <h3 style={{textAlign: "center"}}>

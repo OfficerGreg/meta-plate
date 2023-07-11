@@ -67,12 +67,13 @@ const Quiz = () => {
                   <div className="card" style={{backgroundColor: getRandomColor()}}>
                     <div className="card-body">
                       <h2 className="card-title">{quiz.name}</h2>
-                      <p className="card-text" style={{padding: 5}} >
+                      <p className="card-text" style={{padding: 5,marginBottom: "15px"}} >
                         Created by: {quiz.created_by.username}
                       </p>
                       <Link
                         to={`/quiz/${quiz.id}/edit`}
                         className="user-info-card__edit-btn"
+                        style={{ marginRight: "3px"}}
                       >
                         Edit
                       </Link>
@@ -98,7 +99,7 @@ const Quiz = () => {
                   <div className="card" style={{backgroundColor: getRandomColor()}}>
                     <div className="card-body">
                       <h2 className="card-title">{quiz.name}</h2>
-                      <p className="card-text">
+                      <p className="card-text"  style={{ marginBottom: "15px"}}>
                         Created by: {quiz.created_by.username}
                       </p>
                       <Link className="user-info-card__edit-btn"
