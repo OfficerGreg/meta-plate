@@ -3,7 +3,7 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 
 import Dashboard from '../pages/Dashboard'
-import Customers from '../pages/Customers'
+import Calender from '../pages/Calender'
 import Userprofile from "../pages/Userprofile";
 import ApiTest from "../pages/ApiTest";
 import NotePage from "../pages/NotePage";
@@ -29,7 +29,7 @@ const Routes = () => {
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/workspace" component={Workspace} />
             <Route path="/module" component={Module} />
-            <Route path='/calendar' component={Customers}/>
+            <Route path='/calendar' component={Calender}/>
             <Route path='/profile' component={Userprofile}/>
             <Route path='/completionChat' component={ApiTest}/>
             <Route path='/folders/:folderId/:noteId' component={NotePage}/>
