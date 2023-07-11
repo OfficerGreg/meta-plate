@@ -31,7 +31,7 @@ const Sidebar = props => {
     return (
         <div className='sidebar'>
             <div className="sidebar__logo">
-                <span style={{ fontSize: '30px', fontWeight: 'bold' }}>Meatplat x WISS</span>
+                <span style={{ fontSize: '30px', fontWeight: 'bold' }}>Metaplate x WISS</span>
 
             </div>
 
