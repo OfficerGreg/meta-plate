@@ -113,32 +113,34 @@ const FolderPage = () => {
 
                                     {folder.notes && folder.notes.length >= 0 && folderVisibility[folder.id] && (
                                         <div>
-                                            <label>New Note:</label>
-                                            <input
-                                                type="text"
-                                                value={newNoteNames[folder.id] || ""}
-                                                onChange={(e) =>
-                                                    handleNoteNameChange(folder.id, e.target.value)
-                                                }
-                                            />
-                                            <button onClick={() => createNote(folder.id)}>
-                                                Create Note
-                                            </button>
-                                            <button onClick={() => alert("dont work yet")}>
-                                                Import Note
-                                            </button>
 
+                                            <h4 style={{ marginBottom: '10px' }}>New Note:</h4>
+                                            <div className="topnav__search" style={{ width: '50%', height:"40px" }}>
+                                                <input
+                                                    type="text"
+                                                    value={newNoteNames[folder.id] || ""}
+                                                    onChange={(e) =>
+                                                        handleNoteNameChange(folder.id, e.target.value)
+                                                    }
+                                                />
+                                                <div style={{ display: "flex", justifyContent: "space-between" }}>
+                                                    <i className="bx bx-add-to-queue" onClick={() => createNote(folder.id)} style={{ marginRight: "3px" }}></i>
+                                                    <i className="bx bxs-file-import" onClick={() => alert("dont work yet")} style={{ marginRight: "3px" }}></i>
+                                            </div>
+                                            </div>
                                         <tr>
-                                            <td style={{ backgroundColor: "gray" }} colSpan={2}>
+                                            <td colSpan={2}>
+                                                <div className="row">
                                                 {folder.notes.map((note) => (
-                                                    <tr key={note.id}>
-                                                        <td>
+                                                    <div style={{ padding:"3px",margin:"6px"}}>
+                                                        <div  key={note.id} style={{ padding:"3px",marginBottom:"15px",borderRadius: "10px", boxShadow: "2px 2px 8px rgba(0, 0, 0, 0.1)", textAlign: "center" }}>
                                                             <Link to={`/folders/${folder.id}/${note.id}`}>
                                                                 {note.name}
                                                             </Link>
-                                                        </td>
-                                                    </tr>
+                                                        </div >
+                                                    </div >
                                                 ))}
+                                                </div>
                                             </td>
                                         </tr>
                                         </div>
