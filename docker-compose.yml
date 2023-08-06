@@ -9,7 +9,7 @@ services:
 
   backend:
     container_name: backend
-    build: registry.gitlab.com/teivys04/meta-plate/backend
+    image: registry.gitlab.com/teivys04/meta-plate/backend
     ports:
       - "5000:5000"
     volumes:
@@ -21,7 +21,7 @@ services:
       - redis
   frontend:
     container_name: frontend
-    build: registry.gitlab.com/teivys04/meta-plate/frontend
+    image: registry.gitlab.com/teivys04/meta-plate/frontend
     ports:
       - "3000:3000"
     stdin_open: true
